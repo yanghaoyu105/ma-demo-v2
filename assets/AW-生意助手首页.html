@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Accio Work - 国际站生意助手</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: -apple-system, 'PingFang SC', 'Helvetica Neue', sans-serif; background:#fff; color:#1a1a1a; height:100vh; overflow:hidden; }
+
+.layout { display:flex; height:100vh; }
+
+/* Sidebar */
+.sidebar { width:240px; background:#fafafa; border-right:1px solid #ebebeb; display:flex; flex-direction:column; flex-shrink:0; }
+.sidebar-logo { padding:18px 20px; display:flex; align-items:center; gap:10px; }
+.logo-text { font-size:18px; font-weight:800; color:#1a1a1a; letter-spacing:-0.5px; }
+.logo-accent { color:#FF6A00; }
+.logo-icons { display:flex; gap:8px; margin-left:auto; }
+.logo-icons span { width:28px; height:28px; display:flex; align-items:center; justify-content:center; cursor:pointer; border-radius:6px; color:#999; font-size:14px; }
+.logo-icons span:hover { background:#f0f0f0; }
+
+.sidebar-nav { padding:4px 12px; }
+.nav-item { display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:8px; font-size:14px; color:#333; cursor:pointer; margin-bottom:1px; }
+.nav-item:hover { background:#f0f0f0; }
+.nav-item svg { width:18px; height:18px; color:#999; flex-shrink:0; }
+
+.nav-label { font-size:12px; color:#bbb; padding:16px 12px 6px; }
+.nav-sub { display:flex; align-items:center; gap:8px; padding:8px 12px 8px 16px; font-size:13px; color:#888; cursor:pointer; border-radius:6px; }
+.nav-sub:hover { background:#f0f0f0; color:#333; }
+.nav-sub svg { width:16px; height:16px; color:#bbb; }
+
+.team-label { font-size:12px; color:#bbb; padding:16px 12px 6px; display:flex; align-items:center; gap:6px; }
+.team-badge { font-size:10px; background:#f0f0f0; color:#999; padding:1px 6px; border-radius:4px; }
+.team-item { display:flex; align-items:center; gap:8px; padding:8px 12px 8px 16px; font-size:13px; color:#888; cursor:pointer; border-radius:6px; }
+.team-avatars { display:flex; }
+.team-avatars img { width:20px; height:20px; border-radius:50%; border:1.5px solid #fff; margin-left:-6px; }
+.team-avatars img:first-child { margin-left:0; }
+
+.sidebar-footer { margin-top:auto; border-top:1px solid #ebebeb; padding:14px 16px; }
+.user-info { display:flex; align-items:center; gap:10px; }
+.user-avatar { width:36px; height:36px; border-radius:50%; overflow:hidden; flex-shrink:0; }
+.user-avatar img { width:100%; height:100%; object-fit:cover; }
+.user-name { font-size:13px; font-weight:600; color:#1a1a1a; }
+.user-plan { font-size:11px; color:#bbb; }
+.user-settings { margin-left:auto; cursor:pointer; color:#bbb; font-size:16px; }
+
+/* Main */
+.main { flex:1; display:flex; flex-direction:column; background:#fff; }
+.btn-back { display:inline-flex; align-items:center; gap:6px; padding:6px 16px; background:#fff; border:1px solid #e0e0e0; border-radius:20px; cursor:pointer; font-size:13px; font-weight:600; color:#4e6ef2; text-decoration:none; transition:background .2s; }
+.btn-back:hover { background:#f5f7ff; }
+.main-topbar { padding:12px 32px; display:flex; justify-content:flex-end; }
+
+/* Center Content */
+.center-content { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:0 32px; max-width:800px; margin:0 auto; width:100%; }
+
+/* Logo & Title */
+.app-logo { width:64px; height:64px; border-radius:16px; background:#FF6A00; display:flex; align-items:center; justify-content:center; margin-bottom:16px; }
+.app-logo svg { width:36px; height:36px; }
+.app-title { font-size:22px; font-weight:700; color:#1a1a1a; margin-bottom:32px; }
+
+/* Input Box */
+.input-box { width:100%; border:1px solid #e0e0e0; border-radius:12px; padding:16px 18px; background:#fff; margin-bottom:8px; }
+.input-placeholder { font-size:14px; color:#bbb; margin-bottom:16px; }
+.input-toolbar { display:flex; align-items:center; justify-content:space-between; }
+.toolbar-left { display:flex; align-items:center; gap:12px; }
+.toolbar-btn { display:flex; align-items:center; gap:4px; font-size:13px; color:#888; cursor:pointer; padding:4px 8px; border-radius:6px; border:none; background:none; }
+.toolbar-btn:hover { background:#f5f5f5; }
+.toolbar-right { display:flex; align-items:center; gap:12px; }
+.tool-item { display:flex; align-items:center; gap:4px; font-size:13px; color:#888; cursor:pointer; }
+.send-btn { width:32px; height:32px; border-radius:50%; background:#FF6A00; border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; }
+.send-btn svg { width:16px; height:16px; color:#fff; }
+
+/* Workspace selector */
+.workspace-bar { width:100%; display:flex; align-items:center; gap:6px; padding:8px 0; font-size:13px; color:#888; cursor:pointer; margin-bottom:24px; }
+
+/* Tags */
+.tags { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:28px; width:100%; justify-content:center; }
+.tag { padding:8px 20px; border:1px solid #e0e0e0; border-radius:20px; font-size:13px; color:#555; cursor:pointer; background:#fff; transition:all .2s; }
+.tag:hover { border-color:#FF6A00; color:#FF6A00; }
+.tag.active { background:#FF6A00; color:#fff; border-color:#FF6A00; font-weight:600; }
+
+/* Suggestions */
+.suggestions { width:100%; }
+.suggestion-item { display:flex; align-items:flex-start; gap:10px; padding:16px 0; border-bottom:1px solid #f0f0f0; cursor:pointer; }
+.suggestion-item:hover { background:#fafafa; margin:0 -8px; padding:16px 8px; border-radius:8px; }
+.suggestion-item:last-child { border-bottom:none; }
+.suggestion-icon { width:24px; height:24px; border-radius:50%; border:1.5px solid #e0e0e0; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:1px; color:#bbb; }
+.suggestion-text { font-size:14px; color:#555; line-height:1.6; }
+</style>
+</head>
+<body>
+<div class="layout">
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="sidebar-logo">
+      <span class="logo-text">Accio <span class="logo-accent">Work</span></span>
+      <div class="logo-icons">
+        <span>🔍</span>
+        <span>⊞</span>
+      </div>
+    </div>
+
+    <div class="sidebar-nav">
+      <div class="nav-item">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 3v14M3 10h14"/></svg>
+        新消息
+      </div>
+      <div class="nav-item">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="6" r="3"/><path d="M4 17c0-3.3 2.7-6 6-6s6 2.7 6 6"/></svg>
+        智能体
+      </div>
+      <div class="nav-item">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="14" height="12" rx="2"/><path d="M7 8h6M7 11h4"/></svg>
+        插件
+      </div>
+      <div class="nav-item">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="10" r="7"/><path d="M10 6v4l2.5 2.5"/></svg>
+        定时任务
+      </div>
+      <div class="nav-item">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h12v3H4zM6 10h8v7H6z"/><path d="M10 7v3"/></svg>
+        消息渠道
+      </div>
+    </div>
+
+    <div class="nav-label">会话</div>
+    <div class="nav-sub">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M8 3v10M3 8h10"/></svg>
+      国际站生意助手介绍
+    </div>
+
+    <div class="team-label">团队 <span class="team-badge">Beta</span></div>
+    <div class="team-item">
+      <div class="team-avatars">
+        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="">
+        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="">
+      </div>
+      新建团队
+    </div>
+
+    <div class="sidebar-footer">
+      <div class="user-info">
+        <div class="user-avatar">
+          <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="">
+        </div>
+        <div>
+          <div class="user-name">John Smith</div>
+          <div class="user-plan">免费版</div>
+        </div>
+        <span class="user-settings">⚙</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main -->
+  <div class="main">
+    <div class="main-topbar">
+      <a class="btn-back" id="returnHomeLink" href="../MA首页升级Demo.html">← 回到首页</a>
+    </div>
+    <div class="center-content">
+      <!-- App Logo -->
+      <div class="app-logo">
+        <svg viewBox="0 0 40 40" fill="none">
+          <text x="6" y="22" font-size="9" fill="#fff" font-weight="700" font-family="Arial">Alibaba</text>
+          <text x="10" y="32" font-size="7" fill="rgba(255,255,255,0.8)" font-family="Arial">.com</text>
+        </svg>
+      </div>
+      <div class="app-title">国际站生意助手</div>
+
+      <!-- Input -->
+      <div class="input-box">
+        <div class="input-placeholder">输入问题...（@引用文件）</div>
+        <div class="input-toolbar">
+          <div class="toolbar-left">
+            <span class="toolbar-btn">＋</span>
+            <span class="toolbar-btn">🔧 插件 ▾</span>
+          </div>
+          <div class="toolbar-right">
+            <span class="tool-item">🖐 默认权限 ▾</span>
+            <span class="tool-item">🔄 Auto ▾</span>
+            <button class="send-btn"><svg viewBox="0 0 16 16" fill="none"><path d="M3 13l10-5L3 3v4l6 1-6 1v4z" fill="#fff"/></svg></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="workspace-bar">
+        📁 选择工作目录 ▾
+      </div>
+
+      <!-- Tags -->
+      <div class="tags">
+        <span class="tag active">经营建议</span>
+        <span class="tag">店铺分析</span>
+        <span class="tag">智能发品</span>
+        <span class="tag">客户接待</span>
+        <span class="tag">创意图片</span>
+        <span class="tag">创意视频</span>
+        <span class="tag">店铺装修</span>
+      </div>
+
+      <!-- Suggestions -->
+      <div class="suggestions">
+        <div class="suggestion-item">
+          <div class="suggestion-icon">💬</div>
+          <div class="suggestion-text">我新店开了 45 天还没破星，商品基数不足，从1688热卖榜选 10 款帮我发布快速起量</div>
+        </div>
+        <div class="suggestion-item">
+          <div class="suggestion-icon">💬</div>
+          <div class="suggestion-text">我近 7 天询盘环比下滑 25%，商品力可能跟不上，帮我挑 10 个高潜品做标题/主图/价格优化</div>
+        </div>
+        <div class="suggestion-item">
+          <div class="suggestion-icon">💬</div>
+          <div class="suggestion-text">我平均回复时长 36 小时（标准 ≤24h）已被平台标记影响排名，帮我处理积压买家并生成推荐话术</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+(function () {
+  var params = new URLSearchParams(window.location.search);
+  var returnHomePath = params.get('return') === 'compare' ? '../MA首页升级Demo-对比优化版.html' : '../MA首页升级Demo.html';
+  var returnHomeLink = document.getElementById('returnHomeLink');
+  if (returnHomeLink) {
+    returnHomeLink.href = returnHomePath;
+    returnHomeLink.textContent = '← 回到首页';
+  }
+})();
+</script>
+</body>
+</html>

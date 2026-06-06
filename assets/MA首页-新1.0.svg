@@ -1,0 +1,494 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 1920" font-family="PingFang SC, Microsoft YaHei, sans-serif">
+<defs>
+  <linearGradient id="grad-blue" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4e6ef2"/><stop offset="100%" stop-color="#7b93f7"/></linearGradient>
+  <linearGradient id="grad-blue2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#3b82f6"/><stop offset="100%" stop-color="#60a5fa"/></linearGradient>
+  <filter id="sh"><feDropShadow dx="0" dy="1" stdDeviation="2" flood-opacity="0.08"/></filter>
+  <filter id="sh2"><feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity="0.12"/></filter>
+</defs>
+<rect width="1440" height="1920" fill="#f5f6f7"/>
+<rect x="0" y="0" width="180" height="1920" fill="#1a1a2e"/>
+<rect x="16" y="14" width="28" height="28" rx="4" fill="url(#grad-blue2)"/>
+<text x="50" y="33" fill="#4e6ef2" font-size="14" font-weight="700">阿里国际站</text>
+<rect x="0" y="56" width="180" height="36" fill="#4e6ef2"/>
+<text x="42" y="78" fill="#fff" font-size="13">首页</text>
+<text x="42" y="110" fill="#a6a6b0" font-size="13">常用</text>
+<text x="42" y="142" fill="#a6a6b0" font-size="13">店铺管理</text>
+<text x="42" y="174" fill="#a6a6b0" font-size="13">商品管理</text>
+<text x="42" y="206" fill="#a6a6b0" font-size="13">媒体中心</text>
+<text x="42" y="238" fill="#a6a6b0" font-size="13">数据参谋</text>
+<text x="42" y="270" fill="#a6a6b0" font-size="13">营销中心</text>
+<text x="42" y="302" fill="#a6a6b0" font-size="13">活动中心</text>
+<text x="42" y="334" fill="#a6a6b0" font-size="13">商机沟通</text>
+<text x="42" y="366" fill="#a6a6b0" font-size="13">客户管理</text>
+<text x="42" y="398" fill="#a6a6b0" font-size="13">交易管理</text>
+<text x="42" y="430" fill="#a6a6b0" font-size="13">出口服务</text>
+<text x="42" y="462" fill="#a6a6b0" font-size="13">物流服务</text>
+<text x="42" y="494" fill="#a6a6b0" font-size="13">资金管理</text>
+<text x="42" y="526" fill="#a6a6b0" font-size="13">认证中心</text>
+<text x="42" y="558" fill="#a6a6b0" font-size="13">商家成长</text>
+<rect x="4" y="578" width="172" height="32" rx="6" fill="rgba(78,110,242,0.12)"/>
+<text x="42" y="590" fill="#4e6ef2" font-size="13" font-weight="600">生意助手</text>
+<text x="42" y="618" fill="#a6a6b0" font-size="13">服务中心</text>
+<rect x="8" y="642" width="164" height="36" rx="8" fill="rgba(78,110,242,0.08)" stroke="#4e6ef2" stroke-width="1" stroke-dasharray="4,2"/>
+<text x="42" y="658" fill="#4e6ef2" font-size="12" font-weight="600">智能工作台</text>
+<text x="42" y="670" fill="#7b93f7" font-size="9">前往AW完整版 →</text>
+<rect x="136" y="644" width="30" height="14" rx="3" fill="#4e6ef2"/>
+<text x="142" y="654" fill="#fff" font-size="8" font-weight="700">NEW</text>
+<rect x="180" y="0" width="1260" height="52" fill="#fff" filter="url(#sh)"/>
+<text x="234" y="31" fill="#4e6ef2" font-size="15" font-weight="700">My Alibaba</text>
+<rect x="380" y="12" width="400" height="30" rx="15" fill="#f5f6f7" stroke="#e8e8e8" stroke-width="1"/>
+<text x="410" y="31" fill="#999" font-size="12">AI搜索 搜索功能菜单、平台规则、商品信息</text>
+<!-- ===== 模块1: Agent座舱 ===== -->
+<rect x="200" y="66" width="900" height="48" rx="10" fill="#fff" filter="url(#sh)" stroke="#e8e8e8" stroke-width="0.5"/>
+<rect x="200" y="66" width="4" height="48" rx="2" fill="#7c3aed"/>
+<circle cx="228" cy="90" r="14" fill="#f3f0ff" stroke="#c4b5fd" stroke-width="1.5"/>
+<text x="222" y="94" font-size="10" fill="#7c3aed" font-weight="700">谭</text>
+<rect x="237" y="82" width="16" height="11" rx="3" fill="#7c3aed"/>
+<text x="240" y="90" font-size="6.5" fill="#fff" font-weight="700">AI</text>
+<text x="260" y="94" fill="#374151" font-size="13">HI，我是您的AI客户经理谭波，请查收店铺诊断建议</text>
+<circle cx="880" cy="88" r="11" fill="#e8e8e8" stroke="#fff" stroke-width="1.5"/>
+<text x="876" y="92" font-size="7" fill="#6b7280">张</text>
+<circle cx="898" cy="88" r="11" fill="#e8e8e8" stroke="#fff" stroke-width="1.5"/>
+<text x="894" y="92" font-size="7" fill="#6b7280">李</text>
+<circle cx="916" cy="88" r="11" fill="#e8e8e8" stroke="#fff" stroke-width="1.5"/>
+<text x="912" y="92" font-size="7" fill="#6b7280">王</text>
+<text x="932" y="88" fill="#9ca3af" font-size="9">3个数字员工使用中</text>
+<text x="1040" y="88" fill="#7c3aed" font-size="10" font-weight="600">任务管理</text>
+<text x="932" y="102" fill="#d1d5db" font-size="9">更新时间 2026-06-02 06:21</text>
+<rect x="200" y="126" width="900" height="390" rx="10" fill="#fff" filter="url(#sh2)" stroke="#e8e8e8" stroke-width="1"/>
+<circle cx="220" cy="146" r="3" fill="#ef4444"/>
+<text x="230" y="150" fill="#1f2937" font-size="13" font-weight="600">经营诊断 · 薄弱环节定位</text>
+<text x="216" y="170" fill="#dc2626" font-size="14" font-weight="700">搜索曝光严重不足，完成任务预计提升100%+</text>
+<text x="216" y="188" fill="#6b7280" font-size="11">近7日搜索曝光仅401，远低于同行均值8,030。问题定位在曝光环节——点击率和转化率均正常。</text>
+<text x="880" y="188" fill="#9ca3af" font-size="10">补充经营偏好 →</text>
+<rect x="216" y="200" width="200" height="44" rx="6" fill="#fff" stroke="#e8e8e8" stroke-width="1"/>
+<text x="230" y="218" fill="#9ca3af" font-size="10">曝光</text>
+<text x="230" y="236" fill="#1f2937" font-size="16" font-weight="700">401</text>
+<rect x="272" y="224" width="34" height="16" rx="4" fill="#fef2f2"/>
+<text x="278" y="236" fill="#ef4444" font-size="9" font-weight="600">异常</text>
+<text x="426" y="226" fill="#d1d5db" font-size="14">→</text>
+<rect x="446" y="200" width="200" height="44" rx="6" fill="#fff" stroke="#e8e8e8" stroke-width="1"/>
+<text x="460" y="218" fill="#9ca3af" font-size="10">点击</text>
+<text x="460" y="236" fill="#1f2937" font-size="16" font-weight="700">18</text>
+<rect x="502" y="224" width="34" height="16" rx="4" fill="#f0fdf4"/>
+<text x="508" y="236" fill="#10b981" font-size="9" font-weight="600">正常</text>
+<text x="656" y="226" fill="#d1d5db" font-size="14">→</text>
+<rect x="676" y="200" width="200" height="44" rx="6" fill="#fff" stroke="#e8e8e8" stroke-width="1"/>
+<text x="690" y="218" fill="#9ca3af" font-size="10">询盘</text>
+<text x="690" y="236" fill="#1f2937" font-size="16" font-weight="700">3</text>
+<rect x="732" y="224" width="34" height="16" rx="4" fill="#f0fdf4"/>
+<text x="738" y="236" fill="#10b981" font-size="9" font-weight="600">正常</text>
+<text x="886" y="226" fill="#d1d5db" font-size="14">→</text>
+<rect x="906" y="200" width="178" height="44" rx="6" fill="#fff" stroke="#e8e8e8" stroke-width="1"/>
+<text x="920" y="218" fill="#9ca3af" font-size="10">成交</text>
+<text x="920" y="236" fill="#1f2937" font-size="16" font-weight="700">1</text>
+<rect x="962" y="224" width="34" height="16" rx="4" fill="#f0fdf4"/>
+<text x="968" y="236" fill="#10b981" font-size="9" font-weight="600">正常</text>
+<line x1="216" y1="256" x2="1084" y2="256" stroke="#f0f0f0" stroke-width="1"/>
+<circle cx="220" cy="272" r="3" fill="#4e6ef2"/>
+<text x="230" y="276" fill="#1f2937" font-size="13" font-weight="600">问题分析 · 如何提升曝光</text>
+<text x="216" y="294" fill="#9ca3af" font-size="10">以下是影响您店铺曝光的关键因素，生意助手已为每个问题准备了对应方案，确认即可执行。</text>
+<text x="1030" y="294" fill="#4e6ef2" font-size="11">批量确认</text>
+<rect x="216" y="304" width="280" height="148" rx="8" fill="#fff" stroke="#f0f0f0" stroke-width="1"/>
+<rect x="216" y="304" width="3" height="148" rx="1" fill="#4e6ef2"/>
+<rect x="219" y="304" width="277" height="58" fill="#f9fafb"/>
+<circle cx="236" cy="322" r="8" fill="#eef1fe"/>
+<text x="232" y="326" fill="#4e6ef2" font-size="9" font-weight="700">1</text>
+<text x="250" y="324" fill="#1f2937" font-size="12" font-weight="600">品类窄，搜索排名低</text>
+<text x="250" y="342" fill="#9ca3af" font-size="10">4.5分品仅2个（同行8个）</text>
+<line x1="219" y1="362" x2="496" y2="362" stroke="#f0f0f0" stroke-width="1"/>
+<text x="230" y="380" fill="#374151" font-size="11" font-weight="500">发布4.5分品(2/30)</text>
+<text x="230" y="394" fill="#9ca3af" font-size="9">必做 · 生意助手已匹配5个商品</text>
+<rect x="230" y="402" width="180" height="4" rx="2" fill="#f0f0f0"/>
+<rect x="230" y="402" width="153" height="4" rx="2" fill="#4e6ef2"/>
+<text x="416" y="408" fill="#4e6ef2" font-size="9" font-weight="600">85%</text>
+<rect x="230" y="414" width="252" height="26" rx="5" fill="url(#grad-blue)"/>
+<text x="326" y="431" fill="#fff" font-size="11" font-weight="600">确认发布</text>
+<rect x="510" y="304" width="280" height="148" rx="8" fill="#fff" stroke="#f0f0f0" stroke-width="1"/>
+<rect x="510" y="304" width="3" height="148" rx="1" fill="#10b981"/>
+<rect x="513" y="304" width="277" height="58" fill="#f9fafb"/>
+<circle cx="530" cy="322" r="8" fill="#ecfdf5"/>
+<text x="526" y="326" fill="#10b981" font-size="9" font-weight="700">2</text>
+<text x="544" y="324" fill="#1f2937" font-size="12" font-weight="600">橱窗位未满</text>
+<text x="544" y="342" fill="#9ca3af" font-size="10">使用率仅60%，建议填满至100%</text>
+<line x1="513" y1="362" x2="790" y2="362" stroke="#f0f0f0" stroke-width="1"/>
+<text x="524" y="380" fill="#374151" font-size="11" font-weight="500">加入橱窗展示(6/10)</text>
+<text x="524" y="394" fill="#9ca3af" font-size="9">选做 · 最大化免费曝光</text>
+<rect x="524" y="402" width="180" height="4" rx="2" fill="#f0f0f0"/>
+<rect x="524" y="402" width="126" height="4" rx="2" fill="#10b981"/>
+<text x="710" y="408" fill="#10b981" font-size="9" font-weight="600">70%</text>
+<rect x="524" y="414" width="252" height="26" rx="5" fill="url(#grad-blue)"/>
+<text x="620" y="431" fill="#fff" font-size="11" font-weight="600">确认方案</text>
+<rect x="804" y="304" width="280" height="148" rx="8" fill="#fff" stroke="#f0f0f0" stroke-width="1"/>
+<rect x="804" y="304" width="3" height="148" rx="1" fill="#6366f1"/>
+<rect x="807" y="304" width="277" height="58" fill="#f9fafb"/>
+<circle cx="824" cy="322" r="8" fill="#eef2ff"/>
+<text x="820" y="326" fill="#6366f1" font-size="9" font-weight="700">3</text>
+<text x="838" y="324" fill="#1f2937" font-size="12" font-weight="600">P4P获量不足</text>
+<text x="838" y="342" fill="#9ca3af" font-size="10">日均消耗¥50，远低于同行¥200</text>
+<line x1="807" y1="362" x2="1084" y2="362" stroke="#f0f0f0" stroke-width="1"/>
+<text x="818" y="380" fill="#374151" font-size="11" font-weight="500">P4P出价提升到¥1.8</text>
+<text x="818" y="394" fill="#9ca3af" font-size="9">选做 · 当前出价¥0.9低于同行</text>
+<rect x="818" y="402" width="180" height="4" rx="2" fill="#f0f0f0"/>
+<rect x="818" y="402" width="165" height="4" rx="2" fill="#6366f1"/>
+<text x="1004" y="408" fill="#6366f1" font-size="9" font-weight="600">92%</text>
+<rect x="818" y="414" width="252" height="26" rx="5" fill="url(#grad-blue)"/>
+<text x="914" y="431" fill="#fff" font-size="11" font-weight="600">去调整</text>
+<!-- ===== 模块2: 数据驾驶舱 ===== -->
+<rect x="200" y="540" width="900" height="260" rx="10" fill="#fff" filter="url(#sh)"/>
+<rect x="216" y="550" width="868" height="32" rx="6" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="0.5"/>
+<circle cx="230" cy="566" r="4" fill="#10b981"/>
+<text x="240" y="570" fill="#166534" font-size="11" font-weight="500">上次任务「5/20发品3个」已完成 → 7日后曝光+156%，验证有效</text>
+<text x="700" y="570" fill="#10b981" font-size="10" font-weight="600">↑ 任务带来显著正反馈</text>
+<text x="930" y="570" fill="#9ca3af" font-size="9">30d效果追踪中</text>
+<rect x="216" y="592" width="68" height="28" rx="6" fill="#1f2937"/>
+<text x="228" y="610" fill="#fff" font-size="11" font-weight="600">实时数据</text>
+<text x="300" y="610" fill="#6b7280" font-size="11">店铺数据</text>
+<text x="372" y="610" fill="#6b7280" font-size="11">半托管数据</text>
+<text x="456" y="610" fill="#6b7280" font-size="11">营销数据</text>
+<text x="780" y="610" fill="#9ca3af" font-size="10">更新时间 2026-06-02 00:00 (PST)</text>
+<text x="1000" y="610" fill="#4e6ef2" font-size="10">更多数据 ></text>
+<text x="216" y="640" fill="#9ca3af" font-size="10">搜索曝光次数</text>
+<text x="216" y="660" fill="#1f2937" font-size="20" font-weight="700">27</text>
+<text x="250" y="660" fill="#10b981" font-size="10">↑3.8%</text>
+<rect x="216" y="668" width="110" height="18" rx="4" fill="#ecfdf5" stroke="#86efac" stroke-width="0.5"/>
+<text x="222" y="680" fill="#166534" font-size="8">发品后+156%（任务生效）</text>
+<text x="366" y="640" fill="#9ca3af" font-size="10">搜索点击次数</text>
+<text x="366" y="660" fill="#1f2937" font-size="20" font-weight="700">0</text>
+<text x="400" y="660" fill="#9ca3af" font-size="10">--</text>
+<rect x="366" y="668" width="117" height="18" rx="4" fill="#eef1fe" stroke="#c7d2fe" stroke-width="0.5"/>
+<text x="372" y="680" fill="#4e6ef2" font-size="8">主图吸引力待优化 → AW诊断</text>
+<text x="516" y="640" fill="#9ca3af" font-size="10">店铺访问人数</text>
+<text x="516" y="660" fill="#1f2937" font-size="20" font-weight="700">0</text>
+<text x="550" y="660" fill="#9ca3af" font-size="10">--</text>
+<text x="656" y="640" fill="#9ca3af" font-size="10">询盘个数</text>
+<text x="656" y="660" fill="#1f2937" font-size="20" font-weight="700">0</text>
+<text x="690" y="660" fill="#9ca3af" font-size="10">--</text>
+<text x="776" y="640" fill="#9ca3af" font-size="10">询盘人数</text>
+<text x="776" y="660" fill="#1f2937" font-size="20" font-weight="700">0</text>
+<text x="810" y="660" fill="#9ca3af" font-size="10">--</text>
+<text x="896" y="640" fill="#9ca3af" font-size="10">TM咨询人数</text>
+<text x="896" y="660" fill="#1f2937" font-size="20" font-weight="700">0</text>
+<text x="930" y="660" fill="#dc2626" font-size="10">↓100%</text>
+<rect x="896" y="668" width="117" height="18" rx="4" fill="#eef1fe" stroke="#c7d2fe" stroke-width="0.5"/>
+<text x="902" y="680" fill="#4e6ef2" font-size="8">下滑预警 → 建议AW智能分析</text>
+<rect x="216" y="732" width="868" height="56" rx="8" fill="#f5f7ff" stroke="#c7d2fe" stroke-width="0.5"/>
+<rect x="224" y="738" width="20" height="14" rx="3" fill="#4e6ef2"/>
+<text x="228" y="749" fill="#fff" font-size="8" font-weight="700">AI</text>
+<text x="250" y="749" fill="#4e6ef2" font-size="11" font-weight="600">AI智能解读 · 结合您的经营偏好</text>
+<text x="230" y="768" fill="#374151" font-size="10">您偏好「利润优先·大单稳定」，当前曝光基数极低(27次，同行均值7549)。建议补充长尾精准词（而非泛词），配合P4P定向投放高质量买家。</text>
+<rect x="860" y="738" width="110" height="26" rx="5" fill="url(#grad-blue)"/>
+<text x="872" y="755" fill="#fff" font-size="10" font-weight="600">前往AW深度诊断</text>
+<rect x="860" y="768" width="110" height="16" rx="3" fill="#eff6ff"/>
+<text x="866" y="780" fill="#2563eb" font-size="8">个性化优化方案 →</text>
+<!-- ===== 模块3: 经营管理 ===== -->
+<rect x="200" y="816" width="900" height="380" rx="10" fill="#fff" filter="url(#sh)"/>
+<text x="216" y="838" fill="#1f2937" font-size="15" font-weight="700">经营管理</text>
+<rect x="216" y="848" width="56" height="28" rx="6" fill="#eef1fe" stroke="#4e6ef2" stroke-width="1"/>
+<text x="228" y="866" fill="#4e6ef2" font-size="12" font-weight="600">询盘</text>
+<text x="290" y="866" fill="#374151" font-size="12">RFQ商机</text>
+<text x="370" y="866" fill="#374151" font-size="12">订单</text>
+<text x="420" y="866" fill="#374151" font-size="12">商品</text>
+<text x="466" y="866" fill="#374151" font-size="12">营销</text>
+<rect x="216" y="884" width="170" height="50" rx="6" fill="#f9fafb"/>
+<text x="230" y="902" fill="#374151" font-size="12" font-weight="600">询盘</text>
+<text x="230" y="922" fill="#1f2937" font-size="16" font-weight="700">47</text>
+<text x="262" y="922" fill="#6b7280" font-size="10">个询盘待回复</text>
+<rect x="400" y="884" width="170" height="50" rx="6" fill="#f9fafb"/>
+<text x="414" y="902" fill="#374151" font-size="12" font-weight="600">RFQ商机</text>
+<text x="414" y="922" fill="#1f2937" font-size="16" font-weight="700">36</text>
+<text x="446" y="922" fill="#6b7280" font-size="10">个新RFQ商机</text>
+<rect x="584" y="884" width="170" height="50" rx="6" fill="#f9fafb"/>
+<text x="598" y="902" fill="#374151" font-size="12" font-weight="600">订单</text>
+<text x="598" y="922" fill="#1f2937" font-size="16" font-weight="700">131</text>
+<text x="630" y="922" fill="#6b7280" font-size="10">个待处理订单</text>
+<rect x="768" y="884" width="170" height="50" rx="6" fill="#f9fafb"/>
+<text x="782" y="902" fill="#374151" font-size="12" font-weight="600">半托管</text>
+<text x="782" y="922" fill="#1f2937" font-size="16" font-weight="700">0</text>
+<text x="814" y="922" fill="#6b7280" font-size="10">个商品待报名</text>
+<rect x="952" y="884" width="148" height="50" rx="6" fill="#f9fafb"/>
+<text x="966" y="902" fill="#374151" font-size="12" font-weight="600">活动</text>
+<text x="966" y="922" fill="#1f2937" font-size="16" font-weight="700">12</text>
+<text x="998" y="922" fill="#6b7280" font-size="10">个活动待报名</text>
+<text x="216" y="946" fill="#6b7280" font-size="11">我的及时回复率：74.07%</text>
+<text x="430" y="946" fill="#6b7280" font-size="11">店铺及时回复率：74.07%</text>
+<text x="800" y="946" fill="#9ca3af" font-size="10">近一年询盘 ></text>
+<rect x="216" y="960" width="868" height="24" fill="#fafafa"/>
+<text x="226" y="976" fill="#9ca3af" font-size="10">来源/买家</text>
+<text x="420" y="976" fill="#9ca3af" font-size="10">商品</text>
+<text x="530" y="976" fill="#9ca3af" font-size="10">AI意向评分</text>
+<text x="660" y="976" fill="#9ca3af" font-size="10">负责人</text>
+<text x="740" y="976" fill="#9ca3af" font-size="10">状态</text>
+<text x="830" y="976" fill="#9ca3af" font-size="10">操作</text>
+<rect x="216" y="988" width="868" height="44" fill="#fff" stroke="#f5f5f5" stroke-width="0.5"/>
+<text x="226" y="1006" fill="#374151" font-size="11">Inquiry from Accio Work</text>
+<text x="226" y="1020" fill="#6b7280" font-size="10">Pauline Zhang</text>
+<rect x="410" y="998" width="32" height="28" rx="4" fill="#e8e8e8"/>
+<text x="416" y="1016" fill="#999" font-size="8">商品图</text>
+<rect x="530" y="1000" width="80" height="22" rx="4" fill="#ecfdf5" stroke="#16a34a" stroke-width="0.5"/>
+<text x="542" y="1015" fill="#16a34a" font-size="10" font-weight="600">高意向 A</text>
+<text x="660" y="1014" fill="#374151" font-size="11">Henry Tan</text>
+<text x="740" y="1008" fill="#4e6ef2" font-size="10">新询盘</text>
+<text x="740" y="1022" fill="#9ca3af" font-size="9">已等待17时32分</text>
+<rect x="830" y="1000" width="50" height="24" rx="5" fill="#f5f5f5" stroke="#e8e8e8" stroke-width="1"/>
+<text x="838" y="1016" fill="#374151" font-size="10">去回复</text>
+<rect x="216" y="1034" width="868" height="44" fill="#fff" stroke="#f5f5f5" stroke-width="0.5"/>
+<text x="226" y="1052" fill="#374151" font-size="11">Inquiry from Accio Work</text>
+<text x="226" y="1066" fill="#6b7280" font-size="10">LIAM ELVER</text>
+<rect x="410" y="1044" width="32" height="28" rx="4" fill="#e8e8e8"/>
+<text x="416" y="1062" fill="#999" font-size="8">商品图</text>
+<rect x="530" y="1046" width="80" height="22" rx="4" fill="#fefce8" stroke="#ca8a04" stroke-width="0.5"/>
+<text x="542" y="1061" fill="#ca8a04" font-size="10" font-weight="600">一般 B</text>
+<text x="660" y="1060" fill="#374151" font-size="11">Henry Tan</text>
+<text x="740" y="1054" fill="#4e6ef2" font-size="10">新询盘</text>
+<text x="740" y="1068" fill="#9ca3af" font-size="9">已等待1天4时</text>
+<rect x="830" y="1046" width="50" height="24" rx="5" fill="#f5f5f5" stroke="#e8e8e8" stroke-width="1"/>
+<text x="838" y="1062" fill="#374151" font-size="10">去回复</text>
+<rect x="216" y="1086" width="868" height="34" rx="6" fill="#f5f7ff" stroke="#c7d2fe" stroke-width="0.5"/>
+<rect x="224" y="1092" width="20" height="14" rx="3" fill="#4e6ef2"/>
+<text x="228" y="1103" fill="#fff" font-size="8" font-weight="700">AI</text>
+<text x="250" y="1106" fill="#4e6ef2" font-size="10">AI建议：优先回复Pauline Zhang（高意向A级），推荐使用智能回复生成专业报价</text>
+<rect x="710" y="1092" width="76" height="24" rx="5" fill="url(#grad-blue)"/>
+<text x="718" y="1108" fill="#fff" font-size="10" font-weight="600">AI智能回复</text>
+<rect x="794" y="1092" width="92" height="24" rx="5" fill="#eff6ff" stroke="#93c5fd" stroke-width="1"/>
+<text x="802" y="1108" fill="#2563eb" font-size="10">转入OKKI跟进</text>
+<rect x="894" y="1092" width="66" height="24" rx="5" fill="#f5f5f5"/>
+<text x="904" y="1108" fill="#6b7280" font-size="10">查看更多 ↓</text>
+<!-- ===== 模块4: 今日机会 ===== -->
+<rect x="200" y="1212" width="900" height="220" rx="10" fill="#fff" filter="url(#sh)"/>
+<text x="216" y="1234" fill="#1f2937" font-size="15" font-weight="700">今日机会</text>
+<text x="216" y="1254" fill="#374151" font-size="13" font-weight="600">买家店内偏好品</text>
+<rect x="330" y="1242" width="52" height="16" rx="3" fill="#ecfdf5"/>
+<text x="336" y="1254" fill="#10b981" font-size="9">与我相关</text>
+<text x="570" y="1254" fill="#4e6ef2" font-size="10">更多 ></text>
+<text x="660" y="1254" fill="#374151" font-size="13" font-weight="600">买家全站偏好品</text>
+<text x="1060" y="1254" fill="#4e6ef2" font-size="10">更多 ></text>
+<circle cx="228" cy="1280" r="8" fill="#4e6ef2"/>
+<text x="224" y="1284" fill="#fff" font-size="8" font-weight="700">1</text>
+<text x="244" y="1284" fill="#374151" font-size="10">Universal All Seasons Breathable...</text>
+<text x="480" y="1284" fill="#374151" font-size="11" font-weight="600">6</text>
+<rect x="510" y="1274" width="44" height="16" rx="3" fill="#ecfdf5"/>
+<text x="516" y="1286" fill="#10b981" font-size="8" font-weight="600">95%</text>
+<rect x="564" y="1272" width="42" height="20" rx="4" fill="#eef1fe"/>
+<text x="570" y="1286" fill="#4e6ef2" font-size="8">商品诊断</text>
+<circle cx="228" cy="1310" r="8" fill="#4e6ef2"/>
+<text x="224" y="1314" fill="#fff" font-size="8" font-weight="700">2</text>
+<text x="244" y="1314" fill="#374151" font-size="10">Nunbell Cross-border Multi-color...</text>
+<text x="480" y="1314" fill="#374151" font-size="11" font-weight="600">5</text>
+<rect x="510" y="1304" width="44" height="16" rx="3" fill="#fefce8"/>
+<text x="516" y="1316" fill="#ca8a04" font-size="8" font-weight="600">72%</text>
+<rect x="564" y="1302" width="42" height="20" rx="4" fill="#eef1fe"/>
+<text x="570" y="1316" fill="#4e6ef2" font-size="8">商品诊断</text>
+<circle cx="228" cy="1340" r="8" fill="#4e6ef2"/>
+<text x="224" y="1344" fill="#fff" font-size="8" font-weight="700">3</text>
+<text x="244" y="1344" fill="#374151" font-size="10">Pet Bed Dog Sofa Cushion...</text>
+<text x="480" y="1344" fill="#374151" font-size="11" font-weight="600">5</text>
+<rect x="510" y="1334" width="44" height="16" rx="3" fill="#ecfdf5"/>
+<text x="516" y="1346" fill="#10b981" font-size="8" font-weight="600">88%</text>
+<rect x="564" y="1332" width="42" height="20" rx="4" fill="#eef1fe"/>
+<text x="570" y="1346" fill="#4e6ef2" font-size="8">商品诊断</text>
+<circle cx="672" cy="1280" r="8" fill="#3b82f6"/>
+<text x="668" y="1284" fill="#fff" font-size="8" font-weight="700">1</text>
+<text x="688" y="1284" fill="#374151" font-size="10">Lftest Auto</text>
+<text x="960" y="1284" fill="#374151" font-size="11" font-weight="600">126</text>
+<rect x="1000" y="1272" width="56" height="20" rx="4" fill="#eef1fe"/>
+<text x="1006" y="1286" fill="#4e6ef2" font-size="8">一键发同款</text>
+<circle cx="672" cy="1310" r="8" fill="#3b82f6"/>
+<text x="668" y="1314" fill="#fff" font-size="8" font-weight="700">2</text>
+<text x="688" y="1314" fill="#374151" font-size="10">DC 24V/48V Solar...</text>
+<text x="960" y="1314" fill="#374151" font-size="11" font-weight="600">105</text>
+<rect x="1000" y="1302" width="56" height="20" rx="4" fill="#eef1fe"/>
+<text x="1006" y="1316" fill="#4e6ef2" font-size="8">一键发同款</text>
+<circle cx="672" cy="1340" r="8" fill="#3b82f6"/>
+<text x="668" y="1344" fill="#fff" font-size="8" font-weight="700">3</text>
+<text x="688" y="1344" fill="#374151" font-size="10">Bird Family Avian...</text>
+<text x="960" y="1344" fill="#374151" font-size="11" font-weight="600">84</text>
+<rect x="1000" y="1332" width="56" height="20" rx="4" fill="#eef1fe"/>
+<text x="1006" y="1346" fill="#4e6ef2" font-size="8">一键发同款</text>
+<rect x="216" y="1380" width="868" height="30" rx="6" fill="#f5f7ff" stroke="#c7d2fe" stroke-width="0.5"/>
+<rect x="224" y="1384" width="20" height="14" rx="3" fill="#4e6ef2"/>
+<text x="228" y="1395" fill="#fff" font-size="8" font-weight="700">AI</text>
+<text x="250" y="1398" fill="#4e6ef2" font-size="10">基于您的经营画像，推荐关注宠物用品类目RFQ商机（近7日需求增长42%）</text>
+<rect x="800" y="1384" width="70" height="22" rx="5" fill="url(#grad-blue)"/>
+<text x="810" y="1399" fill="#fff" font-size="10" font-weight="600">查看RFQ</text>
+<!-- ===== 右侧边栏 ===== -->
+<rect x="1120" y="66" width="300" height="160" rx="10" fill="#fff" filter="url(#sh)"/>
+<text x="1136" y="90" fill="#1f2937" font-size="12" font-weight="600">Shenzhen Highup Science and Technology Co., Ltd.</text>
+<text x="1136" y="108" fill="#4e6ef2" font-size="10">1yr VERIFIED</text>
+<text x="1136" y="126" fill="#6b7280" font-size="10">主营一级类目: 宠物用品及食品</text>
+<rect x="1136" y="138" width="268" height="24" rx="4" fill="#f5f7ff" stroke="#c7d2fe" stroke-width="0.5"/>
+<text x="1144" y="154" fill="#4e6ef2" font-size="9">店铺信息完整度</text>
+<rect x="1230" y="147" width="80" height="6" rx="3" fill="#f0f0f0"/>
+<rect x="1230" y="147" width="68" height="6" rx="3" fill="#4e6ef2"/>
+<text x="1316" y="154" fill="#4e6ef2" font-size="9" font-weight="600">85%</text>
+<text x="1136" y="178" fill="#6b7280" font-size="10">我的权益</text>
+<text x="1280" y="178" fill="#9ca3af" font-size="9">|</text>
+<rect x="1290" y="166" width="90" height="20" rx="4" fill="#f3f0ff" stroke="#c4b5fd" stroke-width="0.5"/>
+<text x="1298" y="180" fill="#7c3aed" font-size="9" font-weight="600">经营画像管理 →</text>
+<text x="1396" y="178" fill="#4e6ef2" font-size="10">></text>
+<rect x="1120" y="240" width="300" height="200" rx="10" fill="#fff" filter="url(#sh)" stroke="#3b82f6" stroke-width="1" stroke-dasharray="4,2"/>
+<rect x="1128" y="248" width="30" height="14" rx="3" fill="#3b82f6"/>
+<text x="1133" y="259" fill="#fff" font-size="8" font-weight="700">NEW</text>
+<rect x="1164" y="246" width="36" height="16" rx="3" fill="#eff6ff"/>
+<text x="1170" y="258" fill="#2563eb" font-size="8" font-weight="700">OKKI</text>
+<text x="1206" y="259" fill="#1f2937" font-size="12" font-weight="600">客户速览</text>
+<text x="1340" y="259" fill="#3b82f6" font-size="10">打开CRM →</text>
+<rect x="1136" y="272" width="128" height="44" rx="6" fill="#eff6ff"/>
+<text x="1146" y="288" fill="#6b7280" font-size="9">活跃客户</text>
+<text x="1146" y="308" fill="#2563eb" font-size="16" font-weight="700">24</text>
+<text x="1206" y="308" fill="#2563eb" font-size="9">↑12%</text>
+<rect x="1276" y="272" width="128" height="44" rx="6" fill="#fef2f2"/>
+<text x="1286" y="288" fill="#6b7280" font-size="9">待跟进客户</text>
+<text x="1286" y="308" fill="#dc2626" font-size="16" font-weight="700">8</text>
+<text x="1346" y="308" fill="#dc2626" font-size="9">需处理</text>
+<rect x="1136" y="324" width="128" height="44" rx="6" fill="#f0fdf4"/>
+<text x="1146" y="340" fill="#6b7280" font-size="9">近期成交</text>
+<text x="1146" y="360" fill="#16a34a" font-size="16" font-weight="700">3笔</text>
+<rect x="1276" y="324" width="128" height="44" rx="6" fill="#fefce8"/>
+<text x="1286" y="340" fill="#6b7280" font-size="9">沉睡客户</text>
+<text x="1286" y="360" fill="#ca8a04" font-size="16" font-weight="700">15</text>
+<text x="1346" y="360" fill="#ca8a04" font-size="9">待激活</text>
+<rect x="1136" y="382" width="268" height="22" rx="4" fill="#f9fafb"/>
+<text x="1144" y="397" fill="#6b7280" font-size="9">分层：</text>
+<rect x="1206" y="385" width="42" height="16" rx="4" fill="#dbeafe"/>
+<text x="1210" y="397" fill="#2563eb" font-size="8">新客 9</text>
+<rect x="1254" y="385" width="42" height="16" rx="4" fill="#dcfce7"/>
+<text x="1258" y="397" fill="#16a34a" font-size="8">活跃 24</text>
+<rect x="1308" y="385" width="42" height="16" rx="4" fill="#fef9c3"/>
+<text x="1312" y="397" fill="#ca8a04" font-size="8">沉睡 15</text>
+<rect x="1362" y="385" width="42" height="16" rx="4" fill="#fee2e2"/>
+<text x="1366" y="397" fill="#dc2626" font-size="8">流失 5</text>
+<rect x="1136" y="410" width="268" height="20" rx="4" fill="#f5f7ff" stroke="#c7d2fe" stroke-width="0.5"/>
+<text x="1144" y="424" fill="#4e6ef2" font-size="8">3位沉睡客户>90天未联系，建议OKKI邮件营销激活</text>
+<rect x="1120" y="454" width="300" height="220" rx="10" fill="#fff" filter="url(#sh)"/>
+<text x="1136" y="474" fill="#1f2937" font-size="12" font-weight="600">我的待办</text>
+<text x="1136" y="492" fill="#374151" font-size="11">未读人脉请求</text>
+<text x="1390" y="492" fill="#1f2937" font-size="11" font-weight="600" text-anchor="end">7</text>
+<text x="1136" y="512" fill="#374151" font-size="11">可营销客户</text>
+<text x="1390" y="512" fill="#1f2937" font-size="11" font-weight="600" text-anchor="end">99+</text>
+<text x="1136" y="532" fill="#374151" font-size="11">流失预警/高潜复购</text>
+<text x="1390" y="532" fill="#1f2937" font-size="11" font-weight="600" text-anchor="end">15</text>
+<text x="1136" y="552" fill="#374151" font-size="11">近7日待主账号回复</text>
+<text x="1390" y="552" fill="#1f2937" font-size="11" font-weight="600" text-anchor="end">30</text>
+<line x1="1136" y1="578" x2="1404" y2="578" stroke="#e8e8e8" stroke-width="1"/>
+<rect x="1136" y="586" width="268" height="78" rx="6" fill="#f5f7ff" stroke="#c7d2fe" stroke-width="0.5"/>
+<rect x="1144" y="592" width="20" height="14" rx="3" fill="#4e6ef2"/>
+<text x="1148" y="603" fill="#fff" font-size="8" font-weight="700">AI</text>
+<text x="1170" y="603" fill="#4e6ef2" font-size="10" font-weight="600">AI建议待办</text>
+<text x="1144" y="618" fill="#374151" font-size="10">☐ 优化10个零效果品标题</text>
+<rect x="1316" y="608" width="28" height="14" rx="3" fill="#fef2f2"/>
+<text x="1320" y="618" fill="#ef4444" font-size="8">必做</text>
+<text x="1144" y="634" fill="#374151" font-size="10">☐ 补充5个橱窗展示位</text>
+<rect x="1316" y="624" width="28" height="14" rx="3" fill="#ecfdf5"/>
+<text x="1320" y="634" fill="#10b981" font-size="8">选做</text>
+<text x="1144" y="650" fill="#374151" font-size="10">☐ P4P出价调整至¥1.8</text>
+<rect x="1316" y="640" width="28" height="14" rx="3" fill="#eef2ff"/>
+<text x="1320" y="650" fill="#6366f1" font-size="8">选做</text>
+<rect x="1120" y="688" width="300" height="200" rx="10" fill="#fff" filter="url(#sh)" stroke="#f59e0b" stroke-width="1" stroke-dasharray="4,2"/>
+<rect x="1128" y="696" width="30" height="14" rx="3" fill="#f59e0b"/>
+<text x="1133" y="707" fill="#fff" font-size="8" font-weight="700">NEW</text>
+<text x="1164" y="707" fill="#1f2937" font-size="12" font-weight="600">风控合规提醒</text>
+<text x="1340" y="707" fill="#f59e0b" font-size="10">全部提醒 →</text>
+<rect x="1136" y="724" width="268" height="32" rx="6" fill="#fff" stroke="#f5f5f5" stroke-width="0.5"/>
+<rect x="1136" y="724" width="3" height="32" rx="1" fill="#dc2626"/>
+<rect x="1148" y="728" width="28" height="14" rx="3" fill="#fef2f2"/>
+<text x="1153" y="738" fill="#dc2626" font-size="7" font-weight="700">紧急</text>
+<text x="1182" y="738" fill="#1f2937" font-size="10" font-weight="600">侵权风险</text>
+<text x="1148" y="750" fill="#9ca3af" font-size="9">3个品疑似侵权，建议立即下架</text>
+<rect x="1136" y="762" width="268" height="32" rx="6" fill="#fff" stroke="#f5f5f5" stroke-width="0.5"/>
+<rect x="1136" y="762" width="3" height="32" rx="1" fill="#ca8a04"/>
+<rect x="1148" y="766" width="28" height="14" rx="3" fill="#fefce8"/>
+<text x="1153" y="776" fill="#ca8a04" font-size="7" font-weight="700">重要</text>
+<text x="1182" y="776" fill="#1f2937" font-size="10" font-weight="600">资质过期</text>
+<text x="1148" y="788" fill="#9ca3af" font-size="9">营业执照将于30天后过期</text>
+<rect x="1136" y="800" width="268" height="32" rx="6" fill="#fff" stroke="#f5f5f5" stroke-width="0.5"/>
+<rect x="1136" y="800" width="3" height="32" rx="1" fill="#2563eb"/>
+<rect x="1148" y="804" width="28" height="14" rx="3" fill="#eff6ff"/>
+<text x="1153" y="814" fill="#2563eb" font-size="7" font-weight="700">关注</text>
+<text x="1182" y="814" fill="#1f2937" font-size="10" font-weight="600">信保额度</text>
+<text x="1148" y="826" fill="#9ca3af" font-size="9">当前信保额度使用率92%</text>
+<rect x="1136" y="838" width="268" height="32" rx="6" fill="#fff" stroke="#f5f5f5" stroke-width="0.5"/>
+<rect x="1136" y="838" width="3" height="32" rx="1" fill="#16a34a"/>
+<rect x="1148" y="842" width="28" height="14" rx="3" fill="#f0fdf4"/>
+<text x="1153" y="852" fill="#16a34a" font-size="7" font-weight="700">通知</text>
+<text x="1182" y="852" fill="#1f2937" font-size="10" font-weight="600">合规更新</text>
+<text x="1148" y="864" fill="#9ca3af" font-size="9">欧盟CE认证新规7月生效</text>
+<rect x="1136" y="866" width="268" height="20" rx="4" fill="#fef3c7" stroke="#fbbf24" stroke-width="0.5"/>
+<text x="1144" y="880" fill="#92400e" font-size="8">AI已预检3项合规风险，建议优先处理侵权问题</text>
+<rect x="1120" y="898" width="300" height="100" rx="10" fill="#fff" filter="url(#sh)"/>
+<text x="1136" y="918" fill="#1f2937" font-size="12" font-weight="600">公告</text>
+<text x="1370" y="918" fill="#9ca3af" font-size="10">更多 ></text>
+<rect x="1136" y="924" width="48" height="16" rx="3" fill="#eef1fe"/>
+<text x="1142" y="936" fill="#4e6ef2" font-size="8" font-weight="600">产品上线</text>
+<text x="1190" y="936" fill="#374151" font-size="10">今日专属选品机会，发品可获额...</text>
+<text x="1390" y="936" fill="#9ca3af" font-size="9">06-01</text>
+<rect x="1136" y="944" width="48" height="16" rx="3" fill="#eff6ff"/>
+<text x="1142" y="956" fill="#2563eb" font-size="8" font-weight="600">产品上线</text>
+<text x="1190" y="956" fill="#374151" font-size="10">押款垫资上线，信保额度不足减...</text>
+<text x="1390" y="956" fill="#9ca3af" font-size="9">05-28</text>
+<rect x="1136" y="964" width="48" height="16" rx="3" fill="#ecfdf5"/>
+<text x="1142" y="976" fill="#10b981" font-size="8" font-weight="600">活动规则</text>
+<text x="1190" y="976" fill="#374151" font-size="10">订单融资新客专享5%年化利率...</text>
+<text x="1390" y="976" fill="#9ca3af" font-size="9">05-25</text>
+<circle cx="1390" cy="1412" r="24" fill="url(#grad-blue)" filter="url(#sh2)"/>
+<text x="1382" y="1416" fill="#fff" font-size="12" font-weight="700">AW</text>
+<rect x="1348" y="1440" width="84" height="18" rx="4" fill="#fff" filter="url(#sh)"/>
+<text x="1356" y="1452" fill="#4e6ef2" font-size="9">AW 生意助手</text>
+<!-- ===== GTM五阶段 ===== -->
+<rect x="200" y="1452" width="900" height="200" rx="10" fill="#fff" filter="url(#sh)"/>
+<text x="216" y="1474" fill="#1f2937" font-size="14" font-weight="700">GTM五阶段 · 产品职责分工</text>
+<rect x="216" y="1488" width="155" height="38" rx="6" fill="#eef1fe" stroke="#4e6ef2" stroke-width="1"/>
+<text x="226" y="1502" fill="#4e6ef2" font-size="9" font-weight="700">STAGE 1</text>
+<text x="226" y="1518" fill="#374151" font-size="10" font-weight="600">建店发品</text>
+<text x="306" y="1518" fill="#4e6ef2" font-size="8">MA+AW</text>
+<text x="376" y="1510" fill="#d1d5db" font-size="14">→</text>
+<rect x="391" y="1488" width="155" height="38" rx="6" fill="#eef1fe" stroke="#4e6ef2" stroke-width="1"/>
+<text x="401" y="1502" fill="#4e6ef2" font-size="9" font-weight="700">STAGE 2</text>
+<text x="401" y="1518" fill="#374151" font-size="10" font-weight="600">流量经营</text>
+<text x="481" y="1518" fill="#4e6ef2" font-size="8">MA+AW</text>
+<text x="551" y="1510" fill="#d1d5db" font-size="14">→</text>
+<rect x="566" y="1488" width="155" height="38" rx="6" fill="#eff6ff" stroke="#3b82f6" stroke-width="1"/>
+<text x="576" y="1502" fill="#3b82f6" font-size="9" font-weight="700">STAGE 3</text>
+<text x="576" y="1518" fill="#374151" font-size="10" font-weight="600">询盘接待</text>
+<text x="656" y="1518" fill="#3b82f6" font-size="8">MA+AW+OKKI</text>
+<text x="726" y="1510" fill="#d1d5db" font-size="14">→</text>
+<rect x="741" y="1488" width="155" height="38" rx="6" fill="#eff6ff" stroke="#3b82f6" stroke-width="1"/>
+<text x="751" y="1502" fill="#3b82f6" font-size="9" font-weight="700">STAGE 4</text>
+<text x="751" y="1518" fill="#374151" font-size="10" font-weight="600">客户经营</text>
+<text x="831" y="1518" fill="#3b82f6" font-size="8">OKKI+MA</text>
+<text x="901" y="1510" fill="#d1d5db" font-size="14">→</text>
+<rect x="916" y="1488" width="155" height="38" rx="6" fill="#eff6ff" stroke="#3b82f6" stroke-width="1"/>
+<text x="926" y="1502" fill="#3b82f6" font-size="9" font-weight="700">STAGE 5</text>
+<text x="926" y="1518" fill="#374151" font-size="10" font-weight="600">成交履约</text>
+<text x="1006" y="1518" fill="#3b82f6" font-size="8">OKKI+MA</text>
+<rect x="216" y="1536" width="868" height="20" fill="#f5f6f7" rx="4"/>
+<text x="226" y="1550" fill="#6b7280" font-size="9" font-weight="600">GTM阶段</text>
+<text x="340" y="1550" fill="#6b7280" font-size="9" font-weight="600">MA首页触点</text>
+<text x="560" y="1550" fill="#6b7280" font-size="9" font-weight="600">AW生意助手职责</text>
+<text x="760" y="1550" fill="#6b7280" font-size="9" font-weight="600">OKKI职责</text>
+<rect x="216" y="1560" width="868" height="20" fill="#fff"/>
+<text x="226" y="1574" fill="#4e6ef2" font-size="9" font-weight="600">建店发品</text>
+<text x="340" y="1574" fill="#374151" font-size="9">经营管理-商品Tab、Agent任务卡</text>
+<text x="560" y="1574" fill="#374151" font-size="9">智能发品、标题优化、创意工坊</text>
+<text x="760" y="1574" fill="#2563eb" font-size="9">—</text>
+<rect x="216" y="1580" width="868" height="20" fill="#fafafa"/>
+<text x="226" y="1594" fill="#4e6ef2" font-size="9" font-weight="600">流量经营</text>
+<text x="340" y="1594" fill="#374151" font-size="9">数据概览、营销Tab、Agent诊断</text>
+<text x="560" y="1594" fill="#374151" font-size="9">P4P投放优化、选品分析</text>
+<text x="760" y="1594" fill="#2563eb" font-size="9">—</text>
+<rect x="216" y="1600" width="868" height="20" fill="#fff"/>
+<text x="226" y="1614" fill="#6366f1" font-size="9" font-weight="600">询盘接待</text>
+<text x="340" y="1614" fill="#374151" font-size="9">询盘Tab、RFQ Tab</text>
+<text x="560" y="1614" fill="#374151" font-size="9">自动接待、智能报价、破冰话术</text>
+<text x="760" y="1614" fill="#2563eb" font-size="9">询盘流转至OKKI</text>
+<rect x="216" y="1620" width="868" height="20" fill="#fafafa"/>
+<text x="226" y="1634" fill="#2563eb" font-size="9" font-weight="600">客户经营</text>
+<text x="340" y="1634" fill="#374151" font-size="9">OKKI速览、Agent任务卡</text>
+<text x="560" y="1634" fill="#374151" font-size="9">客户背调、开发信生成</text>
+<text x="760" y="1634" fill="#2563eb" font-size="9">CRM管理、客户分层、邮件营销</text>
+<rect x="216" y="1640" width="868" height="20" fill="#fff"/>
+<text x="226" y="1654" fill="#2563eb" font-size="9" font-weight="600">成交履约</text>
+<text x="340" y="1654" fill="#374151" font-size="9">经营管理-订单Tab</text>
+<text x="560" y="1654" fill="#374151" font-size="9">报价单生成辅助</text>
+<text x="760" y="1654" fill="#2563eb" font-size="9">订单-物流-回款全链路</text>
+</svg>

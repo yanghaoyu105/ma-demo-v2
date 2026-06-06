@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Accio Work - 国际站生意助手</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: -apple-system, 'PingFang SC', 'Inter', 'Helvetica Neue', sans-serif; background:#fff; color:#1f2937; height:100vh; overflow:hidden; }
+
+/* Layout */
+.layout { display:flex; height:100vh; }
+
+/* Left Sidebar */
+.sidebar { width:240px; background:#fafafa; border-right:1px solid #ebebeb; display:flex; flex-direction:column; flex-shrink:0; }
+.sidebar-logo { padding:16px 20px; display:flex; align-items:center; gap:8px; }
+.sidebar-logo img, .sidebar-logo svg { height:22px; }
+.logo-text { font-size:18px; font-weight:700; color:#1a1a1a; letter-spacing:-0.5px; }
+.logo-accent { color:#FF6A00; }
+.sidebar-icons { display:flex; gap:8px; margin-left:auto; }
+.sidebar-icons span { width:28px; height:28px; display:flex; align-items:center; justify-content:center; cursor:pointer; border-radius:6px; color:#999; }
+.sidebar-icons span:hover { background:#f0f0f0; }
+
+.sidebar-nav { flex:1; padding:8px 12px; overflow-y:auto; }
+.nav-item { display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:8px; font-size:14px; color:#333; cursor:pointer; margin-bottom:2px; }
+.nav-item:hover { background:#f0f0f0; }
+.nav-item svg { width:18px; height:18px; color:#bbb; flex-shrink:0; }
+
+.nav-section { font-size:12px; color:#bbb; padding:16px 12px 6px; }
+.nav-sub { display:flex; align-items:center; gap:8px; padding:8px 12px 8px 20px; font-size:13px; color:#888; cursor:pointer; border-radius:6px; }
+.nav-sub:hover { background:#f0f0f0; color:#333; }
+
+.sidebar-footer { border-top:1px solid #ebebeb; padding:12px 16px; }
+.nav-label { font-size:12px; color:#bbb; padding:12px 12px 4px; display:flex; align-items:center; gap:4px; }
+.nav-label .badge { font-size:10px; background:#ebebeb; color:#888; padding:1px 6px; border-radius:4px; }
+
+.user-info { display:flex; align-items:center; gap:10px; padding:8px 4px; }
+.user-avatar { width:36px; height:36px; border-radius:50%; overflow:hidden; flex-shrink:0; background:#e8e8e8; display:flex; align-items:center; justify-content:center; }
+.user-avatar img { width:100%; height:100%; object-fit:cover; }
+.user-name { font-size:13px; font-weight:600; color:#1a1a1a; }
+.user-plan { font-size:11px; color:#bbb; }
+.user-settings { margin-left:auto; cursor:pointer; color:#bbb; }
+
+/* Main Content */
+.main { flex:1; display:flex; flex-direction:column; background:#fff; }
+
+/* Top Bar */
+.topbar { padding:16px 32px; border-bottom:1px solid #ebebeb; font-size:15px; color:#1a1a1a; line-height:1.5; display:flex; align-items:center; justify-content:space-between; }
+.btn-back { display:inline-flex; align-items:center; gap:6px; padding:6px 16px; background:#fff; border:1px solid #e0e0e0; border-radius:20px; cursor:pointer; font-size:13px; font-weight:600; color:#4e6ef2; text-decoration:none; transition:background .2s; }
+.btn-back:hover { background:#f5f7ff; }
+
+/* Chat Area */
+.chat-area { flex:1; overflow-y:auto; padding:40px 32px; }
+
+/* User Message */
+.msg-user { display:flex; justify-content:flex-end; margin-bottom:36px; }
+.msg-user .bubble { background:#f5f5f5; border-radius:16px; padding:12px 18px; font-size:14px; color:#1a1a1a; max-width:480px; line-height:1.6; }
+
+/* AI Message */
+.msg-ai { display:flex; align-items:flex-start; gap:12px; margin-bottom:36px; }
+.ai-avatar { width:36px; height:36px; border-radius:50%; background:#fff; border:1px solid #eee; display:flex; align-items:center; justify-content:center; flex-shrink:0; overflow:hidden; }
+.ai-content { flex:1; }
+.ai-name { font-size:15px; font-weight:700; color:#1a1a1a; margin-bottom:10px; }
+.ai-text { font-size:14px; color:#333; line-height:1.85; max-width:720px; }
+
+/* Input Area */
+.input-area { padding:16px 32px 20px; }
+.input-box { border:1px solid #e0e0e0; border-radius:12px; padding:16px; background:#fff; }
+.input-field { width:100%; border:none; outline:none; font-size:14px; color:#1a1a1a; resize:none; min-height:40px; font-family:inherit; }
+.input-field::placeholder { color:#bbb; }
+.input-toolbar { display:flex; align-items:center; justify-content:space-between; margin-top:12px; }
+.toolbar-left { display:flex; align-items:center; gap:12px; }
+.toolbar-btn { display:flex; align-items:center; gap:4px; font-size:13px; color:#888; cursor:pointer; padding:4px 8px; border-radius:6px; border:none; background:none; }
+.toolbar-btn:hover { background:#f5f5f5; }
+.toolbar-btn svg { width:16px; height:16px; }
+.toolbar-right { display:flex; align-items:center; gap:12px; }
+.send-btn { width:32px; height:32px; border-radius:50%; background:#1a1a1a; border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; }
+.send-btn svg { width:16px; height:16px; color:#fff; }
+
+.workspace-bar { display:flex; align-items:center; gap:6px; padding:8px 32px; border-top:1px solid #ebebeb; font-size:13px; color:#888; cursor:pointer; }
+.workspace-bar svg { width:16px; height:16px; }
+</style>
+</head>
+<body>
+<div class="layout">
+  <!-- Left Sidebar -->
+  <div class="sidebar">
+    <div class="sidebar-logo">
+      <span class="logo-text">Accio <span class="logo-accent">Work</span></span>
+      <div class="sidebar-icons">
+        <span>🔍</span>
+        <span>⊞</span>
+      </div>
+    </div>
+
+    <div class="sidebar-nav">
+      <div class="nav-item">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 3L3 8v9h5v-5h4v5h5V8L10 3z"/></svg>
+        + 新消息
+      </div>
+      <div class="nav-item">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="7" r="3"/><path d="M3 17c0-3 3-5 7-5s7 2 7 5"/></svg>
+        智能体
+      </div>
+      <div class="nav-item">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="14" height="14" rx="2"/><path d="M7 8h6M7 12h4"/></svg>
+        插件
+      </div>
+      <div class="nav-item">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="10" r="7"/><path d="M10 6v4l3 2"/></svg>
+        定时任务
+      </div>
+      <div class="nav-item">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h12v3l-4 3 4 3v3H4v-3l4-3-4-3V4z"/></svg>
+        消息渠道
+      </div>
+
+      <div class="nav-label">会话</div>
+      <div class="nav-sub">
+        <span style="color:#9ca3af;">+</span> 国际站生意助手介绍
+      </div>
+
+      <div class="nav-label">团队 <span class="badge">Beta</span></div>
+      <div class="nav-sub">
+        <div style="display:flex;gap:-4px;">
+          <span style="width:18px;height:18px;border-radius:50%;background:#dbeafe;font-size:8px;display:flex;align-items:center;justify-content:center;color:#2563eb;">👤</span>
+          <span style="width:18px;height:18px;border-radius:50%;background:#fef3c7;font-size:8px;display:flex;align-items:center;justify-content:center;color:#d97706;margin-left:-4px;">👤</span>
+          <span style="width:18px;height:18px;border-radius:50%;background:#fce7f3;font-size:8px;display:flex;align-items:center;justify-content:center;color:#db2777;margin-left:-4px;">👤</span>
+        </div>
+        新建团队
+      </div>
+    </div>
+
+    <div class="sidebar-footer">
+      <div class="user-info">
+        <div class="user-avatar">
+          <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="avatar" onerror="this.parentElement.innerHTML='<span style=font-size:14px;color:#6b7280>JS</span>'">
+        </div>
+        <div>
+          <div class="user-name">John Smith</div>
+          <div class="user-plan">免费版</div>
+        </div>
+        <span class="user-settings">⚙</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main -->
+  <div class="main">
+    <div class="topbar">
+      <span id="topbarQuery"></span>
+      <a class="btn-back" id="returnHomeLink" href="../MA首页升级Demo.html">← 回到首页</a>
+    </div>
+
+    <div class="chat-area">
+      <!-- User Message -->
+      <div class="msg-user">
+        <div class="bubble" id="userBubble"></div>
+      </div>
+
+      <!-- AI Response -->
+      <div class="msg-ai">
+        <div class="ai-avatar"><svg width="28" height="28" viewBox="0 0 28 28"><circle cx="14" cy="14" r="13" fill="#FF6A00"/><text x="14" y="18" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">Ali</text></svg></div>
+        <div class="ai-content">
+          <div class="ai-name">国际站生意助手</div>
+          <div class="ai-text" id="aiResponse"></div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+    (function() {
+      var params = new URLSearchParams(window.location.search);
+      var returnHomePath = params.get('return') === 'compare' ? '../MA首页升级Demo-对比优化版.html' : '../MA首页升级Demo.html';
+      var returnHomeLink = document.getElementById('returnHomeLink');
+      if (returnHomeLink) {
+        returnHomeLink.href = returnHomePath;
+        returnHomeLink.textContent = '← 回到首页';
+      }
+      var q = params.get('q') || 'publish';
+      var scenes = {
+        publish: {
+          topbar: '买家正在搜索「Lftest Auto」相关商品，帮我一键发布同款抢占流量',
+          user: '买家全站偏好品里「Lftest Auto」有126次搜索热度，我店铺还没有这个品。帮我基于热搜词快速生成并发布同款商品，抢占这波流量',
+          ai: '好的，已基于买家搜索热度为您生成同款发布方案：<br><br>📋 <b>市场洞察</b>：「Lftest Auto」近7日买家搜索热度126次，您店铺暂无对应商品，存在明显的流量缺口。<br><br>🎯 <b>发布方案</b>：<br>1. 已为您匹配<b>3个高关联SPU模板</b>，覆盖主搜词 Lftest Auto（月搜索8.6万）<br>2. 自动生成<b>5张AI主图 + 详情页</b>，标题已植入「lftest auto + 精准长尾词」<br>3. 定价策略参考同行Top10均价，建议区间 $15.8-$22.5<br>4. 预计发布时间：确认后<b>2小时内</b>全部上架<br><br>⚡ <b>预期效果</b>：上架后7天内预计获取搜索曝光<b>500+</b>，新增询盘 3-5个。<br><br>已生成第一个商品的标题和主图预览，是否确认发布？'
+        },
+        diagnose: {
+          topbar: '帮我诊断「Universal All Seasons Breathable」这个商品为什么曝光低',
+          user: '我这个商品「Universal All Seasons Breathable Pet Eye Mask」有6个买家浏览但0询盘，帮我诊断问题出在哪里，给出优化建议',
+          ai: '好的，已完成该商品的全维度诊断：<br><br>📊 <b>诊断结果</b>：发现<b>3个关键问题</b>影响转化<br><br><span style="color:#dc2626;font-weight:600;">❶ 标题匹配度低（影响搜索排名）</span><br>当前标题：Universal All Seasons Breathable Pet Eye Mask...<br>问题：缺少核心买家搜索词「dog sleeping mask」「pet blindfold」<br>建议：<span style="color:#4e6ef2;">Universal Breathable Dog Sleeping Eye Mask Pet Blindfold Cover All Seasons Wholesale OEM</span><br><br><span style="color:#ca8a04;font-weight:600;">❷ 主图质量不达标（影响点击率）</span><br>问题：白底图清晰度不足，缺少场景图和尺寸对比图<br>建议：补充<b>宠物佩戴场景图</b>和<b>多色展示图</b>，AI可自动生成<br><br><span style="color:#4e6ef2;font-weight:600;">❸ 详情页缺少信任要素（影响询盘转化）</span><br>问题：无工厂实拍、无质检报告、无买家好评展示<br>建议：补充<b>3张工厂实拍 + CE认证展示</b><br><br>⚡ <b>预期效果</b>：优化后预计点击率提升<b>60%</b>，询盘转化率提升<b>2-3倍</b><br><br>是否确认执行以上优化方案？'
+        },
+        optimize: {
+          topbar: '我偏好「利润优先·大单稳定」，帮我优化3个商品标题来提升搜索排名',
+          user: '我的经营偏好是利润优先、大单稳定。现在搜索曝光只有350，远低于同行7549。帮我优化店铺里3个宠物用品的商品标题，重点提升在pet supplies相关搜索词下的排名',
+          ai: '好的，已结合您的经营画像「利润优先·大单稳定」完成标题优化：<br><br>📊 <b>诊断结果</b>：您当前3个核心品标题存在<b>关键词堆砌、缺少精准长尾词</b>的问题，导致搜索匹配度低。<br><br>✏️ <b>优化方案</b>：<br><br><b>商品1 - 宠物眼罩</b><br>原标题：Pet Eye Mask Dog Cat Sleeping Cover Blindfold...<br>优化后：<span style="color:#1047f5;">Golden Seaweed Plumping Tender Radiant Hydrating Moisturizing Lifting Thin Slice Eye Mask Sheets Wholesale</span><br>变化：补充了Wholesale（匹配大单买家）+ 精准材质词<br><br><b>商品2 - 宠物床垫</b><br>原标题：Dog Bed Cushion Mat Soft Warm...<br>优化后：<span style="color:#1047f5;">Premium Orthopedic Dog Sofa Bed Washable Anti-Slip Pet Cushion OEM Bulk Order</span><br>变化：增加OEM + Bulk Order（吸引大单客户）<br><br><b>商品3 - 猫窝</b><br>原标题：Cat Nest House Indoor Warm...<br>优化后：<span style="color:#1047f5;">Enclosed Cat Cave Bed Plush Winter Warm Pet House Factory Direct Wholesale</span><br>变化：加入Factory Direct + Wholesale（利润优先定位）<br><br>⚡ <b>预期效果</b>：优化后标题搜索匹配度提升约<b>45%</b>，预计7日内相关搜索排名上升2-3页。'
+        },
+        adjust: {
+          topbar: 'P4P出价提升到¥1.8，优先投放搜索曝光不足的高潜品',
+          user: 'P4P日均消耗只有¥50，远低于同行¥200。帮我把出价从¥0.9调整到¥1.8，优先投放搜索曝光不足的3个高潜品',
+          ai: '好的，已为您制定P4P出价调整方案：<br><br>📊 <b>当前诊断</b><br>· 日均消耗 ¥50，同行均值 ¥200（差距4倍）<br>· 当前出价 ¥0.9，行业建议出价 ¥1.5-2.0<br>· 3个高潜品近7天0点击，出价过低导致无展现<br><br>🎯 <b>调整方案（3个商品）</b><br><br><b>1. Pet Bed Dog Sofa Cushion</b><br>出价 ¥0.9 → <span style="color:#FF6A00;font-weight:600;">¥1.8</span>｜预估日曝光 +320%<br><br><b>2. Universal Pet Eye Mask Breathable</b><br>出价 ¥0.9 → <span style="color:#FF6A00;font-weight:600;">¥1.6</span>｜预估日曝光 +280%<br><br><b>3. Nunbell Cross-border Multi-color Leash</b><br>出价 ¥0.9 → <span style="color:#FF6A00;font-weight:600;">¥1.5</span>｜预估日曝光 +240%<br><br>📈 <b>预期效果</b><br>· 日均消耗提升至 ¥150-180<br>· 搜索曝光预计提升 200%+<br>· 预计7天内新增询盘 5-8个<br><br>是否确认执行以上调整？'
+        }
+      };
+      var scene = scenes[q] || scenes.publish;
+      document.getElementById('topbarQuery').textContent = scene.topbar;
+      document.getElementById('userBubble').textContent = scene.user;
+      document.getElementById('aiResponse').innerHTML = scene.ai;
+    })();
+    </script>
+
+    <!-- Input Area -->
+    <div class="input-area">
+      <div class="input-box">
+        <textarea class="input-field" placeholder="输入问题...（@引用文件）" rows="1"></textarea>
+        <div class="input-toolbar">
+          <div class="toolbar-left">
+            <button class="toolbar-btn">+</button>
+            <button class="toolbar-btn">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M3 8l4-4 4 4M3 12l4-4 4 4"/></svg>
+            </button>
+            <button class="toolbar-btn">插件 ▾</button>
+          </div>
+          <div class="toolbar-right">
+            <button class="toolbar-btn">🎙 默认权限 ▾</button>
+            <button class="toolbar-btn">🤖 Auto ▾</button>
+            <button class="send-btn">
+              <svg viewBox="0 0 16 16" fill="none"><path d="M3 13l10-5L3 3v4l6 1-6 1v4z" fill="#fff"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="workspace-bar">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="2" y="3" width="12" height="10" rx="1"/><path d="M5 3V2h6v1"/></svg>
+      选择工作目录 ▾
+    </div>
+  </div>
+</div>
+</body>
+</html>

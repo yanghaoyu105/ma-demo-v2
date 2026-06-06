@@ -1,0 +1,1504 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MA首页2.0 · 经营Agent座舱</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif; background: #f5f6f7; color: #1f2937; font-size: 13px; overflow-x: hidden; }
+a { text-decoration: none; color: inherit; }
+
+
+/* ===== Layout ===== */
+.layout { display: flex; min-height: 100vh; }
+
+/* ===== Left Sidebar ===== */
+.sidebar { width: 180px; background: #1a1a2e; color: #a6a6b0; flex-shrink: 0; position: fixed; top: 0; left: 0; height: 100vh; overflow-y: auto; z-index: 50; }
+.sidebar::-webkit-scrollbar { width: 0; }
+.sidebar-logo { padding: 14px 16px; display: flex; align-items: center; gap: 8px; }
+.sidebar-logo .icon { width: 28px; height: 28px; border-radius: 4px; background: linear-gradient(135deg, #3b82f6, #60a5fa); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 12px; font-weight: 700; }
+.sidebar-logo span { color: #4e6ef2; font-size: 14px; font-weight: 700; }
+.sidebar-nav { margin-top: 4px; }
+.nav-item { padding: 9px 16px 9px 42px; font-size: 13px; cursor: pointer; transition: all .15s; position: relative; }
+.nav-item:hover { color: #d1d5db; background: rgba(255,255,255,.04); }
+.nav-item.active { background: #4e6ef2; color: #fff; font-weight: 600; }
+.nav-item-special { margin: 8px 8px 4px; padding: 8px 12px; border-radius: 6px; background: rgba(78,110,242,.12); color: #4e6ef2; font-weight: 600; font-size: 13px; cursor: pointer; }
+.nav-item-aw { margin: 4px 8px; padding: 8px 12px; border-radius: 8px; background: rgba(78,110,242,.08); border: 1px dashed #4e6ef2; color: #4e6ef2; font-size: 12px; font-weight: 600; cursor: pointer; position: relative; }
+.nav-item-aw .sub { color: #7b93f7; font-size: 9px; display: block; margin-top: 2px; }
+.badge-new { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); background: #4e6ef2; color: #fff; font-size: 8px; font-weight: 700; padding: 2px 6px; border-radius: 3px; }
+
+/* ===== Top Header ===== */
+.main-area { margin-left: 180px; flex: 1; }
+.top-header { background: #fff; height: 48px; display: flex; align-items: center; padding: 0 24px; box-shadow: 0 1px 3px rgba(0,0,0,.06); position: sticky; top: 0; z-index: 40; }
+.top-header .brand { font-size: 15px; font-weight: 700; color: #4e6ef2; margin-right: 24px; }
+.search-bar { flex: 1; max-width: 420px; height: 32px; border-radius: 16px; background: #f5f6f7; border: 1px solid #e8e8e8; padding: 0 16px; display: flex; align-items: center; color: #999; font-size: 12px; cursor: text; }
+.top-right { margin-left: auto; display: flex; align-items: center; gap: 16px; }
+.top-right .avatar { width: 28px; height: 28px; border-radius: 50%; background: #e8e8e8; border: 2px solid #fff; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #6b7280; }
+
+/* ===== Content Grid ===== */
+.content { display: flex; gap: 16px; padding: 12px 16px 32px; }
+.content-main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 12px; }
+.content-right { width: 280px; flex-shrink: 0; display: flex; flex-direction: column; gap: 12px; }
+
+/* ===== Cards ===== */
+.card { background: #fff; border-radius: 10px; box-shadow: 0 1px 4px rgba(0,0,0,.06); overflow: hidden; }
+
+/* ===== Module 1: AI Trigger Bar ===== */
+.trigger-bar { background: #fff; border-radius: 10px; box-shadow: 0 1px 4px rgba(0,0,0,.06); padding: 10px 16px; display: flex; align-items: center; gap: 12px; border-left: 4px solid #4e6ef2; cursor: pointer; transition: box-shadow .2s; border: 0.5px solid #e8e8e8; }
+.trigger-bar:hover { box-shadow: 0 2px 12px rgba(78,110,242,.12); }
+.ai-avatar { width: 28px; height: 28px; border-radius: 50%; background: #f3f0ff; border: 1.5px solid #7b93f7; display: flex; align-items: center; justify-content: center; position: relative; flex-shrink: 0; }
+.ai-avatar .name { font-size: 10px; color: #4e6ef2; font-weight: 700; }
+.ai-avatar .ai-badge { position: absolute; top: -2px; right: -6px; background: #4e6ef2; color: #fff; font-size: 6.5px; font-weight: 700; padding: 1px 4px; border-radius: 3px; }
+.trigger-bar .msg { font-size: 13px; color: #374151; flex: 1; }
+.trigger-bar .team { display: flex; align-items: center; gap: 4px; margin-left: auto; flex-shrink: 0; }
+.team-avatar { width: 22px; height: 22px; border-radius: 50%; background: #e8e8e8; border: 1.5px solid #fff; display: flex; align-items: center; justify-content: center; font-size: 8px; color: #6b7280; margin-left: -6px; }
+.team-avatar:first-child { margin-left: 0; }
+.trigger-bar .meta { color: #9ca3af; font-size: 9px; margin-left: 8px; white-space: nowrap; }
+.trigger-bar .task-link { color: #7c3aed; font-size: 11px; font-weight: 600; margin-left: 12px; white-space: nowrap; cursor: pointer; }
+.trigger-bar .update-time { display: block; color: #d1d5db; font-size: 9px; margin-top: 2px; }
+
+/* ===== Module 2: Agent Cockpit ===== */
+.cockpit { padding: 20px; border: 1px dashed #4e6ef2; }
+.section-title { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: #1f2937; margin-bottom: 8px; }
+.section-title .dot { width: 6px; height: 6px; border-radius: 50%; }
+.dot-red { background: #ef4444; }
+.dot-blue { background: #4e6ef2; }
+.diagnosis-text { color: #2563eb; font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+.diagnosis-desc { color: #6b7280; font-size: 12px; line-height: 1.7; margin-bottom: 4px; }
+.preference-link { color: #9ca3af; font-size: 11px; float: right; cursor: pointer; }
+.preference-link:hover { color: #4e6ef2; }
+.update-info { color: #9ca3af; font-size: 11px; float: right; }
+
+/* Funnel */
+.funnel { display: flex; align-items: center; gap: 0; margin: 16px 0; }
+.funnel-item { flex: 1; background: #fff; border: 1px solid #e8e8e8; border-radius: 8px; padding: 10px 14px; }
+.funnel-item .label { color: #9ca3af; font-size: 11px; }
+.funnel-item .value { font-size: 20px; font-weight: 700; color: #1f2937; margin-top: 4px; display: inline-flex; align-items: center; gap: 6px; }
+.funnel-arrow { color: #d1d5db; font-size: 16px; margin: 0 4px; flex-shrink: 0; }
+.tag { padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 600; }
+.tag-danger { background: #fef2f2; color: #ef4444; }
+.tag-success { background: #f0fdf4; color: #10b981; }
+
+/* Divider */
+.divider { height: 1px; background: #f0f0f0; margin: 16px 0; }
+
+/* Problem Analysis */
+.problem-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+.problem-desc { color: #9ca3af; font-size: 11px; margin-bottom: 12px; }
+.batch-confirm { color: #4e6ef2; font-size: 12px; cursor: pointer; font-weight: 500; }
+.batch-confirm:hover { text-decoration: underline; }
+.toggle-link { color: #4e6ef2; font-size: 12px; cursor: pointer; }
+
+/* Task Cards */
+.task-cards { display: flex; gap: 12px; align-items: stretch; }
+.task-card { flex: 1; border: 1px solid #f0f0f0; border-radius: 8px; overflow: visible; border-left: 3px solid #4e6ef2; transition: box-shadow .2s; display: flex; flex-direction: column; position: relative; z-index: 1; min-height: 0; }
+.task-card.green { border-left-color: #10b981; }
+.task-card.green .task-card-num { background: #ecfdf5; color: #10b981; }
+.task-card.green .progress-fill { background: #10b981 !important; }
+.task-card.green .progress-text { color: #10b981; }
+.task-card.indigo { border-left-color: #6366f1; }
+.task-card.indigo .task-card-num { background: #eef2ff; color: #6366f1; }
+.task-card.indigo .progress-fill { background: #6366f1 !important; }
+.task-card.indigo .progress-text { color: #6366f1; }
+.task-card:hover { box-shadow: 0 2px 8px rgba(78,110,242,.1); }
+.task-card-top { background: #f9fafb; padding: 10px 14px; min-height: 80px; }
+.task-card-num { display: inline-flex; width: 18px; height: 18px; border-radius: 50%; background: #eef1fe; color: #4e6ef2; font-size: 10px; font-weight: 700; align-items: center; justify-content: center; margin-right: 6px; }
+.task-card-title { font-size: 13px; font-weight: 600; color: #1f2937; }
+.task-card-sub { color: #9ca3af; font-size: 11px; margin-top: 4px; margin-left: 24px; }
+.task-card-bottom { padding: 10px 14px; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+.task-card-action { font-size: 12px; font-weight: 500; color: #374151; }
+.task-card-meta { color: #9ca3af; font-size: 10px; margin-top: 4px; }
+.progress-bar { height: 4px; background: #e5e7eb; border-radius: 2px; margin-top: 8px; overflow: hidden; }
+.progress-fill { height: 100%; border-radius: 2px; background: linear-gradient(90deg, #4e6ef2, #10b981); }
+.progress-text { font-size: 10px; color: #6b7280; text-align: right; margin-top: 2px; }
+.btn-primary { display: block; width: 100%; padding: 8px; border: none; border-radius: 6px; background: linear-gradient(135deg, #4e6ef2 0%, #7b93f7 100%); color: #fff; font-size: 11px; font-weight: 700; cursor: pointer; text-align: center; margin-top: auto; transition: opacity .15s; }
+.btn-primary:hover { opacity: .9; }
+.btn-outline { display: block; width: 100%; padding: 8px; border: none; border-radius: 6px; background: linear-gradient(135deg, #4e6ef2 0%, #7b93f7 100%); color: #fff; font-size: 11px; font-weight: 700; cursor: pointer; text-align: center; margin-top: auto; transition: opacity .15s; }
+.btn-outline:hover { opacity: .9; }
+
+/* Effect tracking */
+.effect-track { display: flex; align-items: center; gap: 8px; padding: 10px 0; font-size: 12px; color: #6b7280; }
+.effect-track .dot { width: 6px; height: 6px; border-radius: 50%; background: #4e6ef2; flex-shrink: 0; }
+.effect-track .highlight { color: #10b981; font-weight: 600; cursor: pointer; }
+.effect-track .right-text { margin-left: auto; color: #9ca3af; font-size: 11px; }
+
+/* ===== Module 3: Data Dashboard ===== */
+.dashboard { padding: 20px; }
+.tabs { display: flex; gap: 0; margin-bottom: 16px; }
+.tab { padding: 6px 16px; font-size: 13px; color: #6b7280; cursor: pointer; border-radius: 6px; transition: all .15s; }
+.tab.active { background: #1f2937; color: #fff; font-weight: 600; }
+.tab:hover:not(.active) { color: #1f2937; }
+.dashboard-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+.dashboard-time { color: #9ca3af; font-size: 11px; }
+.more-data { color: #4e6ef2; font-size: 12px; cursor: pointer; }
+.more-data:hover { text-decoration: underline; }
+
+/* AI Insight */
+.ai-insight { background: #f8faff; border-radius: 8px; padding: 12px 16px; margin-bottom: 16px; border: 1px solid #eef1fe; }
+.ai-insight-header { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.ai-badge-sm { background: #4e6ef2; color: #fff; font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 4px; }
+.ai-insight-title { font-size: 12px; font-weight: 600; color: #4e6ef2; }
+.ai-insight-text { font-size: 12px; color: #4e6ef2; line-height: 1.6; }
+.btn-insight { float: right; padding: 6px 14px; border: 1px solid #4e6ef2; border-radius: 6px; background: #fff; color: #4e6ef2; font-size: 11px; font-weight: 500; cursor: pointer; margin-top: -4px; }
+.btn-insight:hover { background: #eef1fe; }
+
+/* Metrics Grid */
+.metrics { display: flex; gap: 0; }
+.metric { flex: 1; padding: 8px 0; text-align: left; }
+.metric .label { color: #9ca3af; font-size: 11px; margin-bottom: 4px; }
+.metric .val { font-size: 24px; font-weight: 700; color: #1f2937; display: flex; align-items: baseline; gap: 6px; }
+.metric .change { font-size: 11px; font-weight: 500; }
+.change-up { color: #10b981; }
+.change-down { color: #ef4444; }
+.change-flat { color: #9ca3af; }
+
+/* ===== Module 4: 经营管理 ===== */
+.biz-manage { padding: 20px; }
+.biz-title { font-size: 16px; font-weight: 700; color: #1f2937; margin-bottom: 12px; }
+.biz-tabs { display: flex; gap: 0; margin-bottom: 16px; }
+.biz-tab { padding: 12px 20px; font-size: 14px; font-weight: 600; color: #1f2937; cursor: pointer; position: relative; border-bottom: 2px solid transparent; flex: 1; text-align: center; background: #f9fafb; border: 1px solid #e8e8e8; transition: all .15s; }
+.biz-tab:first-child { border-radius: 8px 0 0 8px; }
+.biz-tab:last-child { border-radius: 0 8px 8px 0; }
+.biz-tab.active { background: #fff; border-bottom-color: #4e6ef2; color: #4e6ef2; }
+.biz-tab .count { display: block; font-size: 12px; color: #9ca3af; font-weight: 400; margin-top: 2px; }
+.biz-tab .num { font-size: 20px; font-weight: 700; margin-right: 4px; }
+.biz-stats { display: flex; gap: 16px; font-size: 11px; color: #6b7280; margin-top: 8px; }
+.biz-stats a { color: #9ca3af; cursor: pointer; margin-left: auto; font-size: 10px; }
+
+/* Inquiry Table */
+.inquiry-table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+.inquiry-table th { background: #fafafa; padding: 6px 10px; font-size: 12px; color: #9ca3af; font-weight: 400; text-align: left; }
+.inquiry-table td { padding: 8px 10px; font-size: 12px; color: #374151; border-bottom: 0.5px solid #f5f5f5; vertical-align: middle; }
+.inquiry-table .buyer-name { font-size: 12px; color: #6b7280; }
+.inquiry-table .product-img { width: 44px; height: 28px; background: #e8e8e8; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #999; }
+.intent-tag { padding: 4px 12px; border-radius: 4px; font-size: 12px; font-weight: 700; display: inline-block; }
+.intent-a { background: #ecfdf5; color: #16a34a; border: 0.5px solid #16a34a; }
+.intent-b { background: #fefce8; color: #ca8a04; border: 0.5px solid #ca8a04; }
+.wait-time { font-size: 12px; color: #9ca3af; }
+.status-new { font-size: 12px; color: #4e6ef2; }
+.btn-reply { padding: 4px 10px; background: #f5f5f5; border: 1px solid #e8e8e8; border-radius: 4px; font-size: 12px; color: #374151; cursor: pointer; min-width:72px; }
+.btn-reply:hover { background: #e8e8e8; }
+.btn-bg-check { padding: 4px 10px; background: #eef1fe; border: none; border-radius: 4px; font-size: 12px; color: #4e6ef2; cursor: pointer; min-width:72px; }
+.ai-suggest-bar { background: #f5f7ff; border: 0.5px solid #c7d2fe; border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 8px; margin-top: 12px; }
+.ai-suggest-bar .ai-text { font-size: 12px; color: #4e6ef2; flex: 1; }
+.btn-bg-action { padding: 4px 12px; background: linear-gradient(135deg, #4e6ef2 0%, #7b93f7 100%); border: none; border-radius: 4px; font-size: 12px; font-weight: 700; color: #fff; cursor: pointer; }
+
+/* ===== Module 5: 今日机会 ===== */
+.opportunity { padding: 20px; }
+.opp-title { font-size: 15px; font-weight: 700; color: #1f2937; margin-bottom: 14px; }
+.opp-cols { display: flex; gap: 16px; }
+.opp-col { flex: 1; }
+.opp-col-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.opp-col-title { font-size: 13px; font-weight: 700; color: #374151; display: flex; align-items: center; gap: 6px; }
+.opp-col-title .tag-related { background: #ecfdf5; color: #10b981; font-size: 9px; padding: 2px 8px; border-radius: 4px; font-weight: 400; }
+.opp-col-link { font-size: 10px; color: #4e6ef2; cursor: pointer; }
+.opp-row { display: flex; align-items: center; gap: 8px; padding: 6px 0; font-size: 12px; color: #374151; }
+.opp-rank { width: 18px; height: 18px; border-radius: 50%; background: #4e6ef2; color: #fff; font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.opp-rank.blue { background: #3b82f6; }
+.opp-name { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.opp-count { font-size: 12px; font-weight: 700; color: #374151; margin-right: 4px; }
+.opp-action { padding: 4px 8px; background: #eef1fe; border-radius: 4px; font-size: 12px; color: #4e6ef2; cursor: pointer; white-space: nowrap; }
+.btn-okki-transfer { padding: 4px 12px; background: linear-gradient(135deg, #4e6ef2 0%, #7b93f7 100%); border: 1px solid #2563eb; border-radius: 4px; font-size: 8px; font-weight: 700; color: #fff; cursor: pointer; white-space: nowrap; }
+
+/* ===== Right Sidebar Cards ===== */
+.right-card { background: #fff; border-radius: 10px; box-shadow: 0 1px 4px rgba(0,0,0,.06); padding: 16px; }
+.right-card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+.right-card-title { font-size: 14px; font-weight: 700; color: #1f2937; display: flex; align-items: center; gap: 6px; }
+.right-card-link { color: #4e6ef2; font-size: 12px; cursor: pointer; }
+.right-card-link:hover { text-decoration: underline; }
+
+/* 我的权益 */
+.quota-row { display: flex; gap: 8px; font-size: 12px; color: #6b7280; margin-bottom: 6px; }
+.quota-row .qlabel { min-width: 42px; }
+.quota-val { font-weight: 600; color: #ef4444; }
+
+/* 我的经营画像 */
+.profile-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+.profile-tag { padding: 4px 10px; border-radius: 14px; background: #eef1fe; color: #4e6ef2; font-size: 11px; cursor: pointer; }
+.profile-tag:hover { background: #dde3fd; }
+.profile-desc { font-size: 11px; color: #9ca3af; margin-top: 8px; }
+
+/* 我的待办 */
+.todo-row { display: flex; align-items: center; justify-content: space-between; padding: 6px 0; font-size: 12px; }
+.todo-row .tlabel { color: #374151; }
+.todo-row .tcount { font-weight: 700; color: #1f2937; font-size: 14px; }
+
+/* 我的客户 OKKI */
+.client-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.client-cell { text-align: center; padding: 10px; background: #f9fafb; border-radius: 8px; }
+.client-cell .cval { font-size: 20px; font-weight: 700; }
+.client-cell .cval.blue { color: #4e6ef2; }
+.client-cell .cval.orange { color: #f59e0b; }
+.client-cell .cval.green { color: #10b981; }
+.client-cell .cval.red { color: #ef4444; }
+.client-cell .clabel { font-size: 12px; color: #9ca3af; margin-top: 2px; }
+.client-cell .cchange { font-size: 12px; color: #10b981; }
+.client-segment { display: flex; gap: 4px; margin-top: 8px; flex-wrap: wrap; }
+.seg-tag { padding: 2px 8px; border-radius: 10px; font-size: 10px; font-weight: 500; }
+.seg-blue { background: #eef1fe; color: #4e6ef2; }
+.seg-yellow { background: #fff7ed; color: #f59e0b; }
+.seg-green { background: #f0fdf4; color: #10b981; }
+.seg-red { background: #fef2f2; color: #ef4444; }
+.client-tip { margin-top: 8px; padding: 8px; background: #f8faff; border-radius: 6px; font-size: 11px; color: #4e6ef2; }
+
+/* 合规风险提示 */
+.risk-item { display: flex; gap: 10px; padding: 8px 0; border-bottom: 1px solid #f5f5f5; align-items: flex-start; }
+.risk-item:last-child { border-bottom: none; }
+.risk-level { padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: 600; flex-shrink: 0; }
+.risk-urgent { background: #fef2f2; color: #ef4444; }
+.risk-important { background: #fff7ed; color: #f59e0b; }
+.risk-watch { background: #eef1fe; color: #4e6ef2; }
+.risk-info { background: #f0fdf4; color: #10b981; }
+.risk-content .rtitle { font-size: 12px; font-weight: 600; color: #1f2937; }
+.risk-content .rdesc { font-size: 12px; color: #9ca3af; margin-top: 2px; }
+
+/* NEW badge */
+.new-badge { background: #4e6ef2; color: #fff; font-size: 9px; font-weight: 700; padding: 1px 5px; border-radius: 3px; margin-right: 4px; }
+.new-badge-green { background: #10b981; }
+
+/* ===== Utility ===== */
+.flex-between { display: flex; align-items: center; justify-content: space-between; }
+.text-muted { color: #9ca3af; }
+.text-sm { font-size: 11px; }
+.mt-8 { margin-top: 8px; }
+.mt-12 { margin-top: 12px; }
+.mb-4 { margin-bottom: 4px; }
+
+/* ===== FAB Button ===== */
+.fab { position: fixed; bottom: 24px; right: 24px; width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #4e6ef2, #7c3aed); color: #fff; font-size: 20px; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 16px rgba(78,110,242,.3); z-index: 60; transition: transform .2s; border: none; }
+.fab:hover { transform: scale(1.1); }
+
+/* ============================================================
+   ===== AW 生意助手 侧边栏（记忆复盘 + @智能体）内嵌样式 =====
+   ============================================================ */
+/* Split-screen mode */
+.aw-overlay { display: none; }
+
+.aw-panel { position: fixed; top: 0; right: 0; width: 440px; height: 100vh; background: #fff; border-left: 1px solid #e0e0e0; z-index: 100; display: flex; flex-direction: column; box-shadow: -2px 0 12px rgba(0,0,0,0.06); transform: translateX(100%); transition: transform .35s cubic-bezier(.4,0,.2,1); }
+.aw-panel.open { transform: translateX(0); }
+
+/* 主内容区压缩 */
+.layout.split .main-area { margin-right: 440px; transition: margin-right .35s cubic-bezier(.4,0,.2,1); }
+.main-area { transition: margin-right .35s cubic-bezier(.4,0,.2,1); }
+/* 分屏时隐藏原有右侧栏，避免三栏挤压 */
+.layout.split .content-right { display: none; }
+/* 分屏时隐藏右侧浮窗按钮 */
+.layout.split .sidebar [style*="position:fixed;right:0"] { display: none !important; }
+
+/* Header */
+.aw-header { padding: 14px 20px; border-bottom: 1px solid #ebebeb; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
+.aw-title { font-size: 15px; font-weight: 700; color: #1a1a1a; display: flex; align-items: center; gap: 8px; }
+.aw-title .logo { width: 22px; height: 22px; border-radius: 6px; background: linear-gradient(135deg,#34d399,#3b82f6); display: flex; align-items: center; justify-content: center; }
+.aw-title .ver { font-size: 9px; font-weight: 700; color: #fff; background: #4e6ef2; padding: 2px 6px; border-radius: 4px; }
+.aw-header-right { display: flex; align-items: center; gap: 14px; }
+.aw-status { display: flex; align-items: center; gap: 5px; font-size: 11px; color: #10b981; font-weight: 700; }
+.aw-status-dot { width: 8px; height: 8px; background: #10b981; border-radius: 50%; box-shadow: 0 0 0 3px rgba(16,185,129,.18); }
+.aw-task-mgr { font-size: 12px; color: #4e6ef2; cursor: pointer; }
+.aw-close { cursor: pointer; font-size: 18px; color: #999; text-decoration: none; }
+
+/* 记忆条 */
+.memory-bar { display: flex; align-items: center; gap: 8px; padding: 8px 20px; background: #f8faff; border-bottom: 1px solid #eef1fe; font-size: 11px; color: #6b7280; flex-shrink: 0; }
+.memory-bar .mtag { background: #eef1fe; color: #4e6ef2; font-weight: 700; padding: 2px 7px; border-radius: 4px; font-size: 10px; }
+.memory-bar .mlink { margin-left: auto; color: #4e6ef2; cursor: pointer; font-weight: 700; }
+.memory-bar .mlink:hover { text-decoration: underline; }
+
+/* ===== 记忆抽屉 ===== */
+.mem-mask { position: fixed; inset: 0; background: rgba(0,0,0,.28); z-index: 400; opacity: 0; pointer-events: none; transition: opacity .2s; }
+.mem-mask.show { opacity: 1; pointer-events: auto; }
+.mem-drawer { position: fixed; top: 0; right: 0; width: 560px; max-width: 94vw; height: 100vh; background: #fff; z-index: 401; box-shadow: -8px 0 32px rgba(0,0,0,.18); transform: translateX(100%); transition: transform .26s cubic-bezier(.4,0,.2,1); display: flex; flex-direction: column; }
+.mem-drawer.show { transform: translateX(0); }
+.md-head { padding: 16px 20px; border-bottom: 1px solid #ededf2; display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.md-head .t { font-size: 15px; font-weight: 700; color: #1a1a1a; }
+.md-head .sub { font-size: 11px; color: #9ca3af; margin-left: 2px; }
+.md-head .x { margin-left: auto; cursor: pointer; font-size: 20px; color: #999; line-height: 1; }
+.md-tabs { display: flex; gap: 0; padding: 10px 20px 0; border-bottom: 1px solid #f0f0f5; flex-shrink: 0; }
+.md-tab { padding: 8px 14px; font-size: 13px; color: #6b7280; cursor: pointer; border-bottom: 2px solid transparent; font-weight: 600; }
+.md-tab.active { color: #4e6ef2; border-bottom-color: #4e6ef2; }
+.md-tab .c { font-size: 10px; color: #fff; background: #c7cdf5; border-radius: 8px; padding: 0 6px; margin-left: 4px; }
+.md-tab.active .c { background: #4e6ef2; }
+.md-body { flex: 1; overflow-y: auto; padding: 16px 20px 24px; }
+.md-body::-webkit-scrollbar { width: 6px; } .md-body::-webkit-scrollbar-thumb { background: #e0e0e0; border-radius: 3px; }
+.md-pane { display: none; } .md-pane.active { display: block; }
+.mem-file { font-size: 11px; color: #9ca3af; font-family: ui-monospace, Menlo, monospace; margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
+.mem-file .dot { width: 6px; height: 6px; border-radius: 50%; background: #10b981; }
+.prof-grp { margin-bottom: 16px; }
+.prof-grp .gt { font-size: 12px; font-weight: 700; color: #374151; margin-bottom: 8px; }
+.prof-row { display: flex; font-size: 12px; line-height: 1.7; padding: 4px 0; border-bottom: 1px dashed #f0f0f0; }
+.prof-row .k { color: #9ca3af; width: 92px; flex-shrink: 0; }
+.prof-row .v { color: #1f2937; flex: 1; }
+.prof-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.prof-tags span { font-size: 11px; padding: 3px 10px; border-radius: 12px; background: #eef1fe; color: #4e6ef2; }
+.mem-time { position: relative; padding-left: 18px; }
+.mem-time::before { content: ''; position: absolute; left: 4px; top: 4px; bottom: 4px; width: 2px; background: #eef1fe; }
+.mem-evt { position: relative; margin-bottom: 16px; }
+.mem-evt::before { content: ''; position: absolute; left: -18px; top: 3px; width: 9px; height: 9px; border-radius: 50%; background: #4e6ef2; border: 2px solid #fff; box-shadow: 0 0 0 2px #eef1fe; }
+.mem-evt.green::before { background: #10b981; box-shadow: 0 0 0 2px #ecfdf5; }
+.mem-evt.orange::before { background: #f59e0b; box-shadow: 0 0 0 2px #fff7ed; }
+.mem-evt .when { font-size: 10px; color: #9ca3af; margin-bottom: 3px; }
+.mem-evt .what { font-size: 12px; color: #1f2937; line-height: 1.6; }
+.mem-evt .what b { color: #4e6ef2; }
+.mem-evt .meta { font-size: 10px; color: #b0b0b0; margin-top: 3px; }
+.md-foot { padding: 10px 20px; border-top: 1px solid #ededf2; font-size: 10px; color: #9ca3af; flex-shrink: 0; display: flex; align-items: center; gap: 6px; }
+.md-foot a { color: #4e6ef2; cursor: pointer; margin-left: auto; }
+
+/* Chat Area */
+.chat-area { flex: 1; overflow-y: auto; padding: 18px 20px 8px; }
+.chat-area::-webkit-scrollbar { width: 6px; }
+.chat-area::-webkit-scrollbar-thumb { background: #e0e0e0; border-radius: 3px; }
+.msg-row { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 18px; }
+.msg-row.user { justify-content: flex-end; }
+.aw-panel .avatar { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 10px; }
+.aw-panel .avatar.ai { background: linear-gradient(135deg,#4e6ef2,#7b93f7); color: #fff; font-size: 8px; font-weight: 700; }
+.aw-panel .avatar.user { background: #e8e8e8; color: #666; }
+.bubble { background: #f5f5f5; border-radius: 14px; padding: 10px 14px; font-size: 13px; color: #1a1a1a; max-width: 360px; line-height: 1.6; }
+.bubble.user { border-radius: 14px 14px 4px 14px; }
+.bubble.ai { background: #f5f7ff; border: 1px solid #eef1fe; border-radius: 4px 14px 14px 14px; max-width: 380px; }
+.bubble.ai b { color: #1a1a1a; }
+.bubble.ai .up { color: #10b981; font-weight: 700; }
+.bubble.ai .down { color: #ef4444; font-weight: 700; }
+.bubble.ai .warn { color: #f59e0b; font-weight: 700; }
+.bubble.ai .src { color: #9ca3af; font-size: 11px; cursor: help; border-bottom: 1px dotted #c4c4c4; }
+.chat-act { display: inline-flex; align-items: center; gap: 4px; margin-top: 8px; padding: 5px 12px; border-radius: 14px; font-size: 11px; font-weight: 700; cursor: pointer; border: none; }
+.chat-act.primary { background: linear-gradient(135deg,#4e6ef2,#7b93f7); color: #fff; }
+.chat-act.ghost { background: #fff; border: 1px solid #d9def0; color: #4e6ef2; }
+.chat-act.primary:hover { opacity: .9; } .chat-act.ghost:hover { background: #eef1fe; }
+.bubble.ai .tag-state { display: inline-block; font-size: 9px; font-weight: 700; padding: 1px 7px; border-radius: 10px; margin-left: 4px; vertical-align: middle; }
+.st-done { background: #ecfdf5; color: #10b981; } .st-doing { background: #eff6ff; color: #2563eb; } .st-todo { background: #fef2f2; color: #ef4444; }
+.ai-content { flex: 1; min-width: 0; }
+.ai-label { font-size: 11px; color: #999; margin-bottom: 6px; }
+
+/* 智能体执行卡（@后） */
+.agent-exec { border: 1.5px solid #c7d2fe; border-radius: 12px; overflow: hidden; }
+.ae-head { display: flex; align-items: center; gap: 8px; padding: 9px 14px; background: linear-gradient(135deg,#eef1fe,#f5f7ff); }
+.ae-ava { width: 24px; height: 24px; border-radius: 50%; background: linear-gradient(135deg,#4e6ef2,#7b93f7); color: #fff; font-size: 9px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+.ae-name { font-size: 13px; font-weight: 700; color: #1f2937; }
+.ae-src { font-size: 9px; color: #7c3aed; background: #f3f0ff; border: .5px solid #d8c9fb; padding: 1px 6px; border-radius: 4px; margin-left: 2px; }
+.ae-body { padding: 12px 14px; }
+.ae-step { display: flex; gap: 8px; font-size: 12px; color: #374151; line-height: 1.6; margin-bottom: 7px; }
+.ae-step .ico { flex-shrink: 0; }
+.ae-step .sync { color: #2563eb; } .ae-step .exec { color: #10b981; }
+.ae-prod { background: #f5f7ff; border: 1px solid #dde3fc; border-radius: 8px; padding: 8px 12px; margin: 4px 0 8px; display: flex; justify-content: space-between; align-items: center; }
+.ae-prod .pn { font-size: 12px; color: #333; } .ae-prod .pp { font-size: 12px; font-weight: 700; color: #4e6ef2; }
+.ae-result { background: #ecfdf5; border: 1px solid #b9efd4; border-radius: 8px; padding: 8px 12px; font-size: 11px; color: #047857; line-height: 1.6; }
+.ae-act { display: flex; gap: 8px; margin-top: 10px; }
+.rc-btn { padding: 5px 12px; border-radius: 14px; font-size: 11px; font-weight: 700; cursor: pointer; border: none; white-space: nowrap; }
+.rc-btn.primary { background: linear-gradient(135deg,#4e6ef2,#7b93f7); color: #fff; }
+.rc-btn.ghost { background: #fff; border: 1px solid #d9def0; color: #4e6ef2; }
+.rc-btn.primary:hover { opacity: .9; } .rc-btn.ghost:hover { background: #f5f7ff; }
+.feedback { display: flex; gap: 8px; margin-top: 8px; }
+.feedback span { cursor: pointer; color: #c4c4c4; font-size: 15px; }
+
+/* Input Area */
+.input-section { padding: 10px 20px 14px; border-top: 1px solid #ebebeb; position: relative; flex-shrink: 0; }
+.quick-agents { display: flex; align-items: center; gap: 6px; margin-bottom: 8px; flex-wrap: wrap; }
+.quick-agents .lab { font-size: 11px; color: #9ca3af; }
+.qa-chip { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; color: #4e6ef2; background: #eef1fe; border: 1px solid #dde3fc; padding: 3px 9px; border-radius: 12px; cursor: pointer; }
+.qa-chip:hover { background: #dde3fd; }
+.qa-chip .dot { width: 5px; height: 5px; border-radius: 50%; background: #10b981; }
+.input-box { border: 1.5px solid #4e6ef2; border-radius: 12px; padding: 8px 10px 8px 12px; }
+.sel-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 6px; }
+.sel-chips:empty { display: none; margin: 0; }
+.sel-chip { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 700; color: #4e6ef2; background: #eef1fe; border: 1px solid #c7d2fe; padding: 3px 6px 3px 9px; border-radius: 12px; }
+.sel-chip .x { cursor: pointer; color: #9aa6e6; font-weight: 700; font-size: 13px; line-height: 1; }
+.sel-chip .x:hover { color: #4e6ef2; }
+.input-row { display: flex; align-items: center; gap: 8px; }
+.toggle-wrap { display: flex; align-items: center; gap: 4px; flex-shrink: 0; }
+.toggle { width: 30px; height: 17px; background: #4e6ef2; border-radius: 9px; padding: 2px; cursor: pointer; display: flex; align-items: center; }
+.toggle .dot { width: 13px; height: 13px; border-radius: 50%; background: #fff; margin-left: 13px; transition: margin .2s; }
+.toggle-label { font-size: 11px; color: #666; }
+.input-field { flex: 1; border: none; outline: none; font-size: 13px; color: #1a1a1a; background: transparent; font-family: inherit; }
+.send-btn { width: 28px; height: 28px; border-radius: 50%; background: #4e6ef2; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.plus-btn { width: 28px; height: 28px; border-radius: 8px; background: #f0f2ff; border: 1px solid #dfe3ff; color: #4e6ef2; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 18px; line-height: 1; transition: background .15s; }
+.plus-btn:hover { background: #e2e7ff; }
+.plus-btn.on { background: #4e6ef2; color: #fff; border-color: #4e6ef2; }
+.footer-text { text-align: center; margin-top: 6px; font-size: 10px; color: #bbb; }
+
+/* @ 下拉 */
+.mention-pop { position: absolute; left: 20px; right: 20px; bottom: 92px; background: #fff; border: 1px solid #e0e0e0; border-radius: 12px; box-shadow: 0 8px 28px rgba(0,0,0,.14); padding: 6px; z-index: 300; display: none; }
+.mention-pop.show { display: block; }
+.mp-title { font-size: 10px; color: #9ca3af; padding: 6px 10px 4px; display: flex; align-items: center; }
+.mp-title a { color: #4e6ef2; margin-left: auto; cursor: pointer; }
+.mp-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 10px; border-radius: 8px; cursor: pointer; }
+.mp-item:hover { background: #f5f7ff; }
+.mp-ava { width: 30px; height: 30px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
+.mp-ava.a1 { background: #eef1fe; } .mp-ava.a2 { background: #eef2ff; } .mp-ava.a3 { background: #ecfdf5; }
+.mp-main { flex: 1; min-width: 0; }
+.mp-name { font-size: 13px; font-weight: 700; color: #1f2937; display: flex; align-items: center; gap: 6px; }
+.mp-badge { font-size: 8px; font-weight: 700; color: #7c3aed; background: #f3f0ff; border: .5px solid #d8c9fb; padding: 1px 5px; border-radius: 3px; }
+.mp-desc { font-size: 11px; color: #9ca3af; margin-top: 2px; line-height: 1.5; }
+.mp-cap { display: flex; gap: 6px; margin-top: 4px; }
+.mp-cap span { font-size: 9px; padding: 1px 6px; border-radius: 4px; }
+.cap-sync { background: #eff6ff; color: #2563eb; } .cap-exec { background: #ecfdf5; color: #10b981; }
+.mp-add { display: flex; align-items: center; gap: 8px; padding: 10px; margin-top: 4px; border-top: 1px dashed #eee; border-radius: 8px; cursor: pointer; color: #4e6ef2; font-size: 12px; font-weight: 600; }
+.mp-add:hover { background: #f5f7ff; }
+.mp-add .pico { width: 24px; height: 24px; border-radius: 7px; border: 1px dashed #b9c2ff; display: flex; align-items: center; justify-content: center; font-size: 15px; flex-shrink: 0; }
+.mp-add .sub { font-size: 10px; color: #9ca3af; font-weight: 400; margin-left: auto; }
+
+/* ===== Compare Optimization: 痛点链路与快捷提问 ===== */
+.trigger-content { flex: 1; min-width: 0; }
+.trigger-main { display: flex; align-items: center; gap: 8px; }
+.trigger-questions { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-top: 6px; }
+.question-chip { padding: 3px 9px; border-radius: 12px; background: #f5f7ff; border: .5px solid #c7d2fe; color: #4e6ef2; font-size: 10px; cursor: pointer; }
+.question-chip:hover { background: #eef1fe; }
+/* ===== Compare Optimization: 诊断入口与客户机会 ===== */
+.insight-questions { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.insight-question { padding: 5px 10px; border-radius: 14px; background: #fff; border: .5px solid #c7d2fe; color: #4e6ef2; font-size: 11px; cursor: pointer; }
+.insight-question:hover { background: #eef1fe; }
+.companion-chat-bar { display: flex; align-items: center; gap: 8px; margin-top: 8px; padding: 6px 8px; border: 1px solid #c7d2fe; border-radius: 16px; background: #fff; box-shadow: 0 4px 12px rgba(78, 110, 242, .08); cursor: text; }
+.companion-chat-icon { height: 22px; padding: 0 9px; border-radius: 11px; background: linear-gradient(135deg,#4e6ef2,#7b93f7); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; flex-shrink: 0; white-space: nowrap; }
+.companion-chat-placeholder { flex: 1; color: #6b7280; font-size: 11px; line-height: 1.4; }
+.companion-chat-send { border: none; border-radius: 13px; padding: 4px 11px; background: #eef1fe; color: #4e6ef2; font-size: 11px; font-weight: 700; cursor: pointer; }
+.reception-insight { margin-bottom: 12px; padding: 12px 14px; border: 1px solid #dbeafe; border-radius: 8px; background: linear-gradient(180deg,#f8fbff 0%,#fff 100%); }
+.reception-head { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.reception-title { font-size: 13px; font-weight: 700; color: #1f2937; }
+.reception-desc { font-size: 12px; color: #374151; line-height: 1.65; }
+.reception-desc b { color: #ef4444; }
+.reception-actions { display: flex; gap: 8px; margin-top: 10px; }
+.reception-actions button, .reception-actions a { padding: 5px 12px; border-radius: 14px; border: 1px solid #d9def0; background: #fff; color: #4e6ef2; font-size: 11px; font-weight: 700; cursor: pointer; text-decoration: none; }
+.reception-actions .primary { background: linear-gradient(135deg,#4e6ef2,#7b93f7); color: #fff; border-color: #4e6ef2; }
+.customer-opportunity-list { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
+.customer-opportunity-item { display: flex; align-items: flex-start; gap: 8px; padding: 8px; border-radius: 8px; background: #f8faff; border: .5px solid #eef1fe; }
+.customer-opportunity-item .num { width: 22px; height: 22px; border-radius: 50%; background: #4e6ef2; color: #fff; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.customer-opportunity-item .main { flex: 1; min-width: 0; }
+.customer-opportunity-item .name { font-size: 11px; font-weight: 700; color: #1f2937; }
+.customer-opportunity-item .desc { font-size: 10px; color: #6b7280; line-height: 1.5; margin-top: 2px; }
+.customer-opportunity-footer { margin-top: 8px; padding: 6px 8px; border-radius: 6px; background: #ecfdf5; color: #047857; font-size: 10px; line-height: 1.5; }
+
+
+/* ===== Compare Optimization: MA 上下文同步 ===== */
+.ma-context-bar { margin: 10px 20px 0; padding: 9px 12px; border: 1px solid #dbeafe; border-radius: 8px; background: linear-gradient(135deg,#f8fbff 0%,#eef6ff 100%); font-size: 11px; color: #475569; line-height: 1.6; flex-shrink: 0; }
+.ma-context-bar b { color: #2563eb; }
+.ma-context-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 5px; }
+.ma-context-tags span { padding: 2px 7px; border-radius: 10px; background: #fff; border: .5px solid #bfdbfe; color: #2563eb; font-size: 10px; }
+.mp-ava.a4 { background: #fff7ed; }
+
+</style>
+</head>
+<body>
+<div class="layout">
+
+<!-- ===== Left Sidebar ===== -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="icon">国</div>
+    <span>阿里国际站</span>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-item active">首页</div>
+    <div class="nav-item">常用</div>
+    <div class="nav-item">店铺管理</div>
+    <div class="nav-item">商品管理</div>
+    <div class="nav-item">媒体中心</div>
+    <div class="nav-item">数据参谋</div>
+    <div class="nav-item">营销中心</div>
+    <div class="nav-item">活动中心</div>
+    <div class="nav-item">商机沟通</div>
+    <div class="nav-item">客户管理</div>
+    <div class="nav-item">交易管理</div>
+    <div class="nav-item">出口服务</div>
+    <div class="nav-item">物流服务</div>
+    <div class="nav-item">资金管理</div>
+    <div class="nav-item">认证中心</div>
+    <div class="nav-item">商家成长</div>
+    <a class="nav-item" href="assets/AW-生意助手侧边栏.html?return=compare" style="cursor:pointer;text-decoration:none;color:inherit;">生意助手</a>
+    <div class="nav-item">服务中心</div>
+  </nav>
+  <!-- 侧边浮窗 -->
+  <div style="position:fixed;right:0;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:0;z-index:60;">
+    <div style="width:52px;padding:12px 4px;background:#fff;border:1px solid #e0e0e0;border-left:none;border-radius:0 10px 0 0;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;">
+      <span style="font-size:13px;color:#333;font-weight:600;line-height:1.3;text-align:center;writing-mode:vertical-rl;letter-spacing:2px;">常见问题</span>
+    </div>
+    <div onclick="openAW()" style="width:52px;padding:12px 4px;background:#fff;border:1px solid #e0e0e0;border-left:none;border-top:none;display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;text-decoration:none;">
+      <svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="8" fill="url(#awGrad2)"/><path d="M6 9l2 2 4-4" stroke="#fff" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="awGrad2" x1="0" y1="0" x2="18" y2="18"><stop offset="0%" stop-color="#34d399"/><stop offset="100%" stop-color="#3b82f6"/></linearGradient></defs></svg>
+      <span style="font-size:13px;color:#333;font-weight:600;line-height:1.3;text-align:center;writing-mode:vertical-rl;letter-spacing:2px;">生意助手</span>
+    </div>
+    <div style="width:52px;padding:12px 4px;background:#fff;border:1px solid #e0e0e0;border-left:none;border-top:none;border-radius:0 0 10px 0;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;">
+      <span style="font-size:13px;color:#333;font-weight:600;line-height:1.3;text-align:center;writing-mode:vertical-rl;letter-spacing:2px;">AI客户经理</span>
+    </div>
+  </div>
+</aside>
+
+<!-- ===== Main Area ===== -->
+<div class="main-area">
+
+  <!-- Top Header -->
+  <header class="top-header">
+    <div class="brand">My Alibaba</div>
+    <div class="search-bar">AI搜索 搜索功能菜单、平台规则、商品信息</div>
+    <div class="top-right" style="display:flex;align-items:center;gap:16px;">
+      <div onclick="window.location.href='assets/AW-生意助手首页.html?return=compare'" style="display:flex;align-items:center;gap:6px;padding:6px 14px;border:1px solid #e0e0e0;border-radius:20px;cursor:pointer;background:#fff;">
+        <svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="8" fill="url(#awGrad)"/><path d="M6 9l2 2 4-4" stroke="#fff" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="awGrad" x1="0" y1="0" x2="18" y2="18"><stop offset="0%" stop-color="#34d399"/><stop offset="100%" stop-color="#3b82f6"/></linearGradient></defs></svg>
+        <span style="font-size:13px;font-weight:600;color:#4e6ef2;">前往智能工作台</span>
+      </div>
+      <span style="position:relative;cursor:pointer;font-size:18px;">🔔<span style="position:absolute;top:-4px;right:-6px;min-width:16px;height:16px;background:#ef4444;border-radius:8px;font-size:9px;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;">11</span></span>
+      <div class="avatar">亦</div>
+    </div>
+  </header>
+
+  <!-- Content -->
+  <div class="content">
+
+    <!-- ===== Main Content ===== -->
+    <div class="content-main">
+
+      <!-- Module 1: AI Trigger Bar -->
+      <div class="trigger-bar">
+        <div class="ai-avatar">
+          <span class="name">谭</span>
+          <span class="ai-badge">AI</span>
+        </div>
+        <div class="trigger-content">
+          <div class="trigger-main">
+            <span class="msg">HI，我是您的AI客户经理谭波，已把今日经营卡点整理成可执行建议</span>
+          </div>
+          <div class="trigger-questions">
+            <span class="question-chip" onclick="askAssistant('为什么最近曝光变少？')">为什么最近曝光变少？</span>
+            <span class="question-chip" onclick="askAssistant('哪些买家值得优先跟进？')">哪些买家值得优先跟进？</span>
+            <span class="question-chip" onclick="askAssistant('这周最该先做哪3件事？')">这周最该先做哪3件事？</span>
+          </div>
+        </div>
+        <div class="team">
+          <div class="team-avatar">张</div>
+          <div class="team-avatar">李</div>
+          <div class="team-avatar">王</div>
+          <span class="meta">3个数字员工使用中</span>
+        </div>
+        <span class="task-link">任务管理</span>
+      </div>
+
+      <!-- Module 2: Agent Cockpit -->
+      <div class="card cockpit">
+        <div class="flex-between">
+          <div class="section-title"><span class="dot dot-red"></span> 经营诊断 · 薄弱环节定位</div>
+        </div>
+        <div class="diagnosis-text">搜索曝光严重不足，完成任务预计提升100%+</div>
+        <div style="font-size:12px;color:#374151;line-height:18px;margin-bottom:12px;">
+          老板您好！您店铺近7日搜索曝光仅350，远低于同行均值7549，正处于关键追赶期。但需关注：该指标较上周下滑26%，流量承压明显。为快速破局，建议立即完成'用完当月免费RFQ报价权益''打造10个优爆品''发布1个市场热卖商品'三项任务，30天内全店曝光预计提升100%以上！
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Problem Analysis -->
+        <div class="problem-header">
+          <div class="section-title"><span class="dot dot-blue"></span> 问题分析 · 如何提升曝光</div>
+          <span class="toggle-link">开启任务一键托管</span>
+        </div>
+        <div class="flex-between mb-4">
+          <span class="problem-desc">以下是影响您店铺曝光的关键因素，生意助手已为每个问题准备了对应方案，确认即可执行。</span>
+        </div>
+
+        <!-- Task Cards -->
+        <div class="task-cards">
+          <div class="task-card">
+            <div class="task-card-top">
+              <span class="task-card-num">1</span>
+              <span class="task-card-title">品类窄，搜索排名低</span>
+              <div class="task-card-sub">4.5分品是搜索权重核心因子，您仅有2个非重铺4.5分品（同行8个）</div>
+            </div>
+            <div class="task-card-bottom">
+              <div class="task-card-action">发布4.5分品(2/30)</div>
+              <div class="task-card-meta">必做 · 生意助手已匹配5个商品</div>
+              <div class="progress-bar"><div class="progress-fill" style="width:85%"></div></div>
+              <div class="progress-text">85%</div>
+              <button class="btn-primary" onclick="window.location.href='assets/AW-全屏对话.html?q=publish&return=compare'">确认发布</button>
+            </div>
+          </div>
+          <div class="task-card green">
+            <div class="task-card-top">
+              <span class="task-card-num">2</span>
+              <span class="task-card-title">优化3个商品标题</span>
+              <div class="task-card-sub">橱窗是免费曝光核心入口，使用率仅60%，建议填满至100%</div>
+            </div>
+            <div class="task-card-bottom">
+              <div class="task-card-action">优化3个商品标题(1/3)</div>
+              <div class="task-card-meta">选做 · 最大化免费曝光</div>
+              <div class="progress-bar"><div class="progress-fill" style="width:70%;background:linear-gradient(90deg,#10b981,#4e6ef2)"></div></div>
+              <div class="progress-text">70%</div>
+              <button class="btn-outline" onclick="openTitleOptPanel(this)">确认优化</button>
+            </div>
+          </div>
+          <div class="task-card indigo">
+            <div class="task-card-top">
+              <span class="task-card-num">3</span>
+              <span class="task-card-title">P4P获量不足</span>
+              <div class="task-card-sub">日均消耗¥50，远低于同行¥200</div>
+            </div>
+            <div class="task-card-bottom">
+              <div class="task-card-action">P4P出价提升到¥1.8</div>
+              <div class="task-card-meta">选做 · 当前出价¥0.9低于同行</div>
+              <div class="progress-bar"><div class="progress-fill" style="width:92%;background:linear-gradient(90deg,#f59e0b,#10b981)"></div></div>
+              <div class="progress-text">92%</div>
+              <a href="assets/AW-生意助手侧边栏.html?return=compare" style="display:block;width:100%;padding:8px;border:none;border-radius:6px;background:linear-gradient(135deg,#4e6ef2 0%,#7b93f7 100%);color:#fff;font-size:12px;font-weight:700;cursor:pointer;text-align:center;margin-top:auto;text-decoration:none;">去调整</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 伴随式浮层：内联在卡片下方 -->
+        <div id="titleOptInline" style="display:none;width:100%;background:rgba(245,247,255,0.69);border:1px dashed #4e6ef2;border-radius:10px;padding:16px;margin-top:12px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding-bottom:8px;border-bottom:1px solid #e8e8e8;">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="8" fill="url(#aiG2)"/><defs><linearGradient id="aiG2" x1="0" y1="0" x2="16" y2="16"><stop offset="0%" stop-color="#62AAFF"/><stop offset="100%" stop-color="#4B7AF3"/></linearGradient></defs><text x="8" y="11" text-anchor="middle" font-size="7" font-weight="700" fill="#fff">AI</text></svg>
+              <span style="font-size:14px;font-weight:700;color:#6b7280;">优化商品标题任务</span>
+            </div>
+            <span onclick="document.getElementById('titleOptInline').style.display='none'" style="cursor:pointer;font-size:18px;color:#999;line-height:1;">&times;</span>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:12px;margin-top:12px;">
+            <div style="width:68px;height:40px;background:#e8e8e8;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><span style="font-size:11px;color:#999;">商品图</span></div>
+            <span style="font-size:14px;color:#666;line-height:21px;">已提供标题优化后的结果，并对整体可读性进行了提升，供您参考选择：</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px;margin-top:14px;">
+            <label style="display:flex;align-items:center;gap:8px;cursor:pointer;" onclick="selectTitleOpt(this)">
+              <span class="radio-dot selected" style="width:16px;height:16px;border-radius:50%;background:#1047f5;border:1px solid #1047f5;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><span style="width:4px;height:4px;border-radius:50%;background:#fff;display:block;"></span></span>
+              <span style="font-size:14px;color:#333;line-height:21px;">Shanghai-US Golden Seaweed Plumping Tender Radiant Hydrating Moisturizing Lifting Thin Slice Eye Mask Sheets Wholesale</span>
+            </label>
+            <label style="display:flex;align-items:center;gap:8px;cursor:pointer;" onclick="selectTitleOpt(this)">
+              <span class="radio-dot" style="width:16px;height:16px;border-radius:50%;background:#fff;border:1px solid #a2a3a5;display:flex;align-items:center;justify-content:center;flex-shrink:0;"></span>
+              <span style="font-size:14px;color:#333;line-height:21px;">Shanghai-US Golden Seaweed Plumping Tender Hydrating Radiant Moisturizing Lifting Thin Slice Eye Mask Sheets Custom Logo</span>
+            </label>
+            <label style="display:flex;align-items:center;gap:8px;cursor:pointer;" onclick="selectTitleOpt(this)">
+              <span class="radio-dot" style="width:16px;height:16px;border-radius:50%;background:#fff;border:1px solid #a2a3a5;display:flex;align-items:center;justify-content:center;flex-shrink:0;"></span>
+              <span style="font-size:14px;color:#333;line-height:21px;">Seaweed Extract Moisturizing &amp; Hydrating Thin Slice Eye Mask Sheets</span>
+            </label>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px;margin-top:16px;">
+            <button onclick="confirmTitleOpt()" style="padding:5px 20px;background:#1047f5;border:1px solid #1047f5;border-radius:18px;font-size:14px;font-weight:700;color:#fff;cursor:pointer;min-height:32px;">确认优化</button>
+            <div style="display:flex;align-items:center;gap:4px;cursor:pointer;" onclick="document.getElementById('titleOptInline').style.display='none'">
+              <svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="none" stroke="#999" stroke-width="1"/><path d="M6 5l4 3-4 3" stroke="#333" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span style="font-size:14px;font-weight:700;color:#6b7280;">下一个</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Effect Tracking -->
+        <div class="effect-track">
+          <span class="dot"></span>
+          <span style="color:#000;">上一周期已完成任务 2/3 个 → 7日后曝光+156%，任务带来显著正反馈</span>
+          <span style="color:#2563eb;font-weight:700;font-size:10px;">↑</span>
+          <span class="right-text">任务效果持续跟踪中</span>
+        </div>
+      </div>
+
+      <!-- Module 3: Data Dashboard -->
+      <div class="card dashboard">
+        <div class="tabs">
+          <div class="tab active" onclick="switchTab(this)">实时数据</div>
+          <div class="tab" onclick="switchTab(this)">店铺数据</div>
+          <div class="tab" onclick="switchTab(this)">营销数据</div>
+        </div>
+        <div class="dashboard-header">
+          <span class="dashboard-time">更新时间 2026-06-02 00:00 (PST)</span>
+          <span class="more-data">更多数据 ›</span>
+        </div>
+
+        <!-- AI Insight -->
+        <div class="ai-insight">
+          <div class="ai-insight-header">
+            <span class="ai-badge-sm">AI</span>
+            <span class="ai-insight-title">生意助手工作中· 从数字看板到经营问题</span>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:12px;">
+            <div class="ai-insight-text" style="flex:1;">
+              您偏好「利润优先·大单稳定」，AI 已结合实时数据、客户机会和投放表现，先定位最影响增长的经营问题，再给出可直接执行的下一步动作。
+              <div class="companion-chat-bar" onclick="askAssistant('@生意助手，本周询盘数下跌，帮我拉取询盘会话分析业务员接待质量')">
+                <div class="companion-chat-icon">@生意助手</div>
+                <div class="companion-chat-placeholder">@生意助手，本周询盘数下跌，帮我拉取询盘会话分析业务员接待质量</div>
+                <button class="companion-chat-send" onclick="event.stopPropagation();askAssistant('@生意助手，本周询盘数下跌，帮我拉取询盘会话分析业务员接待质量')">进入深度诊断</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Metrics -->
+        <div class="metrics">
+          <div class="metric">
+            <div class="label">搜索曝光次数</div>
+            <div class="val">27 <span class="change change-up">↑3.8%</span></div>
+          </div>
+          <div class="metric">
+            <div class="label">搜索点击次数</div>
+            <div class="val">0 <span class="change change-flat">--</span></div>
+          </div>
+          <div class="metric">
+            <div class="label">店铺访问人数</div>
+            <div class="val">0 <span class="change change-flat">--</span></div>
+          </div>
+          <div class="metric">
+            <div class="label">询盘个数</div>
+            <div class="val">0 <span class="change change-flat">--</span></div>
+          </div>
+          <div class="metric">
+            <div class="label">询盘人数</div>
+            <div class="val">0 <span class="change change-flat">--</span></div>
+          </div>
+          <div class="metric">
+            <div class="label">TM咨询人数</div>
+            <div class="val">0 <span class="change change-down">↓100%</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Module 4: 经营管理 -->
+      <div class="card biz-manage">
+        <div class="biz-title">经营管理</div>
+        <!-- AI Suggest Bar -->
+        <div class="ai-insight" style="margin-bottom:12px;">
+          <div class="ai-insight-header">
+            <span class="ai-badge-sm">AI</span>
+            <span class="ai-insight-title">OKKI助手工作中 · 从询盘看板到客户机会</span>
+          </div>
+          <div class="ai-insight-text">
+            AI 已结合询盘响应、买家意向和 OKKI 客户信息，优先定位高价值买家与接待瓶颈，帮助您快速判断先跟进谁、怎么回复。
+            <div class="companion-chat-bar" onclick="askAssistant('@OKKI助手，帮我识别当前高价值买家，并定位接待响应瓶颈')">
+              <div class="companion-chat-icon">@OKKI助手</div>
+              <div class="companion-chat-placeholder">@OKKI助手，帮我识别当前高价值买家，并定位接待响应瓶颈</div>
+              <button class="companion-chat-send" onclick="event.stopPropagation();askAssistant('@OKKI助手，帮我识别当前高价值买家，并定位接待响应瓶颈')">进入深度诊断</button>
+            </div>
+          </div>
+        </div>
+        <div class="biz-tabs">
+          <div class="biz-tab active" onclick="switchBizTab(this)">询盘<div class="count"><span class="num">47</span>个询盘待回复</div></div>
+          <div class="biz-tab" onclick="switchBizTab(this)">RFQ商机<div class="count"><span class="num">36</span>个新RFQ商机</div></div>
+          <div class="biz-tab" onclick="switchBizTab(this)">订单<div class="count"><span class="num">131</span>个待处理订单</div></div>
+          <div class="biz-tab" onclick="switchBizTab(this)">半托管<div class="count"><span class="num">0</span>个商品待报名</div></div>
+          <div class="biz-tab" onclick="switchBizTab(this)">活动<div class="count"><span class="num">12</span>个活动待报名</div></div>
+        </div>
+        <div class="biz-stats">
+          <span>我的及时回复率：74.07% ｜ 店铺及时回复率：74.07%</span>
+          <a>近一年询盘 ›</a>
+        </div>
+
+        <!-- Inquiry Table -->
+        <table class="inquiry-table">
+          <thead>
+            <tr>
+              <th>来源/买家</th>
+              <th>商品</th>
+              <th>买家意向AI评分</th>
+              <th>负责人</th>
+              <th>状态</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div>Inquiry from Accio Work</div>
+                <div class="buyer-name">Pauline Zhang</div>
+              </td>
+              <td><div class="product-img">商品图</div></td>
+              <td><span class="intent-tag intent-a">高意向 A</span></td>
+              <td>Henry Tan</td>
+              <td>
+                <div class="status-new">新询盘</div>
+                <div class="wait-time">已等待17时32分</div>
+              </td>
+              <td>
+                <button class="btn-reply">去回复</button>
+                <div style="margin-top:4px;"><button class="btn-bg-check" onclick="window.open('assets/OKKI-客户背调.jpg','_blank')">客户背调</button></div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div>Inquiry from Accio Work</div>
+                <div class="buyer-name">LIAM ELVER</div>
+              </td>
+              <td><div class="product-img">商品图</div></td>
+              <td><span class="intent-tag intent-b">一般 B</span></td>
+              <td>Henry Tan</td>
+              <td>
+                <div class="status-new">新询盘</div>
+                <div class="wait-time">已等待1天4时</div>
+              </td>
+              <td>
+                <button class="btn-reply">去回复</button>
+                <div style="margin-top:4px;"><button class="btn-bg-check" onclick="window.open('assets/OKKI-客户背调.jpg','_blank')">客户背调</button></div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+
+      <!-- Module 5: 今日机会 -->
+      <div class="card opportunity">
+        <div class="opp-title">今日机会</div>
+        <div class="opp-cols">
+          <div class="opp-col">
+            <div class="opp-col-header">
+              <span class="opp-col-title">买家店内偏好品 <span class="tag-related">与我相关</span></span>
+              <span class="opp-col-link">更多 ›</span>
+            </div>
+            <div class="opp-row"><span class="opp-rank">1</span><span class="opp-name">Universal All Seasons Breathable...</span><span class="opp-count">6</span><a class="opp-action" href="assets/AW-全屏对话.html?q=diagnose&return=compare">商品诊断</a></div>
+            <div class="opp-row"><span class="opp-rank">2</span><span class="opp-name">Nunbell Cross-border Multi-color...</span><span class="opp-count">5</span><a class="opp-action" href="assets/AW-全屏对话.html?q=diagnose&return=compare">商品诊断</a></div>
+            <div class="opp-row"><span class="opp-rank">3</span><span class="opp-name">Pet Bed Dog Sofa Cushion...</span><span class="opp-count">5</span><a class="opp-action" href="assets/AW-全屏对话.html?q=diagnose&return=compare">商品诊断</a></div>
+            <div class="opp-row"><span class="opp-rank">4</span><span class="opp-name">Pet Bed Dog Sofa Cushion...</span><span class="opp-count">5</span><a class="opp-action" href="assets/AW-全屏对话.html?q=diagnose&return=compare">商品诊断</a></div>
+          </div>
+          <div class="opp-col">
+            <div class="opp-col-header">
+              <span class="opp-col-title">买家全站偏好品</span>
+              <span class="opp-col-link">更多 ›</span>
+            </div>
+            <div class="opp-row"><span class="opp-rank blue">1</span><span class="opp-name">Lftest Auto</span><span class="opp-count">126</span><a class="opp-action" href="assets/AW-全屏对话.html?q=publish&return=compare">一键发同款</a></div>
+            <div class="opp-row"><span class="opp-rank blue">2</span><span class="opp-name">DC 24V/48V Solar...</span><span class="opp-count">105</span><a class="opp-action" href="assets/AW-全屏对话.html?q=publish&return=compare">一键发同款</a></div>
+            <div class="opp-row"><span class="opp-rank blue">3</span><span class="opp-name">Bird Family Avian...</span><span class="opp-count">84</span><a class="opp-action" href="assets/AW-全屏对话.html?q=publish&return=compare">一键发同款</a></div>
+            <div class="opp-row"><span class="opp-rank blue">4</span><span class="opp-name">Bird Family Avian...</span><span class="opp-count">84</span><a class="opp-action" href="assets/AW-全屏对话.html?q=publish&return=compare">一键发同款</a></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ===== Right Sidebar ===== -->
+    <div class="content-right">
+
+      <!-- 店铺信息卡 -->
+      <div class="right-card">
+        <div style="font-size:12px;font-weight:700;color:#1f2937;">Shenzhen Highup Technology Co., Ltd.</div>
+        <div style="display:flex;align-items:center;gap:6px;margin-top:4px;">
+          <span style="font-size:10px;color:#4e6ef2;">1yr VERIFIED</span>
+        </div>
+        <div style="font-size:10px;color:#6b7280;margin-top:4px;">主营一级类目: 宠物用品及食品</div>
+        <div style="display:flex;align-items:center;gap:8px;margin-top:10px;padding:6px 10px;background:#f5f7ff;border:0.5px solid #c7d2fe;border-radius:6px;">
+          <span style="font-size:9px;color:#4e6ef2;">店铺信息完整度</span>
+          <div style="flex:1;height:6px;background:#f0f0f0;border-radius:3px;overflow:hidden;max-width:80px;"><div style="width:85%;height:100%;background:#4e6ef2;border-radius:3px;"></div></div>
+          <span style="font-size:9px;font-weight:700;color:#4e6ef2;">85%</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;margin-top:10px;">
+          <span style="font-size:10px;color:#6b7280;">我的权益</span>
+          <span style="font-size:9px;color:#9ca3af;">|</span>
+          <span style="padding:3px 10px;background:#f3f0ff;border:0.5px solid #c4b5fd;border-radius:4px;font-size:9px;font-weight:700;color:#7c3aed;cursor:pointer;">经营画像管理 →</span>
+          <span style="font-size:10px;color:#4e6ef2;margin-left:auto;cursor:pointer;">›</span>
+        </div>
+        <div style="margin-top:8px;font-size:11px;color:#4e6ef2;cursor:pointer;">完善经营偏好，获取专属诊断建议›</div>
+      </div>
+
+      <!-- 我的客户 OKKI -->
+      <div class="right-card" style="border:1px dashed #3b82f6;cursor:pointer;" onclick="window.open('assets/OKKI-客户列表.jpg','_blank')">
+        <div class="right-card-header">
+          <span class="right-card-title"><span class="new-badge" style="background:#3b82f6;">NEW</span> 客户机会 · OKKI洞察</span>
+          <span class="right-card-link" style="color:#3b82f6;">全部客户 →</span>
+        </div>
+        <div class="client-grid">
+          <div class="client-cell" style="background:#eef1fe;">
+            <div style="font-size:9px;color:#6b7280;">活跃客户</div>
+            <div style="display:flex;align-items:baseline;justify-content:center;gap:4px;">
+              <span class="cval blue" style="color:#4e6ef2;">24</span>
+              <span style="font-size:9px;color:#4e6ef2;">↑12%</span>
+            </div>
+          </div>
+          <div class="client-cell" style="background:#f0f2f5;">
+            <div style="font-size:9px;color:#6b7280;">待跟进客户</div>
+            <div style="display:flex;align-items:baseline;justify-content:center;gap:4px;">
+              <span class="cval" style="color:#4b5563;">8</span>
+              <span style="font-size:9px;color:#6b7280;">需处理</span>
+            </div>
+          </div>
+          <div class="client-cell" style="background:#e8ecf4;">
+            <div style="font-size:9px;color:#6b7280;">近期成交</div>
+            <span class="cval" style="color:#3b5bdb;">3笔</span>
+          </div>
+          <div class="client-cell" style="background:#f5f6fa;">
+            <div style="font-size:9px;color:#6b7280;">沉睡客户</div>
+            <span class="cval" style="color:#6b7280;">15</span>
+          </div>
+        </div>
+        <div class="customer-opportunity-list">
+          <div class="customer-opportunity-item">
+            <span class="num">A</span>
+            <div class="main"><div class="name">高意向未回</div><div class="desc">Pauline Zhang 已等待 17h32m，建议立即回复报价。</div></div>
+          </div>
+          <div class="customer-opportunity-item">
+            <span class="num">15</span>
+            <div class="main"><div class="name">沉睡可激活</div><div class="desc">3 位客户超过 90 天未联系，可用 OKKI 邮件营销激活。</div></div>
+          </div>
+          <div class="customer-opportunity-item">
+            <span class="num">36h</span>
+            <div class="main"><div class="name">接待超时</div><div class="desc">Henry 平均响应 36h，影响及时回复率与买家转化。</div></div>
+          </div>
+        </div>
+        <div class="customer-opportunity-footer">AI 已将客户机会同步给生意助手，可 @客户接待质检官 生成跟进动作。</div>
+      </div>
+
+      <!-- 我的待办 -->
+      <div class="right-card">
+        <div class="right-card-header">
+          <span class="right-card-title">我的待办</span>
+        </div>
+        <div class="todo-row"><span class="tlabel">未读人脉请求</span><span class="tcount">7</span></div>
+        <div class="todo-row"><span class="tlabel">可营销客户</span><span class="tcount">99+</span></div>
+        <div class="todo-row"><span class="tlabel">流失预警/高潜复购</span><span class="tcount">15</span></div>
+        <div class="todo-row"><span class="tlabel">近7日待主账号回复</span><span class="tcount">30</span></div>
+      </div>
+
+      <!-- 合规风险提示 -->
+      <div class="right-card" style="border:1px dashed #4e6ef2;cursor:pointer;" onclick="window.open('assets/MA-合规中心.jpg','_blank')">
+        <div class="right-card-header">
+          <span class="right-card-title"><span class="new-badge">NEW</span> 合规风险提示</span>
+          <span class="right-card-link" style="color:#3b82f6;">全部提醒 →</span>
+        </div>
+        <div class="risk-item" style="border-left:3px solid #dc2626;padding-left:8px;">
+          <span class="risk-level risk-urgent" style="font-size:7px;padding:2px 6px;">紧急</span>
+          <div class="risk-content">
+            <div class="rtitle" style="font-size:10px;">侵权风险</div>
+            <div class="rdesc" style="font-size:9px;">3个品疑似侵权，建议立即下架</div>
+          </div>
+        </div>
+        <div class="risk-item" style="border-left:3px solid #ca8a04;padding-left:8px;">
+          <span class="risk-level risk-important" style="font-size:7px;padding:2px 6px;background:#fefce8;color:#ca8a04;">重要</span>
+          <div class="risk-content">
+            <div class="rtitle" style="font-size:10px;">资质过期</div>
+            <div class="rdesc" style="font-size:9px;">营业执照将于30天后过期</div>
+          </div>
+        </div>
+        <div class="risk-item" style="border-left:3px solid #2563eb;padding-left:8px;">
+          <span class="risk-level" style="font-size:7px;padding:2px 6px;background:#eff6ff;color:#2563eb;">关注</span>
+          <div class="risk-content">
+            <div class="rtitle" style="font-size:10px;">信保额度</div>
+            <div class="rdesc" style="font-size:9px;">当前信保额度使用率92%</div>
+          </div>
+        </div>
+        <div class="risk-item" style="border-left:3px solid #4e6ef2;padding-left:8px;">
+          <span class="risk-level" style="font-size:7px;padding:2px 6px;background:#eff6ff;color:#4e6ef2;">通知</span>
+          <div class="risk-content">
+            <div class="rtitle" style="font-size:10px;">合规更新</div>
+            <div class="rdesc" style="font-size:9px;">欧盟CE认证新规7月生效</div>
+          </div>
+        </div>
+        <div style="font-size:8px;color:#92400e;margin-top:8px;">AI已预检3项合规风险，建议优先处理侵权问题</div>
+      </div>
+
+      <!-- 公告 -->
+      <div class="right-card">
+        <div class="right-card-header">
+          <span class="right-card-title" style="font-size:12px;">公告</span>
+          <span style="font-size:10px;color:#9ca3af;cursor:pointer;">更多 ›</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;align-items:center;gap:6px;">
+            <span style="padding:2px 8px;background:#eef1fe;border-radius:4px;font-size:8px;font-weight:700;color:#4e6ef2;">产品上线</span>
+            <span style="font-size:10px;color:#374151;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">今日专属选品机会，发品可获额...</span>
+            <span style="font-size:9px;color:#9ca3af;">06-01</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;">
+            <span style="padding:2px 8px;background:#eff6ff;border-radius:4px;font-size:8px;font-weight:700;color:#2563eb;">产品上线</span>
+            <span style="font-size:10px;color:#374151;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">押款垫资上线，信保额度不足减...</span>
+            <span style="font-size:9px;color:#9ca3af;">05-28</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;">
+            <span style="padding:2px 8px;background:#ecfdf5;border-radius:4px;font-size:8px;font-weight:700;color:#10b981;">活动规则</span>
+            <span style="font-size:10px;color:#374151;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">订单融资新客专享5%年化利率...</span>
+            <span style="font-size:9px;color:#9ca3af;">05-25</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ===== AW 生意助手 侧边栏（记忆复盘 + @智能体）===== -->
+<!-- ============================================================ -->
+<div class="aw-overlay" id="awOverlay" onclick="closeAW()"></div>
+<div class="aw-panel" id="awPanel">
+  <!-- Header -->
+  <div class="aw-header">
+    <span class="aw-title">
+      <span class="logo">
+        <svg width="14" height="14" viewBox="0 0 18 18"><path d="M5 9l2.5 2.5L13 6" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      生意助手 <span class="ver">记忆版</span>
+    </span>
+    <div class="aw-header-right">
+      <span class="aw-status"><span class="aw-status-dot"></span> 已巡店</span>
+      <span class="aw-task-mgr">任务管理</span>
+      <span class="aw-close" onclick="closeAW()">×</span>
+    </div>
+  </div>
+
+  <!-- 记忆条 -->
+  <div class="memory-bar">
+    <span class="mtag">记忆</span>
+    <span>已加载您的经营画像（利润优先·大单稳定）+ 上轮 4 个模块任务进度</span>
+    <span class="mlink" onclick="openMem()">查看记忆 ›</span>
+  </div>
+  <div class="ma-context-bar">
+    <b>已同步 MA 首页上下文</b>：搜索曝光诊断、实时数据、Pauline 高意向询盘、客户机会和店铺经营画像已带入本次对话。
+    <div class="ma-context-tags"><span>诊断任务</span><span>实时数据</span><span>询盘/客户</span><span>经营画像</span></div>
+  </div>
+
+  <!-- Chat Area -->
+  <div class="chat-area" id="chatArea">
+    <!-- 开场 -->
+    <div class="msg-row">
+      <div class="avatar ai">AI</div>
+      <div class="ai-content">
+        <div class="ai-label">生意助手 · 主动巡店</div>
+        <div class="bubble ai">
+          亦总好 👋 距上次对话过去 <b>3 天</b>，开聊前我把上轮给您定的几件事都<b>复盘</b>了一遍，挨个跟您说下 —— 每件事我都对照了「当时的诊断 → 现在的进度 → 带来的效果」<span class="src" onclick="openMem()" style="cursor:pointer" title="点击查看：经营画像 + 经营事件记忆">（基于记忆）</span>。
+        </div>
+      </div>
+    </div>
+    <!-- 发品冲星 -->
+    <div class="msg-row">
+      <div class="avatar ai">AI</div>
+      <div class="ai-content">
+        <div class="bubble ai">
+          先说 <b>发品冲星</b> <span class="tag-state st-doing">进行中</span><br>
+          上次诊断您搜索曝光只有 <b>350</b>、同行 7549，根子在品类太窄 —— 4.5分品您只有 2 个，同行有 8 个，所以给您定了发 30 个 4.5分品。<br>
+          这 3 天<b>已发 12 个，还差 18 个</b>（其中 5 个我已帮您匹配好，确认就能发）。已经发出去那批，7 日曝光涨了 <span class="up">+156% ↑</span>，方向是对的。<br>
+          要不要把剩下 18 个一次性发完？预计全店曝光再 +60%。
+          <div><button class="chat-act primary" onclick="agentJump('AI客户经理')">继续发品</button></div>
+        </div>
+      </div>
+    </div>
+    <!-- P4P投放 -->
+    <div class="msg-row">
+      <div class="avatar ai">AI</div>
+      <div class="ai-content">
+        <div class="bubble ai">
+          再看 <b>P4P 投放</b> <span class="tag-state st-done">已见效 ✓</span><br>
+          之前您预算花不出去，日均才 ¥50、同行 ¥200，主要是出价 ¥0.9 压太低。上次把 3 个高潜品出价提到 <b>¥1.8</b>，6 月 1 号已执行。<br>
+          现在复盘效果不错：日均消耗冲到 <b>¥138</b>，搜索曝光 <span class="up">+187% ↑</span>，一周多了 6 个询盘，基本达到预期。<br>
+          建议把这套出价策略复制到另外 5 个潜力品。
+          <div><button class="chat-act ghost" onclick="agentJump('P4P')">复制策略</button></div>
+        </div>
+      </div>
+    </div>
+    <!-- OKKI客户跟进 -->
+    <div class="msg-row">
+      <div class="avatar ai">AI</div>
+      <div class="ai-content">
+        <div class="bubble ai">
+          客户这边要提醒下 <b>OKKI 跟进</b> <span class="tag-state st-todo">待处理</span><br>
+          账号质检发现业务员 <b>Henry</b> 谈单转化偏低，平均回复要 <b>36 小时</b>、超过平台 24h 的线，已经在影响排名了。<br>
+          让您处理积压买家 + 帮 Henry 提谈单能力，目前 47 个询盘还有 <b>30 个没回</b>，其中 <b>Pauline Zhang</b>（高意向 A）已经等了 <span class="warn">17h32m</span>。及时回复率还卡在 <span class="down">74%</span> 没达标。<br>
+          我建议先把 Pauline 回了，顺手给 Henry 生成 3 套谈单话术。
+          <div><button class="chat-act primary" onclick="agentJump('OKKI')">立即处理</button></div>
+        </div>
+      </div>
+    </div>
+    <!-- 合规 -->
+    <div class="msg-row">
+      <div class="avatar ai">AI</div>
+      <div class="ai-content">
+        <div class="bubble ai">
+          顺带提一句 <b>合规</b> <span class="tag-state st-todo">紧急</span><br>
+          有 <span class="down">3 个品疑似侵权</span>还没处理（这个最急，建议先下架），另外营业执照 <b>30 天</b>后到期。
+          <div><button class="chat-act ghost" onclick="agentJump('合规')">去核查</button></div>
+        </div>
+      </div>
+    </div>
+    <!-- 收尾 -->
+    <div class="msg-row">
+      <div class="avatar ai">AI</div>
+      <div class="ai-content">
+        <div class="bubble ai">
+          复盘完了，一句话总结：<b>P4P 已见效、发品过半、询盘和合规是眼下两个卡点</b>。<br>
+          您想从哪件事开始？也可以直接在下方 <b>@ 某个专员</b>，让 TA 同步 MA 数据接着干。
+        </div>
+        <div class="feedback"><span>👍</span><span>👎</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- @ 下拉 -->
+  <div class="mention-pop" id="mentionPop">
+    <div class="mp-title">添加智能体到对话 <a onclick="alert('跳转 AW · 智能体管理')">去 AW 管理 ›</a></div>
+    <div class="mp-item" onclick="pickAgent('OKKI 客户跟进官','a2')">
+      <div class="mp-ava a3">🤝</div>
+      <div class="mp-main">
+        <div class="mp-name">OKKI 客户跟进官 <span class="mp-badge">AW 自建</span></div>
+        <div class="mp-desc">背调买家 · 谈单话术 · 沉睡客户激活 · 转入 OKKI 跟进</div>
+        <div class="mp-cap"><span class="cap-sync">同步 MA 询盘/客户</span><span class="cap-exec">回写 MA 操作</span></div>
+      </div>
+    </div>
+    <div class="mp-item" onclick="pickAgent('P4P 投放诊断官','a1')">
+      <div class="mp-ava a1">📊</div>
+      <div class="mp-main">
+        <div class="mp-name">P4P 投放诊断官 <span class="mp-badge">AW 自建</span></div>
+        <div class="mp-desc">出价/预算调优 · 关键词诊断 · 投放效果复盘</div>
+        <div class="mp-cap"><span class="cap-sync">同步 MA 投放数据</span><span class="cap-exec">回写出价/预算</span></div>
+      </div>
+    </div>
+    <div class="mp-item" onclick="pickAgent('AI 客户经理（发品/冲星）','a2')">
+      <div class="mp-ava a2">🛍️</div>
+      <div class="mp-main">
+        <div class="mp-name">AI 客户经理（发品/冲星） <span class="mp-badge">AW 自建</span></div>
+        <div class="mp-desc">AI 选品 · 4.5分品/优爆品发布 · 冲星任务托管</div>
+        <div class="mp-cap"><span class="cap-sync">同步 MA 商品/曝光</span><span class="cap-exec">回写发品结果</span></div>
+      </div>
+    </div>
+    <div class="mp-item" onclick="pickAgent('客户接待质检官','a4')">
+      <div class="mp-ava a4">🧑‍💼</div>
+      <div class="mp-main">
+        <div class="mp-name">客户接待质检官 <span class="mp-badge">AW 自建</span></div>
+        <div class="mp-desc">响应时效 · 话术质量 · 高意向漏斗 · OKKI 跟进建议</div>
+        <div class="mp-cap"><span class="cap-sync">同步 MA 询盘/OKKI</span><span class="cap-exec">回写跟进动作</span></div>
+      </div>
+    </div>
+    <div class="mp-add" onclick="createAgent()">
+      <div class="pico">+</div>
+      <div>创建新智能体<div class="sub" style="margin:0">在 Accio Work 自定义技能与权限</div></div>
+      <span class="sub">去 AW ›</span>
+    </div>
+  </div>
+
+  <!-- Input Area -->
+  <div class="input-section">
+    <div class="quick-agents">
+      <span class="lab">@唤起：</span>
+      <span class="qa-chip" onclick="pickAgent('OKKI 客户跟进官','a2')"><span class="dot"></span>OKKI 客户跟进官</span>
+      <span class="qa-chip" onclick="pickAgent('P4P 投放诊断官','a1')"><span class="dot"></span>P4P 投放诊断官</span>
+      <span class="qa-chip" onclick="pickAgent('AI 客户经理（发品/冲星）','a2')"><span class="dot"></span>AI 客户经理</span>
+      <span class="qa-chip" onclick="pickAgent('客户接待质检官','a4')"><span class="dot"></span>客户接待质检官</span>
+    </div>
+    <div class="input-box">
+      <div class="sel-chips" id="selChips"></div>
+      <div class="input-row">
+        <button class="plus-btn" id="plusBtn" onclick="togglePlus(event)" title="添加智能体">+</button>
+        <div class="toggle-wrap">
+          <div class="toggle"><div class="dot"></div></div>
+          <span class="toggle-label">深度思考</span>
+        </div>
+        <input type="text" class="input-field" id="inputField" placeholder="输入 @ 唤起智能体，或直接提问…" autocomplete="off" />
+        <button class="send-btn" onclick="sendMsg()">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M8 3l-3 3M8 3l3 3" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="footer-text">智能体可同步 MA 数据并回写执行 · 以上回答由 AI 生成</div>
+  </div>
+</div>
+
+<!-- ===== 记忆抽屉 ===== -->
+<div class="mem-mask" id="memMask" onclick="closeMem()"></div>
+<div class="mem-drawer" id="memDrawer">
+  <div class="md-head">
+    <span class="t">🧠 助手的记忆</span>
+    <span class="sub">每次对话都在积累，越做越准</span>
+    <span class="x" onclick="closeMem()">×</span>
+  </div>
+  <div class="md-tabs">
+    <div class="md-tab active" data-pane="paneProfile" onclick="switchMem(this)">经营画像 <span class="c">9</span></div>
+    <div class="md-tab" data-pane="paneEvent" onclick="switchMem(this)">经营事件记忆 <span class="c">12</span></div>
+  </div>
+  <div class="md-body">
+    <!-- 画像 USER.md -->
+    <div class="md-pane active" id="paneProfile">
+      <div class="mem-file"><span class="dot"></span>USER.md · 结构化画像 · 后台静默采集 + 您的修正</div>
+      <div class="prof-grp">
+        <div class="gt">企业背景</div>
+        <div class="prof-row"><span class="k">公司</span><span class="v">Shenzhen Highup Technology Co., Ltd.</span></div>
+        <div class="prof-row"><span class="k">主营类目</span><span class="v">宠物用品及食品</span></div>
+        <div class="prof-row"><span class="k">认证</span><span class="v">1yr VERIFIED · 店铺信息完整度 85%</span></div>
+        <div class="prof-row"><span class="k">商家分型</span><span class="v">传统外贸型 · 中长尾（基建薄弱客群 P1）</span></div>
+      </div>
+      <div class="prof-grp">
+        <div class="gt">经营偏好（影响千商千面诊断）</div>
+        <div class="prof-tags">
+          <span>利润优先</span><span>大单稳定</span><span>长尾精准词</span><span>高质量买家</span><span>谨慎投放</span>
+        </div>
+        <div class="prof-row" style="margin-top:8px"><span class="k">货源方式</span><span class="v">自有工厂 + 1688 分销补充</span></div>
+        <div class="prof-row"><span class="k">主攻市场</span><span class="v">北美 / 欧洲</span></div>
+        <div class="prof-row"><span class="k">订单偏好</span><span class="v">中大批量 · 接受轻定制（Logo / 外包装）</span></div>
+      </div>
+      <div class="prof-grp">
+        <div class="gt">已知卡点（助手长期记着）</div>
+        <div class="prof-row"><span class="k">流量</span><span class="v">搜索曝光长期低于同行均值</span></div>
+        <div class="prof-row"><span class="k">接待</span><span class="v">业务员 Henry 谈单转化偏低、回复时效不达标</span></div>
+        <div class="prof-row"><span class="k">合规</span><span class="v">侵权风险敏感（历史有疑似侵权品）</span></div>
+      </div>
+    </div>
+    <!-- 事件记忆 MEMORY.md -->
+    <div class="md-pane" id="paneEvent">
+      <div class="mem-file"><span class="dot"></span>MEMORY.md · 动态事件记忆 · 诊断 / 决策 / 执行 / 效果</div>
+      <div class="mem-time">
+        <div class="mem-evt green">
+          <div class="when">今天 · 主动巡店</div>
+          <div class="what">完成 4 个模块复盘：<b>P4P 已见效、发品过半、询盘与合规为当前卡点</b></div>
+          <div class="meta">来源：系统巡店</div>
+        </div>
+        <div class="mem-evt green">
+          <div class="when">06-01 · P4P 投放</div>
+          <div class="what">执行 3 个高潜品出价 ¥0.9 → <b>¥1.8</b>；7 日后复盘：日均消耗 ¥138、曝光 +187%、询盘 +6/周</div>
+          <div class="meta">诊断 → 执行 → 效果达成 90%</div>
+        </div>
+        <div class="mem-evt">
+          <div class="when">05-30 · 发品冲星</div>
+          <div class="what">采纳「发 30 个 4.5分品」，已发 <b>12/30</b>；已发布部分 7 日曝光 +156%</div>
+          <div class="meta">进行中 · 还差 18 个（5 个已匹配待确认）</div>
+        </div>
+        <div class="mem-evt orange">
+          <div class="when">05-29 · 接待诊断</div>
+          <div class="what">账号质检：Henry 平均回复 <b>36h</b> 超标、谈单转化偏低，已标记影响排名</div>
+          <div class="meta">待处理 · 谈单话术未沉淀</div>
+        </div>
+        <div class="mem-evt">
+          <div class="when">05-28 · 经营偏好</div>
+          <div class="what">商家确认偏好「<b>利润优先 · 大单稳定</b>」，后续诊断按此口径个性化</div>
+          <div class="meta">来源：对话确认 → 写入画像</div>
+        </div>
+        <div class="mem-evt orange">
+          <div class="when">05-27 · 合规预检</div>
+          <div class="what">预检出 <b>3 个品疑似侵权</b>、营业执照将到期</div>
+          <div class="meta">待处理 · 紧急</div>
+        </div>
+        <div class="mem-evt">
+          <div class="when">05-25 · 冷启动</div>
+          <div class="what">首次唤起，采集企业信息 + 金品认证写入画像，问询 3 个经营问题完成建档</div>
+          <div class="meta">记忆系统冷启动 Phase 1-3</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="md-foot">
+    记忆仅用于为您提供个性化诊断 · 可随时修正或清除
+    <a onclick="alert('打开记忆管理（编辑 / 删除单条）')">管理记忆 ›</a>
+  </div>
+</div>
+
+<!-- 伴随式浮层：优化商品标题任务 (不再使用，已改为内联) -->
+<div id="titleOptPanelUnused" style="display:none;">
+
+  <div style="width:882px;background:rgba(245,247,255,0.69);border:1px dashed #4e6ef2;border-radius:10px;padding:16px 12px 16px 12px;box-shadow:0 4px 24px rgba(78,110,242,0.13);">
+    <!-- Header -->
+    <div style="display:flex;align-items:center;justify-content:space-between;padding-bottom:8px;border-bottom:1px solid #e8e8e8;">
+      <div style="display:flex;align-items:center;gap:8px;">
+        <svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="8" fill="url(#aiGrad)"/><defs><linearGradient id="aiGrad" x1="0" y1="0" x2="16" y2="16"><stop offset="0%" stop-color="#62AAFF"/><stop offset="100%" stop-color="#4B7AF3"/></linearGradient></defs><text x="8" y="11" text-anchor="middle" font-size="7" font-weight="700" fill="#fff">AI</text></svg>
+        <span style="font-size:14px;font-weight:700;color:#6b7280;">优化商品标题任务</span>
+      </div>
+      <span onclick="closeTitleOptPanel()" style="cursor:pointer;font-size:18px;color:#999;line-height:1;">&times;</span>
+    </div>
+    <!-- Product + Description -->
+    <div style="display:flex;align-items:flex-start;gap:12px;margin-top:12px;">
+      <div style="width:68px;height:40px;background:#e8e8e8;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+        <span style="font-size:11px;color:#999;">商品图</span>
+      </div>
+      <span style="font-size:14px;color:#666;line-height:21px;">已提供标题优化后的结果，并对整体可读性进行了提升，供您参考选择：
+
+<!-- FAB -->
+<button class="fab" onclick="alert('打开AI客户经理对话窗口')">?</button>
+
+<script>
+function switchTab(el) {
+  el.parentElement.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+}
+function switchBizTab(el) {
+  el.parentElement.querySelectorAll('.biz-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+}
+
+// 伴随式浮层逻辑
+function openTitleOptPanel(btnEl) {
+  var panel = document.getElementById('titleOptInline');
+  panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+}
+function selectTitleOpt(label) {
+  var panel = document.getElementById('titleOptInline');
+  panel.querySelectorAll('.radio-dot').forEach(function(dot) {
+    dot.style.background = '#fff';
+    dot.style.border = '1px solid #a2a3a5';
+    dot.innerHTML = '';
+  });
+  var dot = label.querySelector('.radio-dot');
+  dot.style.background = '#1047f5';
+  dot.style.border = '1px solid #1047f5';
+  dot.innerHTML = '<span style="width:4px;height:4px;border-radius:50%;background:#fff;display:block;"></span>';
+}
+function closeTitleOptPanel() {
+  document.getElementById('titleOptInline').style.display = 'none';
+}
+function confirmTitleOpt() {
+  closeTitleOptPanel();
+  // 模拟确认后按钮状态变化
+  var btns = document.querySelectorAll('.task-card.green .btn-outline');
+  if (btns.length) {
+    btns[0].textContent = '已确认';
+    btns[0].style.background = '#10b981';
+    btns[0].style.color = '#fff';
+    btns[0].style.borderColor = '#10b981';
+    btns[0].onclick = null;
+  }
+}
+
+
+
+
+/* ===== AW 生意助手 侧边栏 交互 ===== */
+/* ============================================================ */
+function openAW() {
+  document.querySelector('.layout').classList.add('split');
+  document.getElementById('awPanel').classList.add('open');
+}
+function askAssistant(question) {
+  openAW();
+  inputField.value = question;
+  inputField.focus();
+}
+function closeAW() {
+  document.getElementById('awPanel').classList.remove('open');
+  document.querySelector('.layout').classList.remove('split');
+  closeMem();
+}
+
+/* 记忆抽屉 */
+function openMem() {
+  document.getElementById('memMask').classList.add('show');
+  document.getElementById('memDrawer').classList.add('show');
+}
+function closeMem() {
+  document.getElementById('memMask').classList.remove('show');
+  document.getElementById('memDrawer').classList.remove('show');
+}
+function switchMem(tab) {
+  var tabs = tab.parentElement.querySelectorAll('.md-tab');
+  for (var i = 0; i < tabs.length; i++) tabs[i].classList.remove('active');
+  tab.classList.add('active');
+  var panes = document.querySelectorAll('.md-pane');
+  for (var j = 0; j < panes.length; j++) panes[j].classList.remove('active');
+  document.getElementById(tab.getAttribute('data-pane')).classList.add('active');
+}
+
+var inputField = document.getElementById('inputField');
+var mentionPop = document.getElementById('mentionPop');
+var selChips = document.getElementById('selChips');
+var chatArea = document.getElementById('chatArea');
+var currentAgent = null;
+
+/* 监听 @ 唤起下拉 */
+inputField.addEventListener('input', function () {
+  if (inputField.value.indexOf('@') > -1 && !currentAgent) {
+    mentionPop.classList.add('show');
+  } else {
+    mentionPop.classList.remove('show');
+  }
+});
+inputField.addEventListener('keydown', function (e) {
+  if (e.key === 'Enter') { sendMsg(); }
+});
+document.addEventListener('click', function (e) {
+  if (!mentionPop.contains(e.target) && e.target !== inputField &&
+      e.target !== document.getElementById('plusBtn') &&
+      !(e.target.classList && e.target.classList.contains('qa-chip'))) {
+    mentionPop.classList.remove('show');
+    var pb = document.getElementById('plusBtn'); if (pb) pb.classList.remove('on');
+  }
+});
+
+/* + 号：添加智能体到对话 */
+function togglePlus(e) {
+  e.stopPropagation();
+  var on = mentionPop.classList.toggle('show');
+  document.getElementById('plusBtn').classList.toggle('on', on);
+}
+/* 创建新智能体 → 跳 AW */
+function createAgent() {
+  mentionPop.classList.remove('show');
+  document.getElementById('plusBtn').classList.remove('on');
+  alert('跳转 Accio Work · 新建智能体\n可自定义技能、知识与 MA 数据读写权限，创建后即可在此 @ 唤起');
+}
+
+/* 选中一个智能体 → 生成 chip */
+function pickAgent(name, cls) {
+  currentAgent = name;
+  selChips.innerHTML =
+    '<span class="sel-chip">@' + name +
+    '<span class="x" onclick="removeAgent(event)">×</span></span>';
+  inputField.value = inputField.value.replace(/@\S*$/, '').replace(/@/, '');
+  mentionPop.classList.remove('show');
+  var pb = document.getElementById('plusBtn'); if (pb) pb.classList.remove('on');
+  if (name.indexOf('接待质检') > -1) inputField.value = '分析 Henry 的接待质量，并生成 Pauline 的优先回复话术';
+  else if (name.indexOf('OKKI') > -1) inputField.value = '先回 Pauline，并给 Henry 生成 3 套谈单话术';
+  else if (name.indexOf('P4P') > -1) inputField.value = '把 ¥1.8 出价策略复制到 5 个潜力品';
+  else inputField.value = '把剩下 18 个 4.5 分品一次性发布';
+  inputField.focus();
+}
+function removeAgent(e) {
+  e.stopPropagation();
+  currentAgent = null;
+  selChips.innerHTML = '';
+}
+
+/* 快捷按钮：从复盘气泡直接唤起对应智能体 */
+function agentJump(key) {
+  var map = {
+    'OKKI': 'OKKI 客户跟进官',
+    'P4P': 'P4P 投放诊断官',
+    'AI客户经理': 'AI 客户经理（发品/冲星）',
+    '合规': '合规风控官'
+  };
+  if (key === '合规') { window.open('assets/MA-合规中心.jpg', '_blank'); return; }
+  pickAgent(map[key], 'a1');
+}
+
+/* 发送：渲染用户气泡 + 对应智能体的「同步→执行」结果卡 */
+function sendMsg() {
+  var text = inputField.value.trim();
+  if (!text && !currentAgent) return;
+  var agent = currentAgent;
+  var u = document.createElement('div');
+  u.className = 'msg-row user';
+  u.innerHTML =
+    '<div class="bubble user">' +
+    (agent ? '<b style="color:#4e6ef2">@' + agent + '</b> ' : '') +
+    (text || '继续') + '</div><div class="avatar user">亦</div>';
+  chatArea.appendChild(u);
+  var resp = document.createElement('div');
+  resp.className = 'msg-row';
+  resp.innerHTML = buildAgentReply(agent, text);
+  chatArea.appendChild(resp);
+  inputField.value = '';
+  currentAgent = null;
+  selChips.innerHTML = '';
+  chatArea.scrollTop = chatArea.scrollHeight;
+}
+
+function buildAgentReply(agent, text) {
+  var name = agent || '生意助手';
+  var initial = agent ? agent.slice(0, 2) : 'AI';
+  var body = '';
+  if (agent && agent.indexOf('P4P') > -1) {
+    body =
+      '<div class="ae-step"><span class="ico sync">🔗</span><span class="sync">已同步 MA 投放数据</span>：定位到 5 个搜索曝光不足的潜力品</div>' +
+      '<div class="ae-prod"><span class="pn">Universal Pet Eye Mask</span><span class="pp">¥0.9 → ¥1.8</span></div>' +
+      '<div class="ae-prod"><span class="pn">Multi-color Pet Leash</span><span class="pp">¥0.9 → ¥1.6</span></div>' +
+      '<div class="ae-step"><span class="ico exec">⚙️</span><span class="exec">将回写 MA P4P 出价</span>（共 5 个品），预算上限 ¥180/日</div>' +
+      '<div class="ae-result">📈 预期：日均消耗 ¥138 → ¥160-180 · 搜索曝光 +120% · 新增询盘 4-6 个/周</div>';
+  } else if (agent && agent.indexOf('接待质检') > -1) {
+    body =
+      '<div class="ae-step"><span class="ico sync">🔗</span><span class="sync">已同步 MA 询盘 + OKKI 会话质检</span>：Henry 近7日平均响应 36h，Pauline Zhang 等待 17h32m</div>' +
+      '<div class="ae-step"><span class="ico exec">⚙️</span><span class="exec">已生成接待质检建议</span>：优先回复 Pauline，并给 Henry 输出报价、议价、样品三类话术模板</div>' +
+      '<div class="ae-result">✅ 预计：高意向买家漏回风险下降，及时回复率 74% → 88%，本次动作将同步至 OKKI 跟进记录</div>';
+  } else if (agent && agent.indexOf('OKKI') > -1) {
+    body =
+      '<div class="ae-step"><span class="ico sync">🔗</span><span class="sync">已同步 MA 询盘 + OKKI 客户档案</span>：Pauline Zhang（高意向 A · 等待 17h32m）</div>' +
+      '<div class="ae-step"><span class="ico exec">⚙️</span><span class="exec">已生成专业报价回复</span>，并为 Henry 沉淀 3 套谈单话术（议价 / 催单 / 样品）</div>' +
+      '<div class="ae-result">✅ 回复将回写 MA 商机沟通 + 同步至 OKKI 跟进；及时回复率预计 74% → 88%</div>';
+  } else if (agent && agent.indexOf('客户经理') > -1) {
+    body =
+      '<div class="ae-step"><span class="ico sync">🔗</span><span class="sync">已同步 MA 商品库 + 曝光数据</span>：AI 已匹配 18 个 4.5 分品候选</div>' +
+      '<div class="ae-step"><span class="ico exec">⚙️</span><span class="exec">将回写 MA 发品</span>：标题/属性/关键词由 AI 代填，主图需您从图片银行确认</div>' +
+      '<div class="ae-result">📈 预期：4.5分品 12 → 30，全店搜索曝光预计再 +60%</div>';
+  } else {
+    body =
+      '<div class="ae-step"><span class="ico sync">🔗</span><span class="sync">已结合您的经营画像与上轮记忆</span>为您分析。</div>' +
+      '<div class="ae-result">您可 @ 指定专员（OKKI / P4P / AI客户经理），我会同步对应 MA 数据并回写执行。</div>';
+  }
+  return '<div class="avatar ai">AI</div><div class="ai-content">' +
+    '<div class="agent-exec">' +
+    '<div class="ae-head"><span class="ae-ava">' + initial + '</span><span class="ae-name">' + name + '</span>' +
+    (agent ? '<span class="ae-src">AW 自建 · 接管中</span>' : '') + '</div>' +
+    '<div class="ae-body">' + body +
+    '<div class="ae-act"><button class="rc-btn primary" onclick="this.textContent=\'已执行 ✓\';this.style.background=\'#10b981\'">确认执行</button>' +
+    '<button class="rc-btn ghost">修改方案</button></div>' +
+    '</div></div>' +
+    '<div class="feedback"><span>👍</span><span>👎</span></div></div>';
+}
+</script>
+
+
+</body>
+</html>

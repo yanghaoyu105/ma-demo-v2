@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AW 生意助手 - 侧边栏</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', 'PingFang SC', -apple-system, sans-serif; background: #f5f6f7; display: flex; height: 100vh; overflow: hidden; }
+
+/* 左侧导航 */
+.left-nav { width: 180px; background: #1a1a2e; flex-shrink: 0; display: flex; flex-direction: column; padding-top: 0; }
+.left-nav .nav-item { padding: 10px 24px; font-size: 13px; color: #a6a6b0; cursor: pointer; }
+.left-nav .nav-item:hover { color: #fff; }
+.left-nav .nav-item.active { background: #4e6ef2; color: #fff; }
+
+/* 主内容区 - 模糊背景 */
+.main-area { flex: 1; position: relative; overflow: hidden; }
+.main-bg { width: 100%; height: 100%; background: #e8e8e8; opacity: 0.6; display: flex; align-items: center; justify-content: center; }
+.main-bg-text { font-size: 16px; color: #999; }
+
+/* 遮罩 */
+.overlay { position: fixed; top: 0; left: 180px; right: 0; bottom: 0; background: rgba(0,0,0,0.15); z-index: 100; }
+
+/* 侧边栏面板 */
+.aw-panel { position: fixed; top: 0; right: 0; width: 544px; height: 100vh; background: #fff; border-left: 1px solid #9ca3af; z-index: 200; display: flex; flex-direction: column; box-shadow: -4px 0 24px rgba(0,0,0,0.12); }
+
+/* Header */
+.aw-header { padding: 16px 20px; border-bottom: 1px solid #ebebeb; display: flex; align-items: center; justify-content: space-between; }
+.aw-title { font-size: 15px; font-weight: 700; color: #1a1a1a; }
+.aw-header-right { display: flex; align-items: center; gap: 14px; }
+.aw-status { display: flex; align-items: center; gap: 5px; font-size: 11px; color: #4e6ef2; font-weight: 700; }
+.aw-status-dot { width: 9px; height: 9px; background: #4e6ef2; border-radius: 50%; }
+.aw-task-mgr { font-size: 12px; color: #4e6ef2; cursor: pointer; }
+.aw-close { cursor: pointer; font-size: 18px; color: #999; }
+
+/* Task Section */
+.task-section { padding: 14px 20px; border-bottom: 1px solid #f0f0f0; }
+.task-hint { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #666; margin-bottom: 12px; }
+.task-hint .arrow { margin-left: auto; color: #bbb; cursor: pointer; }
+.task-cards { display: flex; gap: 8px; }
+.task-card { flex: 1; padding: 12px; border-radius: 8px; cursor: pointer; text-align: center; }
+.task-card .icon { font-size: 14px; margin-bottom: 6px; }
+.task-card .label { font-size: 12px; font-weight: 700; color: #333; }
+.task-card.gray { background: #f8f9fa; border: 1px solid #e8e8e8; }
+.task-card.blue { background: #eef1fe; border: 1px solid #c7d2fe; }
+
+/* Chat Area */
+.chat-area { flex: 1; overflow-y: auto; padding: 20px; }
+
+/* Messages */
+.msg-row { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 20px; }
+.msg-row.user { justify-content: flex-end; }
+.avatar { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 10px; }
+.avatar.ai { background: #4e6ef2; color: #fff; font-size: 8px; font-weight: 700; }
+.avatar.user { background: #e8e8e8; color: #666; }
+.bubble { background: #f5f5f5; border-radius: 14px; padding: 10px 14px; font-size: 13px; color: #1a1a1a; max-width: 340px; line-height: 1.6; }
+.bubble.user { border-radius: 14px 14px 4px 14px; }
+.ai-content { flex: 1; }
+.ai-label { font-size: 11px; color: #999; margin-bottom: 6px; }
+.ai-text { font-size: 13px; color: #333; line-height: 1.7; margin-bottom: 10px; }
+
+/* Plan Select */
+.plan-select { border: 1.5px solid #4e6ef2; border-radius: 8px; padding: 10px 14px; display: flex; align-items: center; justify-content: space-between; background: #fafbff; margin-bottom: 6px; }
+.plan-select .name { font-size: 12px; color: #333; }
+.plan-select .check { color: #10b981; font-size: 14px; }
+
+/* Product Cards */
+.product-card { background: #f5f7ff; border: 1px solid #dde3fc; border-radius: 8px; padding: 10px 14px; margin-bottom: 8px; }
+.product-card .top { display: flex; justify-content: space-between; align-items: center; }
+.product-card .pname { font-size: 12px; font-weight: 700; color: #333; }
+.product-card .pprice { font-size: 12px; font-weight: 700; color: #4e6ef2; }
+.product-card .psub { font-size: 11px; color: #7b93f7; margin-top: 3px; }
+
+/* Expected */
+.expected-card { background: #eef1fe; border: 1px solid #c7d2fe; border-radius: 8px; padding: 10px 14px; margin-top: 10px; }
+.expected-card .etitle { font-size: 12px; font-weight: 700; color: #3b5bdb; }
+.expected-card .edesc { font-size: 11px; color: #666; margin-top: 4px; line-height: 1.6; }
+
+/* Action Buttons */
+.action-row { display: flex; gap: 8px; margin-top: 14px; }
+.btn-confirm { padding: 10px 28px; background: #4e6ef2; border: none; border-radius: 8px; font-size: 13px; font-weight: 700; color: #fff; cursor: pointer; }
+.btn-modify { padding: 10px 28px; background: #fff; border: 1px solid #e0e0e0; border-radius: 8px; font-size: 13px; color: #666; cursor: pointer; }
+
+/* Feedback */
+.feedback { display: flex; gap: 8px; margin-top: 8px; }
+.feedback span { cursor: pointer; color: #bbb; font-size: 16px; }
+
+/* Input Area */
+.input-section { padding: 12px 20px 16px; border-top: 1px solid #ebebeb; }
+.input-box { border: 1.5px solid #4e6ef2; border-radius: 10px; padding: 10px 14px; display: flex; align-items: center; gap: 8px; }
+.toggle-wrap { display: flex; align-items: center; gap: 4px; flex-shrink: 0; }
+.toggle { width: 32px; height: 18px; background: #e8e8e8; border-radius: 9px; padding: 2px; cursor: pointer; display: flex; align-items: center; }
+.toggle .dot { width: 14px; height: 14px; border-radius: 50%; background: #4e6ef2; margin-left: 14px; transition: margin .2s; }
+.toggle-label { font-size: 11px; color: #666; }
+.input-field { flex: 1; border: none; outline: none; font-size: 13px; color: #1a1a1a; background: transparent; font-family: inherit; }
+.plus-btn { cursor: pointer; color: #bbb; font-size: 16px; border: none; background: none; }
+.send-btn { width: 28px; height: 28px; border-radius: 50%; background: #4e6ef2; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+.footer-text { text-align: center; margin-top: 6px; font-size: 10px; color: #bbb; }
+</style>
+</head>
+<body>
+
+<!-- 主内容区（嵌入MA首页） -->
+<div class="main-area" style="width:100%;">
+  <iframe id="maHomeFrame" src="../MA首页升级Demo.html" style="width:100%;height:100%;border:none;"></iframe>
+  <div class="overlay" style="left:0;"></div>
+</div>
+
+<!-- 右侧 AW 生意助手侧边栏 -->
+<div class="aw-panel">
+  <!-- Header -->
+  <div class="aw-header">
+    <span class="aw-title">生意助手</span>
+    <div class="aw-header-right">
+      <span class="aw-status"><span class="aw-status-dot"></span> 3个计划全站...</span>
+      <span class="aw-task-mgr">任务管理</span>
+      <span class="aw-close" onclick="goBackHome()">×</span>
+    </div>
+  </div>
+
+  <!-- Task Cards -->
+  <div class="task-section">
+    <div class="task-hint">
+      <span>✦</span> 您可以安排我做的任务 <span class="arrow">→</span>
+    </div>
+    <div class="task-cards">
+      <div class="task-card gray">
+        <div class="icon">📊</div>
+        <div class="label">P4P诊断</div>
+      </div>
+      <div class="task-card blue">
+        <div class="icon">📋</div>
+        <div class="label">计划诊断</div>
+      </div>
+      <div class="task-card gray">
+        <div class="icon">🎯</div>
+        <div class="label">智投管理</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chat Area -->
+  <div class="chat-area">
+    <!-- User msg 1 -->
+    <div class="msg-row user">
+      <div class="bubble user">推广计划的预算花不出去，帮忙查看具体问题？</div>
+      <div class="avatar user">亦</div>
+    </div>
+
+    <!-- AI msg 1 -->
+    <div class="msg-row">
+      <div class="avatar ai">AI</div>
+      <div class="ai-content">
+        <div class="ai-label">结果生成</div>
+        <div class="ai-text">为了更好地进行计划诊断分析，请选择需要诊断的计划：</div>
+        <div class="plan-select">
+          <span class="name">全站推广_推商品_新品加速_20260...</span>
+          <span class="check">✓</span>
+        </div>
+        <div class="feedback"><span>👍</span><span>👎</span></div>
+      </div>
+    </div>
+
+    <!-- User msg 2 -->
+    <div class="msg-row user">
+      <div class="bubble user">P4P出价提升到¥1.8，优先投放搜索曝光不足的高潜品</div>
+      <div class="avatar user">亦</div>
+    </div>
+
+    <!-- AI msg 2 -->
+    <div class="msg-row">
+      <div class="avatar ai">AI</div>
+      <div class="ai-content">
+        <div class="ai-label">结果生成</div>
+        <div class="ai-text">已完成P4P出价调整方案，以下3个商品将提升出价：</div>
+
+        <div class="product-card">
+          <div class="top">
+            <span class="pname">Pet Bed Dog Sofa Cushion</span>
+            <span class="pprice">¥0.9→¥1.8</span>
+          </div>
+          <div class="psub">预估日曝光 +320%</div>
+        </div>
+
+        <div class="product-card">
+          <div class="top">
+            <span class="pname">Universal Pet Eye Mask</span>
+            <span class="pprice">¥0.9→¥1.6</span>
+          </div>
+          <div class="psub">预估日曝光 +280%</div>
+        </div>
+
+        <div class="product-card">
+          <div class="top">
+            <span class="pname">Multi-color Pet Leash</span>
+            <span class="pprice">¥0.9→¥1.5</span>
+          </div>
+          <div class="psub">预估日曝光 +240%</div>
+        </div>
+
+        <div class="expected-card">
+          <div class="etitle">📈 预期效果</div>
+          <div class="edesc">日均消耗 ¥50→¥150-180 · 搜索曝光 +200% · 新增询盘 5-8个/周</div>
+        </div>
+
+        <div class="action-row">
+          <button class="btn-confirm">确认执行</button>
+          <button class="btn-modify">修改方案</button>
+        </div>
+
+        <div class="feedback"><span>👍</span><span>👎</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Input Area -->
+  <div class="input-section">
+    <div class="input-box">
+      <div class="toggle-wrap">
+        <div class="toggle"><div class="dot"></div></div>
+        <span class="toggle-label">深度思考</span>
+      </div>
+      <input type="text" class="input-field" placeholder="提出任何问题..." />
+      <button class="plus-btn">＋</button>
+      <button class="send-btn">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M8 3l-3 3M8 3l3 3" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <div class="footer-text">以上回答由AI生成</div>
+  </div>
+</div>
+
+<script>
+const urlParams = new URLSearchParams(window.location.search);
+const returnHomePath = urlParams.get('return') === 'compare' ? '../MA首页升级Demo-对比优化版.html' : '../MA首页升级Demo.html';
+const maHomeFrame = document.getElementById('maHomeFrame');
+
+if (maHomeFrame) {
+  maHomeFrame.src = returnHomePath;
+}
+
+function goBackHome() {
+  window.location.href = returnHomePath;
+}
+
+if (urlParams.get('entry') === 'sidebar') {
+  const chatArea = document.querySelector('.chat-area');
+
+  if (chatArea) {
+    chatArea.innerHTML = `
+    <div class="msg-row">
+      <div class="avatar ai">AI</div>
+      <div class="ai-content">
+        <div class="ai-label">生意助手</div>
+        <div class="ai-text">
+          你好，我是你的生意助手，可以帮你诊断店铺经营问题、生成优化方案，并协助执行关键经营任务。
+        </div>
+        <div class="ai-text">
+          你可以让我帮你分析曝光、点击、询盘、P4P投放、商品优化、客户跟进等问题，我会结合当前经营数据给出建议，并在确认后推进执行。
+        </div>
+        <div class="expected-card">
+          <div class="etitle">你可以这样开始</div>
+          <div class="edesc">例如：“帮我看下店铺曝光为什么下降” “分析下P4P预算花不出去的原因” “帮我找出需要优先跟进的客户”。</div>
+        </div>
+      </div>
+    </div>`;
+  }
+}
+</script>
+</body>
+</html>

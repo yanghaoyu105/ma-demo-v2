@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MA 首页对比优化版体验入口</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  min-height: 100vh;
+  font-family: "Inter", "PingFang SC", -apple-system, BlinkMacSystemFont, sans-serif;
+  background: radial-gradient(circle at 18% 18%, rgba(78,110,242,.18), transparent 28%),
+              radial-gradient(circle at 82% 8%, rgba(16,185,129,.14), transparent 26%),
+              linear-gradient(135deg, #f7f9ff 0%, #eef3ff 100%);
+  color: #1f2937;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+}
+.entry-card {
+  width: min(760px, 100%);
+  background: rgba(255, 255, 255, .92);
+  border: 1px solid rgba(199, 210, 254, .9);
+  border-radius: 28px;
+  box-shadow: 0 28px 80px rgba(78, 110, 242, .16);
+  padding: 44px;
+  text-align: center;
+}
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: #eef1fe;
+  color: #4e6ef2;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+h1 {
+  font-size: 34px;
+  line-height: 1.25;
+  color: #111827;
+  margin-bottom: 14px;
+}
+.desc {
+  font-size: 16px;
+  color: #5f6b7a;
+  line-height: 1.8;
+  margin: 0 auto 28px;
+  max-width: 620px;
+}
+.feature-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 26px 0 32px;
+}
+.feature-item {
+  padding: 14px 12px;
+  border-radius: 16px;
+  background: #f8faff;
+  border: 1px solid #e4e9ff;
+  color: #4b5563;
+  font-size: 13px;
+  font-weight: 600;
+}
+.cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 220px;
+  height: 52px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #4e6ef2 0%, #7b93f7 100%);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 800;
+  text-decoration: none;
+  box-shadow: 0 12px 28px rgba(78, 110, 242, .28);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 34px rgba(78, 110, 242, .34);
+}
+.note {
+  margin-top: 18px;
+  color: #8a94a6;
+  font-size: 12px;
+}
+@media (max-width: 680px) {
+  .entry-card { padding: 28px 20px; }
+  h1 { font-size: 26px; }
+  .feature-list { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+  <main class="entry-card">
+    <div class="badge">MA 平台经营 Agent · 对比优化版</div>
+    <h1>MA 首页升级 Demo 体验入口</h1>
+    <p class="desc">点击下方按钮进入新版原型，体验生意助手伴随式对话、OKKI 助手客户机会诊断，以及智能工作台跳转与返回首页链路。</p>
+    <div class="feature-list">
+      <div class="feature-item">生意助手巡店</div>
+      <div class="feature-item">OKKI 客户机会</div>
+      <div class="feature-item">AW 跳转返回</div>
+    </div>
+    <a class="cta" href="MA首页升级Demo-对比优化版.html">进入新版体验</a>
+    <div class="note">建议使用 Chrome / Edge 打开，解压后直接双击本页面即可体验。</div>
+  </main>
+</body>
+</html>
