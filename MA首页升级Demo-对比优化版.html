@@ -1018,11 +1018,12 @@ a { text-decoration: none; color: inherit; }
   </div>
 
   <!-- 记忆条 -->
-  <div class="memory-bar">
-    <span class="mtag">记忆</span>
-    <span>已加载经营画像（利润优先·大单稳定）+ 上轮任务进度 + 历史决策偏好</span>
-    <span class="mlink" onclick="openMem()">查看记忆 ›</span>
-    <span class="mlink" style="margin-left:0;">管理 ›</span>
+  <div class="memory-bar" style="flex-direction:column;align-items:stretch;gap:6px;padding:10px 16px;">
+    <div style="display:flex;align-items:center;justify-content:space-between;">
+      <span style="display:flex;align-items:center;gap:6px;"><span class="mtag">记忆</span><span style="font-size:11px;color:#374151;font-weight:600;">经营画像 · 已加载</span></span>
+      <span class="mlink" onclick="openMem()">记忆面板 ›</span>
+    </div>
+    <div style="font-size:10px;color:#9ca3af;line-height:1.5;">利润优先·大单稳定 ｜ 上轮 4 模块任务进度 ｜ 历史决策偏好 ｜ 经营事件时间线</div>
   </div>
   <div class="ma-context-bar">
     <b>已同步多端上下文</b>：MA 经营数据与诊断结果、OKKI 客户跟进与会话记录、AW 智能体执行日志、BP 商业计划关键指标已全部带入本次对话。
