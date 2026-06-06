@@ -429,7 +429,7 @@ a { text-decoration: none; color: inherit; }
 .mp-desc { font-size: 11px; color: #9ca3af; margin-top: 2px; line-height: 1.5; }
 .mp-cap { display: flex; gap: 6px; margin-top: 4px; }
 .mp-cap span { font-size: 9px; padding: 1px 6px; border-radius: 4px; }
-.cap-sync { background: #eff6ff; color: #2563eb; } .cap-exec { background: #ecfdf5; color: #10b981; }
+.cap-sync { background: #f3f4f6; color: #6b7280; } .cap-exec { background: #f3f4f6; color: #6b7280; }
 .mp-add { display: flex; align-items: center; gap: 8px; padding: 10px; margin-top: 4px; border-top: 1px dashed #eee; border-radius: 8px; cursor: pointer; color: #4e6ef2; font-size: 12px; font-weight: 600; }
 .mp-add:hover { background: #f5f7ff; }
 .mp-add .pico { width: 24px; height: 24px; border-radius: 7px; border: 1px dashed #b9c2ff; display: flex; align-items: center; justify-content: center; font-size: 15px; flex-shrink: 0; }
@@ -1034,9 +1034,15 @@ a { text-decoration: none; color: inherit; }
     <div class="msg-row">
       <div class="avatar ai">AI</div>
       <div class="ai-content">
-        <div class="ai-label">生意助手 · 主动巡店</div>
+        <div class="ai-label">经营智能体 · 主动巡店</div>
         <div class="bubble ai">
-          皓羽总好 👋 距上次对话过去 <b>3 天</b>，开聊前我把上轮给您定的几件事都<b>复盘</b>了一遍，挨个跟您说下 —— 每件事我都对照了「当时的诊断 → 现在的进度 → 带来的效果」<span class="src" onclick="openMem()" style="cursor:pointer" title="点击查看：经营画像 + 经营事件记忆">（基于记忆）</span>。
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;">
+            <span style="display:inline-flex;align-items:center;gap:4px;font-size:11px;padding:3px 9px;border-radius:12px;background:#eef1fe;color:#4e6ef2;border:.5px solid #c7d2fe;">🛍️ 诊断智能体 <span style="color:#10b981;font-weight:700">运行中</span></span>
+            <span style="display:inline-flex;align-items:center;gap:4px;font-size:11px;padding:3px 9px;border-radius:12px;background:#fffbeb;color:#f59e0b;border:.5px solid #fde68a;">📊 广告智能体 <span style="color:#10b981;font-weight:700">运行中</span></span>
+            <span style="display:inline-flex;align-items:center;gap:4px;font-size:11px;padding:3px 9px;border-radius:12px;background:#ecfdf5;color:#10b981;border:.5px solid #a7f3d0;">🤝 OKKI智能体 <span style="color:#10b981;font-weight:700">运行中</span></span>
+          </div>
+          <div style="font-size:10px;color:#9ca3af;margin-bottom:8px;">7×24h 为您的店铺持续工作，以下是最近 3 天的复盘：</div>
+          皓羽总好 👋 距上次对话过去 <b>3 天</b>，各智能体已把上轮任务<b>复盘</b>完毕，挨个跟您说下结果 ——<span class="src" onclick="openMem()" style="cursor:pointer" title="点击查看：经营画像 + 经营事件记忆">（基于记忆）</span>
         </div>
       </div>
     </div>
@@ -1109,7 +1115,7 @@ a { text-decoration: none; color: inherit; }
     <div class="mp-item" onclick="pickAgent('OKKI 客户跟进官','a2')">
       <div class="mp-ava a3">🤝</div>
       <div class="mp-main">
-        <div class="mp-name">OKKI 客户跟进官 <span class="mp-badge">AW 自建</span></div>
+        <div class="mp-name">OKKI 客户跟进官 <span class="mp-badge" style="color:#10b981;background:#ecfdf5;border-color:#a7f3d0;">OKKI智能体</span></div>
         <div class="mp-desc">背调买家 · 谈单话术 · 沉睡客户激活 · 转入 OKKI 跟进</div>
         <div class="mp-cap"><span class="cap-sync">同步 MA 询盘/客户</span><span class="cap-exec">回写 MA 操作</span></div>
       </div>
@@ -1117,7 +1123,7 @@ a { text-decoration: none; color: inherit; }
     <div class="mp-item" onclick="pickAgent('P4P 投放诊断官','a1')">
       <div class="mp-ava a1">📊</div>
       <div class="mp-main">
-        <div class="mp-name">P4P 投放诊断官 <span class="mp-badge">AW 自建</span></div>
+        <div class="mp-name">P4P 投放诊断官 <span class="mp-badge" style="color:#f59e0b;background:#fffbeb;border-color:#fde68a;">广告智能体</span></div>
         <div class="mp-desc">出价/预算调优 · 关键词诊断 · 投放效果复盘</div>
         <div class="mp-cap"><span class="cap-sync">同步 MA 投放数据</span><span class="cap-exec">回写出价/预算</span></div>
       </div>
@@ -1125,7 +1131,7 @@ a { text-decoration: none; color: inherit; }
     <div class="mp-item" onclick="pickAgent('AI 客户经理（发品/冲星）','a2')">
       <div class="mp-ava a2">🛍️</div>
       <div class="mp-main">
-        <div class="mp-name">AI 客户经理（发品/冲星） <span class="mp-badge">AW 自建</span></div>
+        <div class="mp-name">AI 客户经理（发品/冲星） <span class="mp-badge" style="color:#4e6ef2;background:#eef1fe;border-color:#c7d2fe;">经营诊断智能体</span></div>
         <div class="mp-desc">AI 选品 · 4.5分品/优爆品发布 · 冲星任务托管</div>
         <div class="mp-cap"><span class="cap-sync">同步 MA 商品/曝光</span><span class="cap-exec">回写发品结果</span></div>
       </div>
@@ -1133,7 +1139,7 @@ a { text-decoration: none; color: inherit; }
     <div class="mp-item" onclick="pickAgent('客户接待质检官','a4')">
       <div class="mp-ava a4">🧑‍💼</div>
       <div class="mp-main">
-        <div class="mp-name">客户接待质检官 <span class="mp-badge">AW 自建</span></div>
+        <div class="mp-name">客户接待质检官 <span class="mp-badge" style="color:#4e6ef2;background:#eef1fe;border-color:#c7d2fe;">AW 自建</span></div>
         <div class="mp-desc">响应时效 · 话术质量 · 高意向漏斗 · OKKI 跟进建议</div>
         <div class="mp-cap"><span class="cap-sync">同步 MA 询盘/OKKI</span><span class="cap-exec">回写跟进动作</span></div>
       </div>
@@ -1142,6 +1148,11 @@ a { text-decoration: none; color: inherit; }
       <div class="pico">+</div>
       <div>创建新智能体<div class="sub" style="margin:0">在 Accio Work 自定义技能与权限</div></div>
       <span class="sub">去 AW ›</span>
+    </div>
+    <div class="mp-add" onclick="alert('上传 Skills 文件')">
+      <div class="pico" style="border-color:#10b981;color:#10b981;">⬆</div>
+      <div>上传Skills<div class="sub" style="margin:0">导入自定义技能包，扩展智能体能力</div></div>
+      <span class="sub">选择文件 ›</span>
     </div>
   </div>
 
