@@ -275,11 +275,11 @@ a { text-decoration: none; color: inherit; }
 /* Split-screen mode */
 .aw-overlay { display: none; }
 
-.aw-panel { position: fixed; top: 0; right: 0; width: 440px; height: 100vh; background: #fff; border-left: 1px solid #e0e0e0; z-index: 100; display: flex; flex-direction: column; box-shadow: -2px 0 12px rgba(0,0,0,0.06); transform: translateX(100%); transition: transform .35s cubic-bezier(.4,0,.2,1); }
+.aw-panel { position: fixed; top: 0; right: 0; width: 520px; height: 100vh; background: #fff; border-left: 1px solid #e0e0e0; z-index: 100; display: flex; flex-direction: column; box-shadow: -2px 0 12px rgba(0,0,0,0.06); transform: translateX(100%); transition: transform .35s cubic-bezier(.4,0,.2,1); }
 .aw-panel.open { transform: translateX(0); }
 
 /* 主内容区压缩 */
-.layout.split .main-area { margin-right: 440px; transition: margin-right .35s cubic-bezier(.4,0,.2,1); }
+.layout.split .main-area { margin-right: 520px; transition: margin-right .35s cubic-bezier(.4,0,.2,1); }
 .main-area { transition: margin-right .35s cubic-bezier(.4,0,.2,1); }
 /* 分屏时隐藏原有右侧栏，避免三栏挤压 */
 .layout.split .content-right { display: none; }
@@ -1017,16 +1017,12 @@ a { text-decoration: none; color: inherit; }
     </div>
   </div>
 
-  <!-- 记忆条 -->
-  <div class="memory-bar" style="flex-direction:column;align-items:stretch;gap:6px;padding:10px 16px;">
-    <div style="display:flex;align-items:center;justify-content:space-between;">
-      <span style="display:flex;align-items:center;gap:6px;"><span class="mtag">记忆</span><span style="font-size:11px;color:#374151;font-weight:600;">经营画像 · 已加载</span></span>
-      <span class="mlink" onclick="openMem()">记忆面板 ›</span>
-    </div>
-    <div style="font-size:10px;color:#9ca3af;line-height:1.5;">利润优先·大单稳定 ｜ 上轮 4 模块任务进度 ｜ 历史决策偏好 ｜ 经营事件时间线</div>
-  </div>
-  <div class="ma-context-bar">
-    <b>已同步多端上下文</b>：MA 经营数据与诊断结果、OKKI 客户跟进与会话记录、AW 智能体执行日志、BP 商业计划关键指标已全部带入本次对话。
+  <!-- 记忆 + 上下文（合并一行） -->
+  <div class="memory-bar" style="padding:7px 16px;">
+    <span style="display:flex;align-items:center;gap:6px;"><span class="mtag">记忆</span><span style="font-size:11px;color:#374151;font-weight:600;">经营画像 · 已加载</span></span>
+    <span style="font-size:10px;color:#9ca3af;margin:0 8px;">｜</span>
+    <span style="font-size:10px;color:#2563eb;font-weight:600;">多端上下文已同步</span>
+    <span class="mlink" onclick="openMem()">记忆面板 ›</span>
   </div>
 
   <!-- Chat Area -->
