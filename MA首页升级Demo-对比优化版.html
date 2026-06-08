@@ -275,11 +275,11 @@ a { text-decoration: none; color: inherit; }
 /* Split-screen mode */
 .aw-overlay { display: none; }
 
-.aw-panel { position: fixed; top: 0; right: 0; width: 520px; height: 100vh; background: #fff; border-left: 1px solid #e0e0e0; z-index: 100; display: flex; flex-direction: column; box-shadow: -2px 0 12px rgba(0,0,0,0.06); transform: translateX(100%); transition: transform .35s cubic-bezier(.4,0,.2,1); }
+.aw-panel { position: fixed; top: 0; right: 0; width: 560px; height: 100vh; background: #fff; border-left: 1px solid #e0e0e0; z-index: 100; display: flex; flex-direction: column; box-shadow: -2px 0 12px rgba(0,0,0,0.06); transform: translateX(100%); transition: transform .35s cubic-bezier(.4,0,.2,1); }
 .aw-panel.open { transform: translateX(0); }
 
 /* 主内容区压缩 */
-.layout.split .main-area { margin-right: 520px; transition: margin-right .35s cubic-bezier(.4,0,.2,1); }
+.layout.split .main-area { margin-right: 560px; transition: margin-right .35s cubic-bezier(.4,0,.2,1); }
 .main-area { transition: margin-right .35s cubic-bezier(.4,0,.2,1); }
 /* 分屏时隐藏原有右侧栏，避免三栏挤压 */
 .layout.split .content-right { display: none; }
@@ -1204,7 +1204,7 @@ a { text-decoration: none; color: inherit; }
       <span class="qa-chip" onclick="pickAgent('OKKI 客户跟进官','a2')"><span class="dot"></span>OKKI 客户跟进官</span>
       <span class="qa-chip" onclick="pickAgent('P4P 投放诊断官','a1')"><span class="dot"></span>P4P 投放诊断官</span>
       <span class="qa-chip" onclick="pickAgent('AI 客户经理（发品/冲星）','a2')"><span class="dot"></span>AI 客户经理</span>
-      <span class="qa-chip" onclick="pickAgent('客户接待质检官','a4')"><span class="dot"></span>客户接待质检官</span>
+      <span class="qa-chip" onclick="pickAgent('客户接待质检官','a4')"><span class="dot"></span>质检官</span>
     </div>
     <div class="input-box">
       <div class="sel-chips" id="selChips"></div>
