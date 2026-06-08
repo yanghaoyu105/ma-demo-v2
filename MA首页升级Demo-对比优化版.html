@@ -1112,44 +1112,20 @@ a { text-decoration: none; color: inherit; }
 
   <!-- ===== P4P 场景视图 ===== -->
   <div class="chat-area" id="p4pView" style="display:none;">
-    <!-- 快捷任务卡片 -->
-    <div style="padding:4px 0 12px;border-bottom:1px solid #f0f0f5;margin-bottom:14px;">
-      <div style="font-size:11px;color:#9ca3af;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;">
-        <span>✦ 您可以安排我做的任务</span><span style="color:#4e6ef2;cursor:pointer;">→</span>
-      </div>
-      <div style="display:flex;gap:8px;">
-        <div style="flex:1;padding:14px 8px;border:1.5px solid #4e6ef2;border-radius:10px;text-align:center;cursor:pointer;background:#fff;">
-          <div style="font-size:20px;margin-bottom:4px;">📊</div>
-          <div style="font-size:12px;font-weight:700;color:#1f2937;">P4P诊断</div>
-        </div>
-        <div style="flex:1;padding:14px 8px;border:1px solid #e0e0e0;border-radius:10px;text-align:center;cursor:pointer;background:#fff;">
-          <div style="font-size:20px;margin-bottom:4px;">📋</div>
-          <div style="font-size:12px;font-weight:700;color:#1f2937;">计划诊断</div>
-        </div>
-        <div style="flex:1;padding:14px 8px;border:1px solid #e0e0e0;border-radius:10px;text-align:center;cursor:pointer;background:#fff;">
-          <div style="font-size:20px;margin-bottom:4px;">🎯</div>
-          <div style="font-size:12px;font-weight:700;color:#1f2937;">智投管理</div>
-        </div>
-      </div>
-    </div>
-    <!-- 用户提问 -->
-    <div class="msg-row user">
-      <div class="bubble user">推广计划的预算花不出去，帮忙查看具体问题？</div>
-      <div class="avatar user">皓羽</div>
-    </div>
-    <!-- AI 结果 -->
+    <!-- AI 开场：主动带入上下文 -->
     <div class="msg-row">
       <div class="avatar ai">AI</div>
       <div class="ai-content">
-        <div class="ai-label">结果生成</div>
+        <div class="ai-label">P4P 投放诊断官 · 接入对话</div>
         <div class="bubble ai">
-          为了更好地进行计划诊断分析，请选择需要诊断的计划：
-          <div style="margin-top:10px;padding:10px 14px;border:1.5px solid #4e6ef2;border-radius:10px;display:flex;align-items:center;justify-content:space-between;">
-            <span style="font-size:13px;color:#374151;">全站推广_推商品_新品加速_20260...</span>
-            <span style="color:#10b981;font-size:16px;">✓</span>
-          </div>
-          <div style="margin-top:8px;font-size:18px;">👍 👎</div>
+          <div style="display:inline-flex;align-items:center;gap:4px;font-size:11px;padding:3px 9px;border-radius:12px;background:#fffbeb;color:#f59e0b;border:.5px solid #fde68a;margin-bottom:8px;">📊 广告智能体 <span style="color:#10b981;font-weight:700">运行中</span></div>
+          <br>皓羽老板，检测到您的 P4P 推广计划 <b>"全站推广_推商品_新品加速"</b> 存在获量不足的问题：<br><br>
+          · 日均消耗 <b>¥50</b>，同行均值 <b>¥200</b>（差距 4 倍）<br>
+          · 当前出价 <b>¥0.9</b>，行业建议出价 ¥1.5-2.0<br>
+          · 3 个高潜品近 7 天 0 点击，出价过低导致无展现<br><br>
+          建议将高潜品出价提升至 ¥1.5-1.8 区间，您觉得可以吗？
         </div>
+        <div class="feedback"><span>👍</span><span>👎</span></div>
       </div>
     </div>
     <!-- 用户跟进 -->
@@ -1157,28 +1133,23 @@ a { text-decoration: none; color: inherit; }
       <div class="bubble user">P4P出价提升到¥1.8，优先投放搜索曝光不足的高潜品</div>
       <div class="avatar user">皓羽</div>
     </div>
-    <!-- AI 出价方案 -->
+    <!-- AI 出价方案（纯文本对话） -->
     <div class="msg-row">
       <div class="avatar ai">AI</div>
       <div class="ai-content">
-        <div class="ai-label">结果生成</div>
+        <div class="ai-label">P4P 投放诊断官 · 执行方案</div>
         <div class="bubble ai">
-          已完成P4P出价调整方案，以下3个商品将提升出价：
-          <div style="margin-top:10px;display:flex;flex-direction:column;gap:6px;">
-            <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:#f8faff;border:1px solid #eef1fe;border-radius:8px;">
-              <div><div style="font-size:13px;font-weight:600;color:#1f2937;">Pet Bed Dog Sofa Cushion</div><div style="font-size:11px;color:#10b981;margin-top:2px;">预估日曝光 +320%</div></div>
-              <span style="font-size:13px;font-weight:700;color:#ef4444;">¥0.9→¥1.8</span>
-            </div>
-            <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:#f8faff;border:1px solid #eef1fe;border-radius:8px;">
-              <div><div style="font-size:13px;font-weight:600;color:#1f2937;">Universal Pet Eye Mask</div><div style="font-size:11px;color:#10b981;margin-top:2px;">预估日曝光 +280%</div></div>
-              <span style="font-size:13px;font-weight:700;color:#ef4444;">¥0.9→¥1.6</span>
-            </div>
-            <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:#f8faff;border:1px solid #eef1fe;border-radius:8px;">
-              <div><div style="font-size:13px;font-weight:600;color:#1f2937;">Multi-color Pet Leash</div><div style="font-size:11px;color:#10b981;margin-top:2px;">预估日曝光 +240%</div></div>
-              <span style="font-size:13px;font-weight:700;color:#ef4444;">¥0.9→¥1.5</span>
-            </div>
-          </div>
+          好的，已为您制定出价调整方案：<br><br>
+          <b>1. Pet Bed Dog Sofa Cushion</b><br>
+          出价 ¥0.9 → <span style="color:#ef4444;font-weight:700;">¥1.8</span>｜预估日曝光 <span style="color:#10b981;">+320%</span><br><br>
+          <b>2. Universal Pet Eye Mask</b><br>
+          出价 ¥0.9 → <span style="color:#ef4444;font-weight:700;">¥1.6</span>｜预估日曝光 <span style="color:#10b981;">+280%</span><br><br>
+          <b>3. Multi-color Pet Leash</b><br>
+          出价 ¥0.9 → <span style="color:#ef4444;font-weight:700;">¥1.5</span>｜预估日曝光 <span style="color:#10b981;">+240%</span><br><br>
+          预计日均消耗提升至 <b>¥150-180</b>，搜索曝光 <b>+200%</b>，7 天内新增询盘 5-8 个。<br>
+          确认执行吗？
         </div>
+        <div class="feedback"><span>👍</span><span>👎</span></div>
       </div>
     </div>
   </div>
