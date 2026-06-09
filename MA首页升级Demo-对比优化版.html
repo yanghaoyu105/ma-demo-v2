@@ -294,13 +294,13 @@ a { text-decoration: none; color: inherit; }
 .aw-header-right { display: flex; align-items: center; gap: 14px; }
 .aw-status { display: flex; align-items: center; gap: 5px; font-size: 11px; color: #10b981; font-weight: 700; }
 .aw-status-dot { width: 8px; height: 8px; background: #10b981; border-radius: 50%; box-shadow: 0 0 0 3px rgba(16,185,129,.18); }
-.aw-task-mgr { font-size: 12px; color: #FF6A00; cursor: pointer; }
+.aw-task-mgr { font-size: 12px; color: #666; cursor: pointer; }
 .aw-close { cursor: pointer; font-size: 18px; color: #999; text-decoration: none; }
 
 /* 记忆条 */
-.memory-bar { display: flex; align-items: center; gap: 8px; padding: 8px 20px; background: #fff8f2; border-bottom: 1px solid #ffe8d4; font-size: 11px; color: #6b7280; flex-shrink: 0; }
-.memory-bar .mtag { background: #fff0e0; color: #FF6A00; font-weight: 700; padding: 2px 7px; border-radius: 4px; font-size: 10px; }
-.memory-bar .mlink { margin-left: auto; color: #FF6A00; cursor: pointer; font-weight: 700; }
+.memory-bar { display: flex; align-items: center; gap: 8px; padding: 8px 20px; background: #f9f9f9; border-bottom: 1px solid #ebebeb; font-size: 11px; color: #6b7280; flex-shrink: 0; }
+.memory-bar .mtag { background: #f0f0f0; color: #555; font-weight: 700; padding: 2px 7px; border-radius: 4px; font-size: 10px; }
+.memory-bar .mlink { margin-left: auto; color: #666; cursor: pointer; font-weight: 700; }
 .memory-bar .mlink:hover { text-decoration: underline; }
 
 /* ===== 记忆抽屉 ===== */
@@ -349,43 +349,44 @@ a { text-decoration: none; color: inherit; }
 .msg-row { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 18px; }
 .msg-row.user { justify-content: flex-end; }
 .aw-panel .avatar { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 10px; }
-.aw-panel .avatar.ai { background: linear-gradient(135deg,#4e6ef2,#7b93f7); color: #fff; font-size: 8px; font-weight: 700; }
+.aw-panel .avatar.ai { background: #FF6A00; color: #fff; font-size: 0; overflow: hidden; background-image: url('https://aone-copilot.oss-cn-shanghai.aliyuncs.com/images/1780998499616.png'); background-size: cover; background-position: center; }
+.aw-panel .avatar.ai svg { display: none; }
 .aw-panel .avatar.user { background: #e8e8e8; color: #666; }
 .bubble { background: #f5f5f5; border-radius: 14px; padding: 10px 14px; font-size: 13px; color: #1a1a1a; max-width: 360px; line-height: 1.6; }
 .bubble.user { border-radius: 14px 14px 4px 14px; }
-.bubble.ai { background: #f5f7ff; border: 1px solid #eef1fe; border-radius: 4px 14px 14px 14px; max-width: 380px; }
+.bubble.ai { background: #fafafa; border: 1px solid #f0f0f0; border-radius: 4px 14px 14px 14px; max-width: 380px; }
 .bubble.ai b { color: #1a1a1a; }
 .bubble.ai .up { color: #10b981; font-weight: 700; }
 .bubble.ai .down { color: #ef4444; font-weight: 700; }
 .bubble.ai .warn { color: #f59e0b; font-weight: 700; }
 .bubble.ai .src { color: #9ca3af; font-size: 11px; cursor: help; border-bottom: 1px dotted #c4c4c4; }
 .chat-act { display: inline-flex; align-items: center; gap: 4px; margin-top: 8px; padding: 5px 12px; border-radius: 14px; font-size: 11px; font-weight: 700; cursor: pointer; border: none; }
-.chat-act.primary { background: linear-gradient(135deg,#4e6ef2,#7b93f7); color: #fff; }
-.chat-act.ghost { background: #fff; border: 1px solid #d9def0; color: #4e6ef2; }
-.chat-act.primary:hover { opacity: .9; } .chat-act.ghost:hover { background: #eef1fe; }
+.chat-act.primary { background: #FF6A00; color: #fff; }
+.chat-act.ghost { background: #fff; border: 1px solid #ffd4a8; color: #FF6A00; }
+.chat-act.primary:hover { opacity: .9; } .chat-act.ghost:hover { background: #fff4eb; }
 .bubble.ai .tag-state { display: inline-block; font-size: 9px; font-weight: 700; padding: 1px 7px; border-radius: 10px; margin-left: 4px; vertical-align: middle; }
 .st-done { background: #ecfdf5; color: #10b981; } .st-doing { background: #eff6ff; color: #2563eb; } .st-todo { background: #fef2f2; color: #ef4444; }
 .ai-content { flex: 1; min-width: 0; }
 .ai-label { font-size: 11px; color: #999; margin-bottom: 6px; }
 
 /* 智能体执行卡（@后） */
-.agent-exec { border: 1.5px solid #c7d2fe; border-radius: 12px; overflow: hidden; }
-.ae-head { display: flex; align-items: center; gap: 8px; padding: 9px 14px; background: linear-gradient(135deg,#eef1fe,#f5f7ff); }
-.ae-ava { width: 24px; height: 24px; border-radius: 50%; background: linear-gradient(135deg,#4e6ef2,#7b93f7); color: #fff; font-size: 9px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+.agent-exec { border: 1.5px solid #e5e5e5; border-radius: 12px; overflow: hidden; }
+.ae-head { display: flex; align-items: center; gap: 8px; padding: 9px 14px; background: #f9f9f9; }
+.ae-ava { width: 24px; height: 24px; border-radius: 50%; background: #FF6A00; color: #fff; font-size: 9px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
 .ae-name { font-size: 13px; font-weight: 700; color: #1f2937; }
 .ae-src { font-size: 9px; color: #7c3aed; background: #f3f0ff; border: .5px solid #d8c9fb; padding: 1px 6px; border-radius: 4px; margin-left: 2px; }
 .ae-body { padding: 12px 14px; }
 .ae-step { display: flex; gap: 8px; font-size: 12px; color: #374151; line-height: 1.6; margin-bottom: 7px; }
 .ae-step .ico { flex-shrink: 0; }
 .ae-step .sync { color: #2563eb; } .ae-step .exec { color: #10b981; }
-.ae-prod { background: #f5f7ff; border: 1px solid #dde3fc; border-radius: 8px; padding: 8px 12px; margin: 4px 0 8px; display: flex; justify-content: space-between; align-items: center; }
-.ae-prod .pn { font-size: 12px; color: #333; } .ae-prod .pp { font-size: 12px; font-weight: 700; color: #4e6ef2; }
+.ae-prod { background: #f9f9f9; border: 1px solid #e5e5e5; border-radius: 8px; padding: 8px 12px; margin: 4px 0 8px; display: flex; justify-content: space-between; align-items: center; }
+.ae-prod .pn { font-size: 12px; color: #333; } .ae-prod .pp { font-size: 12px; font-weight: 700; color: #FF6A00; }
 .ae-result { background: #ecfdf5; border: 1px solid #b9efd4; border-radius: 8px; padding: 8px 12px; font-size: 11px; color: #047857; line-height: 1.6; }
 .ae-act { display: flex; gap: 8px; margin-top: 10px; }
 .rc-btn { padding: 5px 12px; border-radius: 14px; font-size: 11px; font-weight: 700; cursor: pointer; border: none; white-space: nowrap; }
-.rc-btn.primary { background: linear-gradient(135deg,#4e6ef2,#7b93f7); color: #fff; }
-.rc-btn.ghost { background: #fff; border: 1px solid #d9def0; color: #4e6ef2; }
-.rc-btn.primary:hover { opacity: .9; } .rc-btn.ghost:hover { background: #f5f7ff; }
+.rc-btn.primary { background: #FF6A00; color: #fff; }
+.rc-btn.ghost { background: #fff; border: 1px solid #ffd4a8; color: #FF6A00; }
+.rc-btn.primary:hover { opacity: .9; } .rc-btn.ghost:hover { background: #fff4eb; }
 .feedback { display: flex; gap: 8px; margin-top: 8px; }
 .feedback span { cursor: pointer; color: #c4c4c4; font-size: 15px; }
 
@@ -393,32 +394,32 @@ a { text-decoration: none; color: inherit; }
 .input-section { padding: 10px 20px 14px; border-top: 1px solid #ebebeb; position: relative; flex-shrink: 0; }
 .quick-agents { display: flex; align-items: center; gap: 4px; margin-bottom: 8px; flex-wrap: nowrap; }
 .quick-agents .lab { font-size: 10px; color: #9ca3af; white-space: nowrap; }
-.qa-chip { display: inline-flex; align-items: center; gap: 3px; font-size: 10px; color: #FF6A00; background: #fff4eb; border: 1px solid #ffd4a8; padding: 2px 7px; border-radius: 12px; cursor: pointer; white-space: nowrap; }
-.qa-chip:hover { background: #ffe8d4; }
+.qa-chip { display: inline-flex; align-items: center; gap: 3px; font-size: 10px; color: #555; background: #f5f5f5; border: 1px solid #e0e0e0; padding: 2px 7px; border-radius: 12px; cursor: pointer; white-space: nowrap; }
+.qa-chip:hover { background: #ebebeb; }
 .qa-chip .dot { width: 5px; height: 5px; border-radius: 50%; background: #10b981; }
-.input-box { border: 1.5px solid #FF6A00; border-radius: 12px; padding: 8px 10px 8px 12px; }
+.input-box { border: 1.5px solid #d0d0d0; border-radius: 12px; padding: 8px 10px 8px 12px; }
 .sel-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 6px; }
 .sel-chips:empty { display: none; margin: 0; }
-.sel-chip { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 700; color: #4e6ef2; background: #eef1fe; border: 1px solid #c7d2fe; padding: 3px 6px 3px 9px; border-radius: 12px; }
-.sel-chip .x { cursor: pointer; color: #9aa6e6; font-weight: 700; font-size: 13px; line-height: 1; }
-.sel-chip .x:hover { color: #4e6ef2; }
+.sel-chip { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 700; color: #555; background: #f5f5f5; border: 1px solid #d0d0d0; padding: 3px 6px 3px 9px; border-radius: 12px; }
+.sel-chip .x { cursor: pointer; color: #999; font-weight: 700; font-size: 13px; line-height: 1; }
+.sel-chip .x:hover { color: #333; }
 .input-row { display: flex; align-items: center; gap: 8px; }
 .toggle-wrap { display: flex; align-items: center; gap: 4px; flex-shrink: 0; }
-.toggle { width: 30px; height: 17px; background: #4e6ef2; border-radius: 9px; padding: 2px; cursor: pointer; display: flex; align-items: center; }
+.toggle { width: 30px; height: 17px; background: #999; border-radius: 9px; padding: 2px; cursor: pointer; display: flex; align-items: center; }
 .toggle .dot { width: 13px; height: 13px; border-radius: 50%; background: #fff; margin-left: 13px; transition: margin .2s; }
 .toggle-label { font-size: 11px; color: #666; }
 .input-field { flex: 1; border: none; outline: none; font-size: 13px; color: #1a1a1a; background: transparent; font-family: inherit; }
-.send-btn { width: 28px; height: 28px; border-radius: 50%; background: #FF6A00; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-.plus-btn { width: 28px; height: 28px; border-radius: 8px; background: #f0f2ff; border: 1px solid #dfe3ff; color: #4e6ef2; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 18px; line-height: 1; transition: background .15s; }
-.plus-btn:hover { background: #e2e7ff; }
-.plus-btn.on { background: #4e6ef2; color: #fff; border-color: #4e6ef2; }
+.send-btn { width: 28px; height: 28px; border-radius: 50%; background: #1a1a1a; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.plus-btn { width: 28px; height: 28px; border-radius: 8px; background: #f5f5f5; border: 1px solid #d0d0d0; color: #666; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 18px; line-height: 1; transition: background .15s; }
+.plus-btn:hover { background: #ebebeb; }
+.plus-btn.on { background: #1a1a1a; color: #fff; border-color: #1a1a1a; }
 .footer-text { text-align: center; margin-top: 6px; font-size: 10px; color: #bbb; }
 
 /* @ 下拉 */
 .mention-pop { position: absolute; left: 20px; right: 20px; bottom: 92px; background: #fff; border: 1px solid #e0e0e0; border-radius: 12px; box-shadow: 0 8px 28px rgba(0,0,0,.14); padding: 6px; z-index: 300; display: none; }
 .mention-pop.show { display: block; }
 .mp-title { font-size: 10px; color: #9ca3af; padding: 6px 10px 4px; display: flex; align-items: center; }
-.mp-title a { color: #4e6ef2; margin-left: auto; cursor: pointer; }
+.mp-title a { color: #FF6A00; margin-left: auto; cursor: pointer; }
 .mp-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 10px; border-radius: 8px; cursor: pointer; }
 .mp-item:hover { background: #f5f7ff; }
 .mp-ava { width: 30px; height: 30px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
@@ -1029,16 +1030,16 @@ a { text-decoration: none; color: inherit; }
   <div class="chat-area" id="chatArea">
     <!-- 开场 -->
     <div class="msg-row">
-      <div class="avatar ai">AI</div>
+      <div class="avatar ai"></div>
       <div class="ai-content">
         <div class="ai-label">经营智能体 · 主动巡店</div>
         <div class="bubble ai">
           <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;">
-            <span style="display:inline-flex;align-items:center;gap:4px;font-size:11px;padding:3px 9px;border-radius:12px;background:#eef1fe;color:#4e6ef2;border:.5px solid #c7d2fe;">🛍️ 诊断智能体 <span style="color:#10b981;font-weight:700">运行中</span></span>
-            <span style="display:inline-flex;align-items:center;gap:4px;font-size:11px;padding:3px 9px;border-radius:12px;background:#fffbeb;color:#f59e0b;border:.5px solid #fde68a;">📊 广告智能体 <span style="color:#10b981;font-weight:700">运行中</span></span>
-            <span style="display:inline-flex;align-items:center;gap:4px;font-size:11px;padding:3px 9px;border-radius:12px;background:#ecfdf5;color:#10b981;border:.5px solid #a7f3d0;">🤝 OKKI智能体 <span style="color:#10b981;font-weight:700">运行中</span></span>
+            <span style="display:inline-flex;align-items:center;gap:4px;font-size:11px;padding:3px 9px;border-radius:12px;background:#f5f5f5;color:#374151;border:.5px solid #e5e5e5;">🛍️ 诊断智能体 <span style="color:#FF6A00;font-weight:700">运行中</span></span>
+            <span style="display:inline-flex;align-items:center;gap:4px;font-size:11px;padding:3px 9px;border-radius:12px;background:#f5f5f5;color:#374151;border:.5px solid #e5e5e5;">📊 广告智能体 <span style="color:#FF6A00;font-weight:700">运行中</span></span>
+            <span style="display:inline-flex;align-items:center;gap:4px;font-size:11px;padding:3px 9px;border-radius:12px;background:#f5f5f5;color:#374151;border:.5px solid #e5e5e5;">🤝 OKKI智能体 <span style="color:#FF6A00;font-weight:700">运行中</span></span>
           </div>
-          <div style="margin:8px 0;padding:7px 10px;border:1px solid #dbeafe;border-radius:8px;background:linear-gradient(135deg,#f8fbff 0%,#eef6ff 100%);font-size:10px;color:#475569;line-height:1.6;"><b style="color:#2563eb;">已同步多端上下文</b>：MA 经营数据与诊断结果、OKKI 客户跟进与会话记录、AW 智能体执行日志已全部带入本次对话。</div>
+          <div style="margin:8px 0;padding:7px 10px;border:1px solid #e5e5e5;border-radius:8px;background:#f9f9f9;font-size:10px;color:#475569;line-height:1.6;"><b style="color:#FF6A00;">已同步多端上下文</b>：MA 经营数据与诊断结果、OKKI 客户跟进与会话记录、AW 智能体执行日志已全部带入本次对话。</div>
           <div style="font-size:10px;color:#9ca3af;margin-bottom:8px;">7×24h 为您的店铺持续工作，以下是最近 3 天的复盘：</div>
           皓羽老板好 👋 距上次对话过去 <b>3 天</b>，各智能体已把上轮任务<b>复盘</b>完毕，挨个跟您说下结果 ——<span class="src" onclick="openMem()" style="cursor:pointer" title="点击查看：经营画像 + 经营事件记忆">（基于记忆）</span>
         </div>
@@ -1046,7 +1047,7 @@ a { text-decoration: none; color: inherit; }
     </div>
     <!-- 发品冲星 -->
     <div class="msg-row">
-      <div class="avatar ai">AI</div>
+      <div class="avatar ai"></div>
       <div class="ai-content">
         <div class="bubble ai">
           先说 <b>发品冲星</b> <span class="tag-state st-doing">进行中</span><br>
@@ -1059,7 +1060,7 @@ a { text-decoration: none; color: inherit; }
     </div>
     <!-- P4P投放 -->
     <div class="msg-row">
-      <div class="avatar ai">AI</div>
+      <div class="avatar ai"></div>
       <div class="ai-content">
         <div class="bubble ai">
           再看 <b>P4P 投放</b> <span class="tag-state st-done">已见效 ✓</span><br>
@@ -1072,7 +1073,7 @@ a { text-decoration: none; color: inherit; }
     </div>
     <!-- OKKI客户跟进 -->
     <div class="msg-row">
-      <div class="avatar ai">AI</div>
+      <div class="avatar ai"></div>
       <div class="ai-content">
         <div class="bubble ai">
           客户这边要提醒下 <b>OKKI 跟进</b> <span class="tag-state st-todo">待处理</span><br>
@@ -1085,7 +1086,7 @@ a { text-decoration: none; color: inherit; }
     </div>
     <!-- 合规 -->
     <div class="msg-row">
-      <div class="avatar ai">AI</div>
+      <div class="avatar ai"></div>
       <div class="ai-content">
         <div class="bubble ai">
           顺带提一句 <b>合规</b> <span class="tag-state st-todo">紧急</span><br>
@@ -1096,7 +1097,7 @@ a { text-decoration: none; color: inherit; }
     </div>
     <!-- 收尾 -->
     <div class="msg-row">
-      <div class="avatar ai">AI</div>
+      <div class="avatar ai"></div>
       <div class="ai-content">
         <div class="bubble ai">
           复盘完了，一句话总结：<b>P4P 已见效、发品过半、询盘和合规是眼下两个卡点</b>。<br>
@@ -1111,7 +1112,7 @@ a { text-decoration: none; color: inherit; }
   <div class="chat-area" id="p4pView" style="display:none;">
     <!-- AI 开场：主动带入上下文 -->
     <div class="msg-row">
-      <div class="avatar ai">AI</div>
+      <div class="avatar ai"></div>
       <div class="ai-content">
         <div class="ai-label">P4P 投放诊断官 · 接入对话</div>
         <div class="bubble ai">
@@ -1132,7 +1133,7 @@ a { text-decoration: none; color: inherit; }
     </div>
     <!-- AI 出价方案（纯文本对话） -->
     <div class="msg-row">
-      <div class="avatar ai">AI</div>
+      <div class="avatar ai"></div>
       <div class="ai-content">
         <div class="ai-label">P4P 投放诊断官 · 执行方案</div>
         <div class="bubble ai">
@@ -1551,7 +1552,7 @@ function buildAgentReply(agent, text) {
       '<div class="ae-step"><span class="ico sync">🔗</span><span class="sync">已结合您的经营画像与上轮记忆</span>为您分析。</div>' +
       '<div class="ae-result">您可 @ 指定专员（OKKI / P4P / AI客户经理），我会同步对应 MA 数据并回写执行。</div>';
   }
-  return '<div class="avatar ai">AI</div><div class="ai-content">' +
+  return '<div class="avatar ai"></div><div class="ai-content">' +
     '<div class="agent-exec">' +
     '<div class="ae-head"><span class="ae-ava">' + initial + '</span><span class="ae-name">' + name + '</span>' +
     (agent ? '<span class="ae-src">AW 自建 · 接管中</span>' : '') + '</div>' +
